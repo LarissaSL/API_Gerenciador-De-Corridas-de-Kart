@@ -51,6 +51,9 @@ As seguintes tecnologias foram utilizadas no desenvolvimento desse projeto:
 - **[Flyway](https://flywaydb.org)**
 
 
-
+## 📑 Apêndices 
 `Confira o Projeto antes de virar API aqui:` ➡️➡️ [Projeto Web via PHP](https://github.com/LarissaSL/SistemaCKC)
+`Confira o Projeto Mobile aqui:` ➡️➡️ [Projeto Mobile](https://github.com/LarissaSL/API_Gerenciador-De-Corridas-de-Kart)
+`Confira o Novo Projeto Web aqui:` ➡️➡️ [Projeto Web via JS](https://github.com/LarissaSL/API_Gerenciador-De-Corridas-de-Kart)
+
 
