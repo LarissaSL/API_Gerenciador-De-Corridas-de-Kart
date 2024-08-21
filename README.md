@@ -35,6 +35,33 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 
 ---
 
+## 📓 Padrões de Nomenclatura nos Commits
+
+Abaixo segue uma tabela onde explicamos um padrão para nossos commits.
+
+| **Tipo**    | **Descrição**                                                   |
+|-------------|-----------------------------------------------------------------|
+| **FEAT**    | Para novos recursos                                             |
+| **FIX**     | Solucionando um problema                                        |
+| **RAW**     | Arquivo de configs, dados, features, parâmetros                 |
+| **BUILD**   | Arquivos de build e dependências                                |
+| **PERF**    | Mudança de performance                                          |
+| **REMOVE**  | Exclusão de arquivos, diretórios ou código                      |
+| **CHORE**   | Atualizações de tarefas de build, configs de admin, pacotes, etc|
+| **REFACTOR**| Refatorações sem alterar funcionalidade                         |
+| **TESTE**   | Alterações em teste                                             |
+| **CI**      | Mudanças relacionadas a integração contínua                     |
+| **DOCS**    | Mudanças na documentação                                        |
+| **CLEANUP** | Remover trechos desnecessários                                  |
+| **STYLE**   | Formatações de código                                           |
+
+`Exemplo de uso:`
+```
+git commit -m "FEAT - CRUD de Usuarios"
+```
+
+---
+
 # 🖥️🛠️ Como usar?
 
 ## Configurando o Banco de Dados
