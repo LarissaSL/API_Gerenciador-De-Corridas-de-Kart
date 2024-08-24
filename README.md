@@ -12,6 +12,11 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 -  [Leticia Graziele](https://github.com/LeticiaGraziel) como UX/UI e Auxiliar de Banco de Dados
 -  [Silvana Sales](https://github.com/SilvanaMenezes) como UX/UI e Fullstack
 
+## 📑 Índice
+
+---
+
+
 ## 🎯 Inclusões
 
 - ✅ Criação do Readme da API
@@ -93,8 +98,137 @@ Resultado das Variáveis de Ambiente:
 
 ![image](https://github.com/user-attachments/assets/71020e7d-9653-4184-a6a1-6521d71fc19e)
 
+---
+
+
+## Utilizando o Controller de Usuários
+
+### ✅ 1. Método de Criação de Novos Usuários
+
+- Para criar um novo usuário, envie uma requisição para o seguinte endereço:
+
+```
+http://localhost:8080/usuario
+```
+
+Selecione o método **POST** (caso esteja usando ferramentas como POSTMAN, INSOMNIA, etc).
+
+**Corpo esperado:**
+
+```json
+{
+    "nome": "Koda",
+    "sobrenome": "Silva",
+    "cpf": "12345678911",
+    "telefone": "11934669846",
+    "tipo": "usuario",
+    "email": "koda@example.com.br",
+    "senha": "Koda2044",
+    "data_de_nascimento": "2022-12-31"
+}
+```
+
+Se tudo ocorrer conforme esperado, você receberá o Status Code `201`.
+
+
+![image](https://github.com/user-attachments/assets/c0699d7b-fe31-407d-b65c-475fba299e0a)
+
+ 
+
+Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem de erro no formato RFC.
+
+** 📃❌ Mensagem com vários erros:**
+
+
+![image](https://github.com/user-attachments/assets/07fc5482-4ef6-4724-a174-1a59e4424a24)
+
 
 ---
+
+
+
+### 📃 2. Listagem de Usuários
+
+- Para listar um usuário individualmente, acesse o mesmo URL, passando o ID do usuário a ser listado. Se tudo estiver correto, você receberá os dados do usuário solicitado.
+```
+http://localhost:8080/usuario/{id}
+```
+
+![image](https://github.com/user-attachments/assets/57b41767-7bf9-4cdc-afb0-66fa8a51a3bf)
+
+ 
+
+- Para listar todos os registros de uma entidade, basta acessar o URL:
+
+```
+http://localhost:8080/usuario/
+```
+
+![image](https://github.com/user-attachments/assets/4cff1592-9c2d-4de3-864c-3a9b2bcdeb07)
+
+ 
+
+### 📃 2.1. Métodos de Ordenação e Paginação
+
+- Para ordenar os registros, use:
+
+```
+http://localhost:8080/usuario?ordem={NomeDoCampoParaOrdenar}
+```
+
+- Para definir o número de registros por página:
+
+```
+http://localhost:8080/usuario?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}
+```
+
+- Para acessar uma página específica:
+
+```
+http://localhost:8080/usuario?pagina={QualPaginaDesejaVer}
+```
+
+
+
+Por padrão, a ordenação é crescente. Para ordenação decrescente, adicione:
+
+```
+http://localhost:8080/usuario?ordem={NomeDoCampoParaOrdenar},desc
+```
+
+
+
+- Para combinar métodos de ordenação e paginação, use `&`:
+
+```
+http://localhost:8080/usuario?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}&ordem={NomeDoCampoParaOrdenar}
+```
+
+- **Exemplo de combinação:**
+
+```
+http://localhost:8080/usuario?tamanho=1&ordem=cpf,desc
+```
+
+![image](https://github.com/user-attachments/assets/0766d068-9198-4c15-9f0c-83c984d3d9a8)
+
+ 
+
+Essa inclusão cobre a criação de entidades e a utilização do controlador de usuários, detalhando o processo de requisições e métodos disponíveis
+
+
+---
+
+
+### ❎3. Exclusão de Usuário
+
+Para excluir um usuário, acesse o mesmo URL, passando o ID do usuário a ser excluído. Se tudo estiver correto, você receberá um feedback indicando que a exclusão foi bem-sucedida.
+ 
+![image](https://github.com/user-attachments/assets/eff98137-6060-4adf-b5cc-92185d08743b)
+
+
+---
+
 
 ## 🛠 Tecnologias
 
