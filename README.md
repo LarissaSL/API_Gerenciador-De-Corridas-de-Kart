@@ -67,6 +67,24 @@ git commit -m "FEAT - CRUD de Usuarios"
 
 ---
 
+### 🛠️ Validadores para CRUD
+
+#### 1. **Usuários**
+
+| **Campo**              | **Validação**                                                                                                      |
+|------------------------|--------------------------------------------------------------------------------------------------------------------|
+| **Nome**               | Deve ser um texto não vazio e não deve exceder 45 caracteres.                                                       |
+| **Sobrenome**          | Deve ser um texto não vazio e não deve exceder 45 caracteres.                                                       |
+| **CPF**                | Deve ser um CPF válido, apenas números e único.                                                                     |
+| **Telefone**           | Deve ser um número de telefone válido e não vazio.                                                                   |
+| **Tipo**               | Deve ser um valor permitido ('admin', 'usuario').                                                               |
+| **Email**              | Deve ser um email válido, não vazio e único.                                                                        |
+| **Senha**              | Deve atender aos critérios de complexidade definidos (mínimo de 8 caracteres, incluindo letras maiúsculas e minúsculas, não pode incluir o nome ou sobrenome do usuário, números e nenhuma das palavras comuns definidas no validador). |
+| **Data de Nascimento** | Deve ser uma data válida e o usuário deve ter a idade mínima para o registro (15 anos).                               |
+
+---
+
+
 # 🖥️🛠️ Como usar?
 
 ## Configurando o Banco de Dados
