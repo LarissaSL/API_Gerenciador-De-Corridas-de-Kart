@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.aplicacao.usuario;
 
+import com.manascode.api_sgk.aplicacao.usuario.validacoes.IValidadorDeUsuario;
 import com.manascode.api_sgk.dominio.usuario.Usuario;
 import com.manascode.api_sgk.infraestrutura.persistencia.UsuarioRepository;
 import com.manascode.api_sgk.interfaceAdaptadores.mapper.usuario.UsuarioMapper;
@@ -11,13 +12,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @Service
 public class UsuarioService {
 
     @Autowired
     private UsuarioRepository repositorio;
 
-    public ResponseEntity<?> cadastrar(CriarUsuarioDTO dados) {
+    @Autowired
+    List<IValidadorDeUsuario> validadores;
+
+    public ResponseEntity cadastrar(CriarUsuarioDTO dados) {
+        // Passando os dados enviados para os validadores
+        validadores.forEach(v -> v.validar(dados));
+
         Usuario usuario = UsuarioMapper.INSTANCE.converteDTOParaUsuario(dados);
         Usuario usuarioSalvo = repositorio.save(usuario);
 

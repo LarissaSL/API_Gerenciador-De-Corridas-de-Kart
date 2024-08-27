@@ -22,7 +22,7 @@ public class ExcecaoGlobalHandler {
 
     // Erros em relação aos Campos
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity tratarErroValidacao(MethodArgumentNotValidException ex, HttpServletRequest request) {
+    public ResponseEntity<ResponseErrorPadraoRFC>  tratarErroValidacao(MethodArgumentNotValidException ex, HttpServletRequest request) {
         String uri = request.getRequestURI();
         String titulo = "Campos de Entrada com erros";
         HttpStatus status = HttpStatus.BAD_REQUEST;
@@ -43,7 +43,7 @@ public class ExcecaoGlobalHandler {
 
     // Erros em relação ao Banco
     @ExceptionHandler(SQLException.class)
-    public ResponseEntity ResponseEntitytratarErrosDoBanco(SQLException ex, HttpServletRequest request) {
+    public ResponseEntity<ResponseErrorPadraoRFC>  ResponseEntitytratarErrosDoBanco(SQLException ex, HttpServletRequest request) {
         String uri = request.getRequestURI();
         String titulo = "Erro no Banco de Dados";
         HttpStatus status = HttpStatus.BAD_REQUEST;
@@ -67,7 +67,7 @@ public class ExcecaoGlobalHandler {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity tratarErroEntidadeNaoEncontrada (HttpServletRequest request) {
+    public ResponseEntity<ResponseErrorPadraoRFC>  tratarErroEntidadeNaoEncontrada (HttpServletRequest request) {
         String uri = request.getRequestURI();
         String titulo = "Erro no Banco de Dados";
         HttpStatus status = HttpStatus.NOT_FOUND;
@@ -75,6 +75,22 @@ public class ExcecaoGlobalHandler {
         ResponseErrorPadraoRFC problema = ExcecoesMapper.INSTANCE.converteExcecaoParaDtoRFC(
                 titulo,
                 "Não foi possivel encontrar esse registro",
+                status,
+                uri
+        );
+
+        return ResponseEntity.status(status).body(problema);
+    }
+
+    @ExceptionHandler(UsuarioException.class)
+    public ResponseEntity<ResponseErrorPadraoRFC> tratarErroDeValidacoesUsuario (HttpServletRequest request, UsuarioException excecao) {
+        String uri = request.getRequestURI();
+        String titulo = "Erro nos dados de usuário";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        ResponseErrorPadraoRFC problema = ExcecoesMapper.INSTANCE.converteExcecaoParaDtoRFC(
+                titulo,
+                excecao.getMessage(),
                 status,
                 uri
         );
