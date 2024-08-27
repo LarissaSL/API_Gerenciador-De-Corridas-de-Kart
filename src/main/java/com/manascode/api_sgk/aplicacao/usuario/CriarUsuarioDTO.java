@@ -17,6 +17,8 @@ public record CriarUsuarioDTO(
                 String cpf,
                 @Pattern(regexp = "\\d{10,11}", message = "Telefone deve conter entre 10 e 11 dígitos numéricos.")
                 String telefone,
+
+                @NotNull(message = "Tipo de usuário é um campo obrigatório")
                 TipoUsuario tipo,
                 @NotBlank(message = "Email é um campo obrigatório.")
                 @Email(message = "Email deve ser válido.")
