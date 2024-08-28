@@ -19,7 +19,7 @@ public interface UsuarioMapper {
     @Mapping(target = "ativo" , ignore = true)
     Usuario converteDTOParaUsuario(CriarUsuarioDTO dadosUsuario);
 
-    DetalharUsuarioDTO converteUsuarioParaDTODetalhamento(Usuario dadosUsuario);
-
     ListarUsuarioDTO converteUsuarioParaDTOListar(Usuario dadosUsuario);
+
+    DetalharUsuarioDTO converteUsuarioParaDTODetalhamento(Usuario dadosUsuario);
 }
