@@ -12,15 +12,15 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 -  [Leticia Graziele](https://github.com/LeticiaGraziel) como UX/UI e Auxiliar de Banco de Dados
 -  [Silvana Sales](https://github.com/SilvanaMenezes) como UX/UI e Fullstack
 
+<br><br><br>
 ## 📑 Índice
 
 ---
-
-
+<br><br><br>
 ## 🎯 Inclusões
 
 - ✅ Criação do Readme da API
-
+<br><br><br>
 ## ⚙️ Funcionalidades
 
 - 🟡 CRUD de Kartodromos
@@ -39,7 +39,7 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 - 🟡 Compartilhamento via Whatsapp da Lista de Pilotos
 
 ---
-
+<br><br><br>
 ## 📓 Padrões de Nomenclatura nos Commits
 
 Abaixo segue uma tabela onde explicamos um padrão para nossos commits.
@@ -66,10 +66,10 @@ git commit -m "FEAT - CRUD de Usuarios"
 ```
 
 ---
+<br><br><br>
+# 🛠️ Validadores para CRUD
 
-### 🛠️ Validadores para CRUD
-
-#### 1. **Usuários**
+## 1. **Usuários**
 
 | **Campo**              | **Validação**                                                                                                      |
 |------------------------|--------------------------------------------------------------------------------------------------------------------|
@@ -84,7 +84,7 @@ git commit -m "FEAT - CRUD de Usuarios"
 
 ---
 
-
+<br><br><br>
 # 🖥️🛠️ Como usar?
 
 ## Configurando o Banco de Dados
@@ -118,18 +118,15 @@ Resultado das Variáveis de Ambiente:
 
 ---
 
+<br><br><br>
+# Utilizando o Controller de Usuários
 
-## Utilizando o Controller de Usuários
-
-### ✅ 1. Método de Criação de Novos Usuários
+## ✅ 1. Método de Criação de Novos Usuários
 
 - Para criar um novo usuário, envie uma requisição para o seguinte endereço:
-
 ```
-http://localhost:8080/usuario
+POST http://localhost:8080/usuario
 ```
-
-Selecione o método **POST** (caso esteja usando ferramentas como POSTMAN, INSOMNIA, etc).
 
 **Corpo esperado:**
 
@@ -145,16 +142,17 @@ Selecione o método **POST** (caso esteja usando ferramentas como POSTMAN, INSOM
     "data_de_nascimento": "2022-12-31"
 }
 ```
-
+<br>
 Se tudo ocorrer conforme esperado, você receberá o Status Code `201`.
 
 
 ![image](https://github.com/user-attachments/assets/c0699d7b-fe31-407d-b65c-475fba299e0a)
 
- 
 
+<br>
 Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem de erro no formato RFC.
 
+<br>
 ** 📃❌ Mensagem com vários erros:**
 
 
@@ -162,20 +160,19 @@ Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem 
 
 
 ---
-
-
-
-### 📃 2. Listagem de Usuários
-
+<br><br><br>
+## 📃 2. Listagem de Usuários
+<br>
 - Para listar um usuário individualmente, acesse o mesmo URL, passando o ID do usuário a ser listado. Se tudo estiver correto, você receberá os dados do usuário solicitado.
 ```
 http://localhost:8080/usuario/{id}
 ```
 
-![image](https://github.com/user-attachments/assets/57b41767-7bf9-4cdc-afb0-66fa8a51a3bf)
+![image](https://github.com/user-attachments/assets/3b4cb57d-7d44-4a71-8448-84b03b183408)
+
 
  
-
+<br>
 - Para listar todos os registros de uma entidade, basta acessar o URL:
 
 ```
@@ -186,28 +183,27 @@ http://localhost:8080/usuario/
 
  
 
-### 📃 2.1. Métodos de Ordenação e Paginação
+## 📃 2.1. Métodos de Ordenação e Paginação
 
 - Para ordenar os registros, use:
 
 ```
 http://localhost:8080/usuario?ordem={NomeDoCampoParaOrdenar}
 ```
-
+<br>
 - Para definir o número de registros por página:
 
 ```
 http://localhost:8080/usuario?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}
 ```
-
+<br>
 - Para acessar uma página específica:
 
 ```
 http://localhost:8080/usuario?pagina={QualPaginaDesejaVer}
 ```
 
-
-
+<br><br>
 Por padrão, a ordenação é crescente. Para ordenação decrescente, adicione:
 
 ```
@@ -215,13 +211,13 @@ http://localhost:8080/usuario?ordem={NomeDoCampoParaOrdenar},desc
 ```
 
 
-
+<br>
 - Para combinar métodos de ordenação e paginação, use `&`:
 
 ```
 http://localhost:8080/usuario?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}&ordem={NomeDoCampoParaOrdenar}
 ```
-
+<br><br>
 - **Exemplo de combinação:**
 
 ```
@@ -230,22 +226,75 @@ http://localhost:8080/usuario?tamanho=1&ordem=cpf,desc
 
 ![image](https://github.com/user-attachments/assets/0766d068-9198-4c15-9f0c-83c984d3d9a8)
 
- 
-
+<br>
 Essa inclusão cobre a criação de entidades e a utilização do controlador de usuários, detalhando o processo de requisições e métodos disponíveis
 
 
 ---
+<br><br><br>
+## ❎ 3. Exclusão de Usuário
 
-
-### ❎3. Exclusão de Usuário
-
+<br>
 Para excluir um usuário, acesse o mesmo URL, passando o ID do usuário a ser excluído. Se tudo estiver correto, você receberá um feedback indicando que a exclusão foi bem-sucedida.
  
 ![image](https://github.com/user-attachments/assets/eff98137-6060-4adf-b5cc-92185d08743b)
 
 
 ---
+<br><br><br>
+## 📝✅ 4. **Atualização de Usuários**
+
+Para atualizar um usuário, envie uma requisição para o seguinte endereço:
+```
+PUT http://localhost:8080/usuario
+```
+Você **deve enviar o ID do usuário no corpo da requisição**.
+
+**Corpo esperado:**
+```json
+{
+    "id": 1,
+    "nome": "Novo Nome",
+    "sobrenome": "Novo Sobrenome",
+    "email": "novoemail@example.com.br",
+    "telefone": "11998765432",
+    "cpf": "12345678911",
+    "data_de_nascimento": "2000-01-01",
+    "senha": "NovaSenha2024"
+}
+```
+<br><br>
+
+## 🛠️ Campos que Podem Ser Atualizados
+
+| **Campo**              | **Descrição**                                        |
+|------------------------|------------------------------------------------------|
+| **Nome**               | Nome do usuário.                                    |
+| **Sobrenome**          | Sobrenome do usuário.                               |
+| **Email**              | Email do usuário.                                  |
+| **Telefone**           | Número de telefone do usuário.                      |
+| **CPF**                | CPF do usuário.                                     |
+| **Data de Nascimento** | Data de nascimento do usuário.                      |
+| **Senha**              | Senha do usuário.                                   |
+
+
+OBS.: As mesmas validações de criação são feitas na de Atualização.
+---
+
+<br><br>
+
+✅ Se a atualização for bem-sucedida, você receberá o Status Code 200.
+
+![image](https://github.com/user-attachments/assets/75453f34-c5b5-4108-88bf-d7febc627aa2)
+
+
+<br>
+📃❌ **Caso contrário, o Status Code será 400, com uma mensagem de erro formatada de acordo com o padrão RFC**.
+
+![image](https://github.com/user-attachments/assets/48f216eb-d2f8-4a04-90ff-8f896d77859f)
+
+---
+
 
 
 ## 🛠 Tecnologias
