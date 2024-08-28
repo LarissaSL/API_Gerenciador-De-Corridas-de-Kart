@@ -1,8 +1,6 @@
 package com.manascode.api_sgk.aplicacao.usuario;
 
 import com.manascode.api_sgk.aplicacao.usuario.validacoes.IValidadorDeUsuario;
-import com.manascode.api_sgk.aplicacao.usuario.validacoes.ValidadorCpf;
-import com.manascode.api_sgk.dominio.usuario.TipoUsuario;
 import com.manascode.api_sgk.dominio.usuario.Usuario;
 import com.manascode.api_sgk.infraestrutura.excecao.UsuarioException;
 import com.manascode.api_sgk.infraestrutura.persistencia.UsuarioRepository;
@@ -66,6 +64,14 @@ public class UsuarioService {
     }
 
     public ResponseEntity<?> atualizar(AtualizarUsuarioDTO dados) {
-        return ResponseEntity.ok().build();
+        Usuario usuarioSalvo = repositorio.findById(dados.id()).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        validadores.forEach(v -> v.validar(dados));
+
+        usuarioSalvo.atualizar(dados);
+
+        DetalharUsuarioDTO usuarioDetalhado = UsuarioMapper.INSTANCE.converteUsuarioParaDTODetalhamento(usuarioSalvo);
+
+        return ResponseEntity.ok(usuarioDetalhado);
     }
 }

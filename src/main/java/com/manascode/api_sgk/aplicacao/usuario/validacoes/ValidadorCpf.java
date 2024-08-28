@@ -15,7 +15,7 @@ public class ValidadorCpf implements IValidadorDeUsuario {
 
     @Override
     public void validar(AtualizarUsuarioDTO dados) {
-        if(dados.cpf().isBlank()) {
+        if(dados.cpf() == null) {
             return;
         }
 

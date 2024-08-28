@@ -1,6 +1,5 @@
 package com.manascode.api_sgk.interfaceAdaptadores.mapper.usuario;
 
-import com.manascode.api_sgk.aplicacao.usuario.AtualizarUsuarioDTO;
 import com.manascode.api_sgk.aplicacao.usuario.CriarUsuarioDTO;
 import com.manascode.api_sgk.aplicacao.usuario.DetalharUsuarioDTO;
 import com.manascode.api_sgk.aplicacao.usuario.ListarUsuarioDTO;

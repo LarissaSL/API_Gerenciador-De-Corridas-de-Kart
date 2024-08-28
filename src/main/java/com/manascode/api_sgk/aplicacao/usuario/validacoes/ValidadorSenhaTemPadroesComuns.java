@@ -24,7 +24,7 @@ public class ValidadorSenhaTemPadroesComuns implements IValidadorDeUsuario {
 
     @Override
     public void validar(AtualizarUsuarioDTO dados) {
-        if (dados.senha().isBlank()) {
+        if (dados.senha() == null) {
             return;
         }
 
@@ -32,12 +32,12 @@ public class ValidadorSenhaTemPadroesComuns implements IValidadorDeUsuario {
     }
 
     private void validadorDeSenha(String nome, String sobrenome, String senha, Long id) {
-        if (nome.isBlank() || sobrenome.isBlank()) {
+        if (nome == null || sobrenome == null) {
             Usuario usuario = repositorio.getReferenceById(id);
 
             // Verificando qual deles esta vazio e atribuindo o valor conforme necessário
-            nome = nome.isBlank() ? usuario.getNome() : nome;
-            sobrenome = sobrenome.isBlank() ? usuario.getSobrenome() : sobrenome;
+            nome = nome == null ? usuario.getNome() : nome;
+            sobrenome = sobrenome == null ? usuario.getSobrenome() : sobrenome;
         }
 
         List<String> listaDePadroesComuns = Arrays.asList(

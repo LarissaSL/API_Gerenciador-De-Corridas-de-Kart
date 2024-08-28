@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.dominio.usuario;
 
+import com.manascode.api_sgk.aplicacao.usuario.AtualizarUsuarioDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -55,5 +56,35 @@ public class Usuario {
 
     public void excluir() {
         this.ativo = false;
+    }
+
+    public void atualizar(AtualizarUsuarioDTO dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+
+        if (dados.sobrenome() != null) {
+            this.sobrenome = dados.sobrenome();
+        }
+
+        if (dados.senha() != null) {
+            this.senha = dados.senha();
+        }
+
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
+
+        if (dados.email() != null) {
+            this.email = dados.email();
+        }
+
+        if (dados.cpf() != null) {
+            this.cpf = dados.cpf();
+        }
+
+        if (dados.data_de_nascimento() != null) {
+            this.data_de_nascimento = dados.data_de_nascimento();
+        }
     }
 }
