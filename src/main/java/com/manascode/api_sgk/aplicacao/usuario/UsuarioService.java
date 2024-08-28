@@ -24,7 +24,7 @@ public class UsuarioService {
     @Autowired
     List<IValidadorDeUsuario> validadores;
 
-    public ResponseEntity cadastrar(CriarUsuarioDTO dados) {
+    public ResponseEntity<DetalharUsuarioDTO> cadastrar(CriarUsuarioDTO dados) {
         // Passando os dados enviados para os validadores
         validadores.forEach(v -> v.validar(dados));
 
@@ -63,7 +63,7 @@ public class UsuarioService {
         return ResponseEntity.ok(listaDeUsuariosDTO);
     }
 
-    public ResponseEntity<?> atualizar(AtualizarUsuarioDTO dados) {
+    public ResponseEntity<DetalharUsuarioDTO> atualizar(AtualizarUsuarioDTO dados) {
         Usuario usuarioSalvo = repositorio.findById(dados.id()).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         validadores.forEach(v -> v.validar(dados));
