@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.aplicacao.usuario.validacoes;
 
+import com.manascode.api_sgk.aplicacao.usuario.AtualizarUsuarioDTO;
 import com.manascode.api_sgk.aplicacao.usuario.CriarUsuarioDTO;
 import com.manascode.api_sgk.infraestrutura.excecao.UsuarioException;
 import org.springframework.stereotype.Component;
@@ -9,8 +10,19 @@ public class ValidadorCpf implements IValidadorDeUsuario {
 
     @Override
     public void validar(CriarUsuarioDTO dados) {
-        String cpf = dados.cpf();
+        validadorCpf(dados.cpf());
+    }
 
+    @Override
+    public void validar(AtualizarUsuarioDTO dados) {
+        if(dados.cpf().isBlank()) {
+            return;
+        }
+
+        validadorCpf(dados.cpf());
+    }
+
+    public void validadorCpf(String cpf) {
         // Verificando se nao é uma sequencia de numeros (11111111111)
         if (cpf.length() != 11 || cpf.matches("(\\d)\\1{10}")) {
             throw new UsuarioException("O CPF informado é inválido.");

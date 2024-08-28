@@ -1,7 +1,10 @@
 package com.manascode.api_sgk.aplicacao.usuario;
 
 import com.manascode.api_sgk.aplicacao.usuario.validacoes.IValidadorDeUsuario;
+import com.manascode.api_sgk.aplicacao.usuario.validacoes.ValidadorCpf;
+import com.manascode.api_sgk.dominio.usuario.TipoUsuario;
 import com.manascode.api_sgk.dominio.usuario.Usuario;
+import com.manascode.api_sgk.infraestrutura.excecao.UsuarioException;
 import com.manascode.api_sgk.infraestrutura.persistencia.UsuarioRepository;
 import com.manascode.api_sgk.interfaceAdaptadores.mapper.usuario.UsuarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +44,7 @@ public class UsuarioService {
     }
 
     public ResponseEntity<DetalharUsuarioDTO> detalhar(Long id) {
-        Usuario usuarioSalvo = repositorio.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        Usuario usuarioSalvo = repositorio.findById(id).orElseThrow(() -> new UsuarioException("Usuário não encontrado"));
         DetalharUsuarioDTO usuarioDetalhado = UsuarioMapper.INSTANCE.converteUsuarioParaDTODetalhamento(usuarioSalvo);
 
         return ResponseEntity.ok(usuarioDetalhado);
@@ -60,5 +63,9 @@ public class UsuarioService {
         Page<ListarUsuarioDTO> listaDeUsuariosDTO = page.map(UsuarioMapper.INSTANCE::converteUsuarioParaDTOListar);
 
         return ResponseEntity.ok(listaDeUsuariosDTO);
+    }
+
+    public ResponseEntity<?> atualizar(AtualizarUsuarioDTO dados) {
+        return ResponseEntity.ok().build();
     }
 }
