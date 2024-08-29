@@ -114,7 +114,8 @@ Por motivos de Segurança foi utilizado variáveis de ambiente para acesso as co
 
 Resultado das Variáveis de Ambiente:
 
-![image](https://github.com/user-attachments/assets/71020e7d-9653-4184-a6a1-6521d71fc19e)
+![image](https://github.com/user-attachments/assets/efe01ed8-593a-43da-ad54-38ceae473ead)
+
 
 ---
 
@@ -146,7 +147,8 @@ POST http://localhost:8080/usuario
 Se tudo ocorrer conforme esperado, você receberá o Status Code `201`.
 
 
-![image](https://github.com/user-attachments/assets/c0699d7b-fe31-407d-b65c-475fba299e0a)
+![image](https://github.com/user-attachments/assets/b94f6b15-6be2-476c-8bad-1d44bc333bc3)
+
 
 
 <br>
