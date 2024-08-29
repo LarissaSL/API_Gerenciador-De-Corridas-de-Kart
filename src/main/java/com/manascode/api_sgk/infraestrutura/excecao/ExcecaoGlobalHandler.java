@@ -98,6 +98,22 @@ public class ExcecaoGlobalHandler {
         return ResponseEntity.status(status).body(problema);
     }
 
+    @ExceptionHandler(KartodromoException.class)
+    public ResponseEntity<ResponseErrorPadraoRFC> tratarErroDeValidacoesKartodromo (HttpServletRequest request, KartodromoException excecao) {
+        String uri = request.getRequestURI();
+        String titulo = "Erro nos dados de Kartodromo";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        ResponseErrorPadraoRFC problema = ExcecoesMapper.INSTANCE.converteExcecaoParaDtoRFC(
+                titulo,
+                excecao.getMessage(),
+                status,
+                uri
+        );
+
+        return ResponseEntity.status(status).body(problema);
+    }
+
 
     private String extrairMensagemDeErroChaveDuplicada(String mensagem) {
         List<String> listaDeErros = new ArrayList<>();

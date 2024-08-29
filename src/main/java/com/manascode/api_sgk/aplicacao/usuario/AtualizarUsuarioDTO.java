@@ -14,7 +14,7 @@ public record AtualizarUsuarioDTO(
         @Size(max = 45, message = "Nome não pode passar de 45 caracteres")
         String nome,
 
-        @Size(max = 45, message = "Nome não pode passar de 45 caracteres")
+        @Size(max = 45, message = "Sobrenome não pode passar de 45 caracteres")
         String sobrenome,
 
         @Pattern(regexp = "\\d{10,11}", message = "Telefone deve conter entre 10 e 11 dígitos numéricos.")
