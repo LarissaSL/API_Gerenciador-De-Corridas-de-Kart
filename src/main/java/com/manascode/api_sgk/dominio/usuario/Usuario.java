@@ -29,29 +29,28 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(length = 45)
+    
     private String nome;
 
-    @Column(length = 45)
     private String sobrenome;
 
-    @Column(unique = true, length = 11)
+    @Column(unique = true)
     private String cpf;
 
-    @Column(unique = true, length = 11)
+    @Column(unique = true)
     private String telefone;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoUsuario tipo = TipoUsuario.usuario;
 
-    @Column(unique = true, length = 45)
+    @Column(unique = true)
     private String email;
 
-    @Column(length = 45)
     private String senha;
     private LocalDate data_de_nascimento;
+
+    @Column(columnDefinition = "TINYINT(1)")
     private boolean ativo = true;
 
     public void excluir() {
