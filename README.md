@@ -65,25 +65,6 @@ Abaixo segue uma tabela onde explicamos um padrão para nossos commits.
 git commit -m "FEAT - CRUD de Usuarios"
 ```
 
----
-<br><br><br>
-# 🛠️ Validadores para CRUD
-
-## 1. **Usuários**
-
-| **Campo**              | **Validação**                                                                                                      |
-|------------------------|--------------------------------------------------------------------------------------------------------------------|
-| **Nome**               | Deve ser um texto não vazio e não deve exceder 45 caracteres.                                                       |
-| **Sobrenome**          | Deve ser um texto não vazio e não deve exceder 45 caracteres.                                                       |
-| **CPF**                | Deve ser um CPF válido, apenas números e único.                                                                     |
-| **Telefone**           | Deve ser um número de telefone válido e não vazio.                                                                   |
-| **Tipo**               | Deve ser um valor permitido ('admin', 'usuario').                                                               |
-| **Email**              | Deve ser um email válido, não vazio e único.                                                                        |
-| **Senha**              | Deve atender aos critérios de complexidade definidos (mínimo de 8 caracteres, incluindo letras maiúsculas e minúsculas, não pode incluir o nome ou sobrenome do usuário, números e nenhuma das palavras comuns definidas no validador). |
-| **Data de Nascimento** | Deve ser uma data válida e o usuário deve ter a idade mínima para o registro (15 anos).                               |
-
----
-
 <br><br><br>
 # 🖥️🛠️ Como usar?
 
@@ -121,6 +102,24 @@ Resultado das Variáveis de Ambiente:
 
 <br><br><br>
 # Utilizando o Controller de Usuários
+
+<br><br>
+## 🛠️ Validadores de Usuário
+
+### 1. **Usuários**
+
+| **Campo**              | **Validação**                                                                                                      |
+|------------------------|--------------------------------------------------------------------------------------------------------------------|
+| **Nome**               | Deve ser um texto não vazio e não deve exceder 45 caracteres.                                                       |
+| **Sobrenome**          | Deve ser um texto não vazio e não deve exceder 45 caracteres.                                                       |
+| **CPF**                | Deve ser um CPF válido, apenas números e único.                                                                     |
+| **Telefone**           | Deve ser um número de telefone válido e não vazio.                                                                   |
+| **Tipo**               | Deve ser um valor permitido ('admin', 'usuario').                                                               |
+| **Email**              | Deve ser um email válido, não vazio e único.                                                                        |
+| **Senha**              | Deve atender aos critérios de complexidade definidos (mínimo de 8 caracteres, incluindo letras maiúsculas e minúsculas, não pode incluir o nome ou sobrenome do usuário, números e nenhuma das palavras comuns definidas no validador). |
+| **Data de Nascimento** | Deve ser uma data válida e o usuário deve ter a idade mínima para o registro (15 anos).                               |
+
+---
 
 ## ✅ 1. Método de Criação de Novos Usuários
 
@@ -296,6 +295,194 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 ![image](https://github.com/user-attachments/assets/48f216eb-d2f8-4a04-90ff-8f896d77859f)
 
 ---
+<br><br><br>
+# Utilizando o Controller de Kartodromos
+
+<br><br>
+## 🛠️ Validadores de Kartodromos
+
+### 1. **Kartodromos**
+
+| **Campo**         | **Validação**                                                                                      |
+|-------------------|----------------------------------------------------------------------------------------------------|
+| **Nome**          | Deve ser um texto não vazio e não deve exceder 45 caracteres.                                     |
+| **Rua**           | Deve ser um texto não vazio e não deve exceder 45 caracteres.                                     |
+| **Número**        | Deve ser um texto não vazio e não deve exceder 10 caracteres.                                     |
+| **Bairro**        | Deve ser um texto não vazio e não deve exceder 45 caracteres.                                     |
+| **CEP**           | Deve ser um texto não vazio e não deve exceder 10 caracteres.                                     |
+| **Cidade**        | Opcional, máximo 45 caracteres.                                                                   |
+| **Estado**        | Opcional, máximo 45 caracteres.                                                                   |
+| **Endereco Foto** | Opcional, máximo 100 caracteres.                                                                  |
+
+---
+
+## ✅ 1. Método de Criação de Novos Kartodromos
+
+- Para criar um novo kartódromo, envie uma requisição para o seguinte endereço:
+```
+POST http://localhost:8080/kartodromo
+```
+
+**Corpo esperado:**
+
+```json
+{
+    "nome": "Kartodromo Teste 2",
+    "endereco": {
+        "rua": "Rua limpa",
+        "numero": "91",
+        "bairro": "Organizacao",
+        "cep": "04864251",
+        "cidade": "São Paulo",
+        "estado": "SP"
+    },
+    "endereco_foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstSV_gBxmoI6InGm2epdnEwhGrI05keF-gA&s"
+}
+```
+<br>
+Se tudo ocorrer conforme esperado, você receberá o Status Code `201`.
+
+
+![image](https://github.com/user-attachments/assets/7b183a68-97f0-4651-892e-29f9bbfd7a18)
+
+
+
+<br>
+Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem de erro no formato RFC.
+
+
+![image](https://github.com/user-attachments/assets/0f9b0335-ffad-4402-94e7-82143551c982)
+
+---
+<br><br><br>
+## 📃 2. Listagem de Kartodromos
+<br>
+- Para listar um kartódromo individualmente, acesse o mesmo URL, passando o ID do kartódromo a ser listado. Se tudo estiver correto, você receberá os dados do kartódromo solicitado.
+```
+http://localhost:8080/kartodromo/{id}
+```
+
+
+![image](https://github.com/user-attachments/assets/1f564e15-0af9-45eb-aba3-6b3290bd72be)
+
+
+<br>
+- Para listar todos os registros de kartódromos, basta acessar o URL:
+
+```
+http://localhost:8080/kartodromo/
+```
+
+![image](https://github.com/user-attachments/assets/a861a3e8-c158-4910-8446-2e723ee29694)
+
+
+
+## 📃 2.1. Métodos de Ordenação e Paginação
+
+- Para ordenar os registros, use:
+
+```
+http://localhost:8080/kartodromo?ordem={NomeDoCampoParaOrdenar}
+```
+<br>
+- Para definir o número de registros por página:
+
+```
+http://localhost:8080/kartodromo?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}
+```
+<br>
+- Para acessar uma página específica:
+
+```
+http://localhost:8080/kartodromo?pagina={QualPaginaDesejaVer}
+```
+
+<br><br>
+Por padrão, a ordenação é crescente. Para ordenação decrescente, adicione:
+
+```
+http://localhost:8080/kartodromo?ordem={NomeDoCampoParaOrdenar},desc
+```
+
+<br>
+- Para combinar métodos de ordenação e paginação, use `&`:
+
+```
+http://localhost:8080/kartodromo?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}&ordem={NomeDoCampoParaOrdenar}
+```
+
+---
+<br><br><br>
+## ❎ 3. Exclusão de Kartodromo
+
+<br>
+Para excluir um kartódromo, acesse o mesmo URL, passando o ID do kartódromo a ser excluído. Se tudo estiver correto, você receberá um feedback indicando que a exclusão foi bem-sucedida.
+
+
+![image](https://github.com/user-attachments/assets/69233a40-0388-4e82-84a9-f27b4ed48ced)
+
+
+---
+<br><br><br>
+## 📝✅ 4. Atualização de Kartodromo
+
+Para atualizar um kartódromo, envie uma requisição para o seguinte endereço:
+```
+PUT http://localhost:8080/kartodromo
+```
+Você **deve enviar o ID do kartódromo no corpo da requisição**.
+
+**Corpo esperado:**
+```json
+{
+    "id": 1,
+    "nome": "Nome Atualizado",
+    "endereco": {
+        "rua": "Rua Atualizada",
+        "numero": "999",
+        "bairro": "Bairro Atualizado",
+        "cep": "12345678",
+        "cidade": "Cidade Atualizada",
+        "estado": "SP"
+    },
+    "endereco_foto": "https://example.com/nova-imagem.jpg",
+    "ativo": 1
+}
+```
+<br><br>
+
+## 🛠️ Campos que Podem Ser Atualizados
+
+| **Campo**           | **Descrição**                                       |
+|---------------------|-----------------------------------------------------|
+| **Nome**            | Nome do kartódromo.                                |
+| **Rua**             | Rua do kartódromo.                                 |
+| **Número**          | Número do kartódromo.                             |
+| **Bairro**          | Bairro do kartódromo.                             |
+| **CEP**             | CEP do kartódromo.                                |
+| **Cidade**          | Cidade do kartódromo.                             |
+| **Estado**          | Estado do kartódromo.                             |
+| **Endereco Foto**   | URL da foto do endereço do kartódromo.             |
+| **Ativo**           | Estado de ativação do kartódromo (1 para ativo).   |
+
+OBS.: As mesmas validações de criação são feitas na de Atualização.
+
+---
+
+<br><br>
+
+✅ Se a atualização for bem-sucedida, você receberá o Status Code 200.
+
+![image](https://github.com/user-attachments/assets/fd3456ac-5589-4eb6-994b-e2f035b3e033)
+
+
+<br>
+📃❌ **Caso contrário, o Status Code será 400, com uma mensagem de erro formatada de acordo com o padrão RFC**.
+
+![image](https://github.com/user-attachments/assets/63a3bedc-e6de-4b56-b0b0-69910b5574ed)
+
+---
+
 
 
 
