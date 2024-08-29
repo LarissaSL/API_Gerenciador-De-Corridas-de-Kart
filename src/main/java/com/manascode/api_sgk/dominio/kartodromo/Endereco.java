@@ -29,7 +29,7 @@ public class Endereco {
     @Size(max = 45, message = "Bairro não pode passar de 45 caracteres.")
     private String bairro;
 
-    @Pattern(regexp = "\\d{8}", message = "Digite apenas 8 dígitos.")
+    @Pattern(regexp = "\\d{8}", message = "Digite apenas 8 dígitos para o CEP.")
     @NotNull(message = "CEP é um campo obrigatório.")
     private String cep;
 
