@@ -3,13 +3,12 @@ package com.manascode.api_sgk.interfaceAdaptadores.mapper.excecoes;
 import com.manascode.api_sgk.infraestrutura.excecao.ResponseErrorPadraoRFC;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.MappingConstants;
 import org.springframework.http.HttpStatus;
 
-@Mapper
-public interface ExcecoesMapper {
 
-    ExcecoesMapper INSTANCE = Mappers.getMapper(ExcecoesMapper.class);
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+public interface ExcecoesMapper {
 
     @Mapping(target = "type", constant = "http://ckc.com/problemas/erros-de-cadastro")
     @Mapping(target = "title", source = "titulo")

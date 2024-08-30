@@ -3,7 +3,7 @@ package com.manascode.api_sgk.aplicacao.usuario.validacoes;
 import com.manascode.api_sgk.aplicacao.usuario.AtualizarUsuarioDTO;
 import com.manascode.api_sgk.aplicacao.usuario.CriarUsuarioDTO;
 import com.manascode.api_sgk.dominio.usuario.Usuario;
-import com.manascode.api_sgk.infraestrutura.excecao.UsuarioException;
+import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.UsuarioException;
 import com.manascode.api_sgk.infraestrutura.persistencia.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

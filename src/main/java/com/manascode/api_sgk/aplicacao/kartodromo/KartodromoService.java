@@ -1,7 +1,7 @@
 package com.manascode.api_sgk.aplicacao.kartodromo;
 
 import com.manascode.api_sgk.dominio.kartodromo.Kartodromo;
-import com.manascode.api_sgk.infraestrutura.excecao.KartodromoException;
+import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.KartodromoException;
 import com.manascode.api_sgk.infraestrutura.persistencia.KartodromoRepository;
 import com.manascode.api_sgk.interfaceAdaptadores.mapper.kartodromo.KartodromoMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,11 @@
 package com.manascode.api_sgk.infraestrutura.excecao;
 
+import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.KartodromoException;
+import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.UsuarioException;
 import com.manascode.api_sgk.interfaceAdaptadores.mapper.excecoes.ExcecoesMapper;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -10,15 +13,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ExcecaoGlobalHandler {
+
+    @Autowired
+    private ExcecoesMapper excecoesMapper;
+
+    @Autowired
+    private ExcecaoService excecaoService;
 
     // Erros em relação aos Campos
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -31,7 +35,7 @@ public class ExcecaoGlobalHandler {
                 .map(erro -> erro.getDefaultMessage())
                 .collect(Collectors.joining(" | "));
 
-        ResponseErrorPadraoRFC problema = ExcecoesMapper.INSTANCE.converteExcecaoParaDtoRFC(
+        ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(
                 titulo,
                 detalhes,
                 status,
@@ -51,12 +55,12 @@ public class ExcecaoGlobalHandler {
 
         // Verifica se é um erro de chave duplicada
         if (ex instanceof SQLException && ex.getErrorCode() == 1062) {
-            detalhes = extrairMensagemDeErroChaveDuplicada(ex.getMessage());
+            detalhes = excecaoService.extrairMensagemDeErroChaveDuplicada(ex.getMessage());
         } else {
             detalhes = ex.getMessage();
         }
 
-        ResponseErrorPadraoRFC problema = ExcecoesMapper.INSTANCE.converteExcecaoParaDtoRFC(
+        ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(
                 titulo,
                 detalhes,
                 status,
@@ -72,7 +76,7 @@ public class ExcecaoGlobalHandler {
         String titulo = "Erro no Banco de Dados";
         HttpStatus status = HttpStatus.NOT_FOUND;
 
-        ResponseErrorPadraoRFC problema = ExcecoesMapper.INSTANCE.converteExcecaoParaDtoRFC(
+        ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(
                 titulo,
                 "Não foi possivel encontrar esse registro",
                 status,
@@ -88,7 +92,7 @@ public class ExcecaoGlobalHandler {
         String titulo = "Erro nos dados de usuário";
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
-        ResponseErrorPadraoRFC problema = ExcecoesMapper.INSTANCE.converteExcecaoParaDtoRFC(
+        ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(
                 titulo,
                 excecao.getMessage(),
                 status,
@@ -104,7 +108,7 @@ public class ExcecaoGlobalHandler {
         String titulo = "Erro nos dados de Kartodromo";
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
-        ResponseErrorPadraoRFC problema = ExcecoesMapper.INSTANCE.converteExcecaoParaDtoRFC(
+        ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(
                 titulo,
                 excecao.getMessage(),
                 status,
@@ -113,21 +117,4 @@ public class ExcecaoGlobalHandler {
 
         return ResponseEntity.status(status).body(problema);
     }
-
-
-    private String extrairMensagemDeErroChaveDuplicada(String mensagem) {
-        List<String> listaDeErros = new ArrayList<>();
-        listaDeErros.add("usuarios.cpf");
-        listaDeErros.add("usuarios.telefone");
-        listaDeErros.add("usuarios.email");
-
-        for (String campo : listaDeErros) {
-            if (mensagem.contains(campo)) {
-                return String.format("O valor informado para o campo '%s' já está em uso. Por favor, insira um valor diferente.", campo.split("\\.")[1]);
-            }
-        }
-
-        return "Um valor duplicado foi encontrado no sistema. Por favor, verifique os dados inseridos.";
-    }
-
 }
