@@ -22,16 +22,19 @@ public class UsuarioService {
     private UsuarioRepository repositorio;
 
     @Autowired
+    private UsuarioMapper usuarioMapper;
+
+    @Autowired
     List<IValidadorDeUsuario> validadores;
 
     public ResponseEntity<DetalharUsuarioDTO> cadastrar(CriarUsuarioDTO dados) {
         // Passando os dados enviados para os validadores
         validadores.forEach(v -> v.validar(dados));
 
-        Usuario usuario = UsuarioMapper.INSTANCE.converteDTOParaUsuario(dados);
+        Usuario usuario =usuarioMapper.converteDTOParaUsuario(dados);
         Usuario usuarioSalvo = repositorio.save(usuario);
 
-        DetalharUsuarioDTO usuarioDetalhado = UsuarioMapper.INSTANCE.converteUsuarioParaDTODetalhamento(usuarioSalvo);
+        DetalharUsuarioDTO usuarioDetalhado = usuarioMapper.converteUsuarioParaDTODetalhamento(usuarioSalvo);
 
         var uri = UriComponentsBuilder
                 .fromPath("/usuario/{id}")
@@ -43,7 +46,7 @@ public class UsuarioService {
 
     public ResponseEntity<DetalharUsuarioDTO> detalhar(Long id) {
         Usuario usuarioSalvo = repositorio.findById(id).orElseThrow(() -> new UsuarioException("Usuário não encontrado"));
-        DetalharUsuarioDTO usuarioDetalhado = UsuarioMapper.INSTANCE.converteUsuarioParaDTODetalhamento(usuarioSalvo);
+        DetalharUsuarioDTO usuarioDetalhado = usuarioMapper.converteUsuarioParaDTODetalhamento(usuarioSalvo);
 
         return ResponseEntity.ok(usuarioDetalhado);
     }
@@ -58,7 +61,7 @@ public class UsuarioService {
 
     public ResponseEntity<Page<ListarUsuarioDTO>> listarTodos(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
         Page<Usuario> page = repositorio.findAllByAtivoTrue(paginacao);
-        Page<ListarUsuarioDTO> listaDeUsuariosDTO = page.map(UsuarioMapper.INSTANCE::converteUsuarioParaDTOListar);
+        Page<ListarUsuarioDTO> listaDeUsuariosDTO = page.map(usuarioMapper::converteUsuarioParaDTOListar);
 
         return ResponseEntity.ok(listaDeUsuariosDTO);
     }
@@ -70,7 +73,7 @@ public class UsuarioService {
 
         usuarioSalvo.atualizar(dados);
 
-        DetalharUsuarioDTO usuarioDetalhado = UsuarioMapper.INSTANCE.converteUsuarioParaDTODetalhamento(usuarioSalvo);
+        DetalharUsuarioDTO usuarioDetalhado = usuarioMapper.converteUsuarioParaDTODetalhamento(usuarioSalvo);
 
         return ResponseEntity.ok(usuarioDetalhado);
     }

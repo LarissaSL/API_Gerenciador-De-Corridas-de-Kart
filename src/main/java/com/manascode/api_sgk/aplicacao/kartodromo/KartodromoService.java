@@ -18,11 +18,14 @@ public class KartodromoService {
     @Autowired
     private KartodromoRepository repositorio;
 
+    @Autowired
+    private KartodromoMapper kartodromoMapper;
+
     public ResponseEntity<DetalharKartodromoDTO> cadastrar(CriarKartodromoDTO dados) {
-        Kartodromo kartodromo = KartodromoMapper.INSTANCE.converteCriarKartodromoDtoParaKartodromo(dados);
+        Kartodromo kartodromo = kartodromoMapper.converteCriarKartodromoDtoParaKartodromo(dados);
         Kartodromo kartodromoSalvo = repositorio.save(kartodromo);
 
-        DetalharKartodromoDTO kartodromoDetalhado = KartodromoMapper.INSTANCE.converteKartodromoParaDetalharKartodromoDto(kartodromoSalvo);
+        DetalharKartodromoDTO kartodromoDetalhado = kartodromoMapper.converteKartodromoParaDetalharKartodromoDto(kartodromoSalvo);
 
         var uri = UriComponentsBuilder
                 .fromPath("/kartodromo/{id}")
@@ -34,7 +37,7 @@ public class KartodromoService {
 
     public ResponseEntity<DetalharKartodromoDTO> detalhar(Long id) {
         Kartodromo kartodromoSalvo = repositorio.findById(id).orElseThrow(() -> new KartodromoException("Kartodromo não encontrado."));
-        DetalharKartodromoDTO kartodromoDetalhado = KartodromoMapper.INSTANCE.converteKartodromoParaDetalharKartodromoDto(kartodromoSalvo);
+        DetalharKartodromoDTO kartodromoDetalhado = kartodromoMapper.converteKartodromoParaDetalharKartodromoDto(kartodromoSalvo);
 
         return ResponseEntity.ok(kartodromoDetalhado);
     }
@@ -49,7 +52,7 @@ public class KartodromoService {
 
     public ResponseEntity<Page<ListarKartodromoDTO>> listarTodos(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
         Page<Kartodromo> page = repositorio.findAllByAtivoTrue(paginacao);
-        Page<ListarKartodromoDTO> listaDeKartodromosDto = page.map(KartodromoMapper.INSTANCE::converteKartodromoParaListarKartodromoDto);
+        Page<ListarKartodromoDTO> listaDeKartodromosDto = page.map(kartodromoMapper::converteKartodromoParaListarKartodromoDto);
 
         return ResponseEntity.ok(listaDeKartodromosDto);
     }
@@ -88,7 +91,7 @@ public class KartodromoService {
 
         kartodromoSalvo.atualizar(dados);
 
-        DetalharKartodromoDTO kartodromoDetalhado = KartodromoMapper.INSTANCE.converteKartodromoParaDetalharKartodromoDto(kartodromoSalvo);
+        DetalharKartodromoDTO kartodromoDetalhado = kartodromoMapper.converteKartodromoParaDetalharKartodromoDto(kartodromoSalvo);
 
         return ResponseEntity.ok(kartodromoDetalhado);
     }

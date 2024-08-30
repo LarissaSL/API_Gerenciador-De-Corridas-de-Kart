@@ -6,13 +6,11 @@ import com.manascode.api_sgk.aplicacao.usuario.ListarUsuarioDTO;
 import com.manascode.api_sgk.dominio.usuario.Usuario;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UsuarioMapper {
-
-    // Permitir a criação de Instancias
-    UsuarioMapper INSTANCE = Mappers.getMapper(UsuarioMapper.class);
 
     // Aqui ele está ignorando esses atributos, pois no DTO eles não existem
     @Mapping(target = "id" , ignore = true)
