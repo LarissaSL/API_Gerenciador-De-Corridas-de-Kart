@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.aplicacao.usuario;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -27,7 +28,8 @@ public record AtualizarUsuarioDTO(
         @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$", message = "Senha deve conter pelo menos uma letra maiúscula, uma letra minúscula e um número.")
         String senha,
 
-        LocalDate data_de_nascimento,
+        @JsonAlias("data_de_nascimento")
+        LocalDate dataDeNascimento,
 
         @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 dígitos numéricos.")
         String cpf

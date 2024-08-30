@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.aplicacao.usuario;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.manascode.api_sgk.dominio.usuario.TipoUsuario;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -38,6 +39,7 @@ public record CriarUsuarioDTO(
                 String senha,
 
                 @NotNull(message = "Data de nascimento é um campo obrigatório.")
-                LocalDate data_de_nascimento
+                @JsonAlias("data_de_nascimento")
+                LocalDate dataDeNascimento
 ) {
 }

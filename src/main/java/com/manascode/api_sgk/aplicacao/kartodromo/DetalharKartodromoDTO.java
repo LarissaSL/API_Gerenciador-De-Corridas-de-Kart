@@ -1,9 +1,11 @@
 package com.manascode.api_sgk.aplicacao.kartodromo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.manascode.api_sgk.dominio.kartodromo.Endereco;
 
 public record DetalharKartodromoDTO(Long id,
                                     String nome,
                                     Endereco endereco,
-                                    String endereco_foto) {
+                                    @JsonProperty("endereco_foto")
+                                    String enderecoFoto) {
 }

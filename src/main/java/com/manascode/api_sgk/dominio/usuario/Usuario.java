@@ -48,7 +48,9 @@ public class Usuario {
     private String email;
 
     private String senha;
-    private LocalDate data_de_nascimento;
+
+    @Column(name = "data_de_nascimento")
+    private LocalDate dataDeNascimento;
 
     @Column(columnDefinition = "TINYINT(1)")
     private boolean ativo = true;
@@ -82,8 +84,8 @@ public class Usuario {
             this.cpf = dados.cpf();
         }
 
-        if (dados.data_de_nascimento() != null) {
-            this.data_de_nascimento = dados.data_de_nascimento();
+        if (dados.dataDeNascimento() != null) {
+            this.dataDeNascimento = dados.dataDeNascimento();
         }
     }
 }

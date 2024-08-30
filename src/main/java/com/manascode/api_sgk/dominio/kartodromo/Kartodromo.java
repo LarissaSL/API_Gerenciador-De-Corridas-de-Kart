@@ -22,7 +22,8 @@ public class Kartodromo {
     @Embedded
     private Endereco endereco;
 
-    private String endereco_foto;
+    @Column(name = "endereco_foto")
+    private String enderecoFoto;
 
     @Column(columnDefinition = "TINYINT(1)")
     private boolean ativo = true;
@@ -36,8 +37,8 @@ public class Kartodromo {
             this.nome = dados.nome();
         }
 
-        if (dados.endereco_foto() != null) {
-            this.endereco_foto = dados.endereco_foto();
+        if (dados.enderecoFoto() != null) {
+            this.enderecoFoto = dados.enderecoFoto();
         }
 
         if (dados.endereco() != null) {
