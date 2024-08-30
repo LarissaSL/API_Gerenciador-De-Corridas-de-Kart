@@ -15,5 +15,5 @@ public interface KartodromoMapper {
     @Mapping(target = "ativo" , ignore = true)
     Kartodromo converteCriarKartodromoDtoParaKartodromo (CriarKartodromoDTO dadosKartodromo);
     DetalharKartodromoDTO converteKartodromoParaDetalharKartodromoDto (Kartodromo dadosKartodromo);
-    ListarKartodromoDTO converteKartodromoParaListarKartodromoDto(Kartodromo dadosKartodromo);
+    ListarKartodromoDTO converteKartodromoParaListarKartodromoDto (Kartodromo dadosKartodromo);
 }

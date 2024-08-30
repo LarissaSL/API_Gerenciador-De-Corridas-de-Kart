@@ -61,7 +61,7 @@ public class UsuarioService {
 
     public ResponseEntity<Page<ListarUsuarioDTO>> listarTodos(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
         Page<Usuario> page = repositorio.findAllByAtivoTrue(paginacao);
-        Page<ListarUsuarioDTO> listaDeUsuariosDTO = page.map(usuarioMapper::converteUsuarioParaDTOListar);
+        Page<ListarUsuarioDTO> listaDeUsuariosDTO = page.map(usuarioMapper::converteUsuarioParaListarUsuarioDTO);
 
         return ResponseEntity.ok(listaDeUsuariosDTO);
     }

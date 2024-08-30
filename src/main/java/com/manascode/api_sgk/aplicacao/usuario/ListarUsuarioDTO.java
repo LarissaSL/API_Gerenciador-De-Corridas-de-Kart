@@ -4,16 +4,18 @@ import com.manascode.api_sgk.dominio.usuario.TipoUsuario;
 
 import java.time.LocalDate;
 
-public record ListarUsuarioDTO(String nome,
-                               String sobrenome,
+public record ListarUsuarioDTO(
+        Long id,
+        String nome,
+        String sobrenome,
 
-                               String cpf,
+        String cpf,
 
-                               String telefone,
+        String telefone,
 
-                               TipoUsuario tipo,
+        TipoUsuario tipo,
 
-                               String email,
-                               String senha,
-                               LocalDate data_de_nascimento) {
+        String email,
+        String senha,
+        LocalDate data_de_nascimento) {
 }
