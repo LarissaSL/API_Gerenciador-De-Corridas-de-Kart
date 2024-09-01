@@ -24,6 +24,8 @@ public class Campeonato {
 
     private String nome;
 
+    private String sigla;
+
     @Column(name = "data_inicial")
     private LocalDate dataInicial;
 
