@@ -52,7 +52,11 @@ public class CampeonatoService {
     }
 
     public ResponseEntity <DetalharCampeonatoDTO> detalhar(Long id) {
-        Campeonato campeonatoSalvo = repositorio.getReferenceById(id);
+        Campeonato campeonatoSalvo = repositorio.findByIdAndAtivo(id, true);
+        if (campeonatoSalvo == null) {
+            throw new CampeonatoException("Campeonato não encontrado ou não está ativo.");
+        }
+
         DetalharCampeonatoDTO campeonatoDetalhado = campeonatoMapper.converteCampeonatoEmDetalharCampeonatoDTO(campeonatoSalvo);
 
         return ResponseEntity.ok(campeonatoDetalhado);
@@ -80,5 +84,17 @@ public class CampeonatoService {
         DetalharCampeonatoDTO campeonatoDetalhado = campeonatoMapper.converteCampeonatoEmDetalharCampeonatoDTO(campeonatoSalvo);
 
         return ResponseEntity.ok(campeonatoDetalhado);
+    }
+
+    public ResponseEntity<Void> excluir (Long id) {
+        Campeonato campeonato = repositorio.findByIdAndAtivo(id, true);
+        if (campeonato == null) {
+            throw new CampeonatoException("Campeonato não encontrado ou não está ativo.");
+        }
+
+        campeonato.excluir();
+        repositorio.save(campeonato);
+
+        return ResponseEntity.noContent().build();
     }
 }

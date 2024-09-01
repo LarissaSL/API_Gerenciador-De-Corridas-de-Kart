@@ -54,4 +54,8 @@ public class Campeonato {
             this.dataFinal = dados.dataFinal();
         }
     }
+
+    public void excluir() {
+        this.ativo = false;
+    }
 }

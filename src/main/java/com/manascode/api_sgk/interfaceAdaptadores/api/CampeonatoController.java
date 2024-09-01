@@ -43,5 +43,10 @@ public class CampeonatoController {
         return service.atualizar(dados);
     }
 
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity excluir (@PathVariable Long id) {
+        return service.excluir(id);
+    }
 
 }
