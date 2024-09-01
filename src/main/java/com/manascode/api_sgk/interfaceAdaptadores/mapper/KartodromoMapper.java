@@ -1,4 +1,4 @@
-package com.manascode.api_sgk.interfaceAdaptadores.mapper.kartodromo;
+package com.manascode.api_sgk.interfaceAdaptadores.mapper;
 
 import com.manascode.api_sgk.aplicacao.kartodromo.CriarKartodromoDTO;
 import com.manascode.api_sgk.aplicacao.kartodromo.DetalharKartodromoDTO;

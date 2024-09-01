@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.infraestrutura.excecao;
 
+import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.CampeonatoException;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.KartodromoException;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.UsuarioException;
 import com.manascode.api_sgk.interfaceAdaptadores.mapper.excecoes.ExcecoesMapper;
@@ -106,6 +107,22 @@ public class ExcecaoGlobalHandler {
     public ResponseEntity<ResponseErrorPadraoRFC> tratarErroDeValidacoesKartodromo (HttpServletRequest request, KartodromoException excecao) {
         String uri = request.getRequestURI();
         String titulo = "Erro nos dados de Kartodromo";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(
+                titulo,
+                excecao.getMessage(),
+                status,
+                uri
+        );
+
+        return ResponseEntity.status(status).body(problema);
+    }
+
+    @ExceptionHandler(CampeonatoException.class)
+    public ResponseEntity<ResponseErrorPadraoRFC> tratarErroDeValidacoesCampeonato (HttpServletRequest request, CampeonatoException excecao) {
+        String uri = request.getRequestURI();
+        String titulo = "Erro nos dados de Campeonato";
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
         ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(

@@ -1,4 +1,4 @@
-package com.manascode.api_sgk.interfaceAdaptadores.mapper.usuario;
+package com.manascode.api_sgk.interfaceAdaptadores.mapper;
 
 import com.manascode.api_sgk.aplicacao.usuario.CriarUsuarioDTO;
 import com.manascode.api_sgk.aplicacao.usuario.DetalharUsuarioDTO;
@@ -7,7 +7,6 @@ import com.manascode.api_sgk.dominio.usuario.Usuario;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UsuarioMapper {
