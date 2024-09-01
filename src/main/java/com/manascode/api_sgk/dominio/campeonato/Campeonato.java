@@ -38,5 +38,5 @@ public class Campeonato {
     private LocalDate dataFinal;
 
     @Column(columnDefinition = "TINYINT(1)")
-    private Boolean ativo;
+    private Boolean ativo = true;
 }
