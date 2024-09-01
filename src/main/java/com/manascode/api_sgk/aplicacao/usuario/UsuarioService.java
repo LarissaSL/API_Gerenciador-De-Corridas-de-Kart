@@ -45,14 +45,22 @@ public class UsuarioService {
     }
 
     public ResponseEntity<DetalharUsuarioDTO> detalhar(Long id) {
-        Usuario usuarioSalvo = repositorio.findById(id).orElseThrow(() -> new UsuarioException("Usuário não encontrado"));
+        Usuario usuarioSalvo = repositorio.findByIdAndAtivo(id, true);
+        if (usuarioSalvo == null) {
+            throw new UsuarioException("Usuário não encontrado ou não está ativo.");
+        }
+
         DetalharUsuarioDTO usuarioDetalhado = usuarioMapper.converteUsuarioParaDTODetalhamento(usuarioSalvo);
 
         return ResponseEntity.ok(usuarioDetalhado);
     }
 
     public ResponseEntity<Void> excluir(Long id) {
-        Usuario usuario = repositorio.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        Usuario usuario = repositorio.findByIdAndAtivo(id, true);
+        if (usuario == null) {
+            throw new UsuarioException("Usuário não encontrado ou não está ativo.");
+        }
+
         usuario.excluir();
         repositorio.save(usuario);
 
@@ -67,7 +75,10 @@ public class UsuarioService {
     }
 
     public ResponseEntity<DetalharUsuarioDTO> atualizar(AtualizarUsuarioDTO dados) {
-        Usuario usuarioSalvo = repositorio.findById(dados.id()).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        Usuario usuarioSalvo = repositorio.findByIdAndAtivo(dados.id(), true);
+        if (usuarioSalvo == null) {
+            throw new UsuarioException("Usuário não encontrado ou não está ativo.");
+        }
 
         validadores.forEach(v -> v.validar(dados));
 
