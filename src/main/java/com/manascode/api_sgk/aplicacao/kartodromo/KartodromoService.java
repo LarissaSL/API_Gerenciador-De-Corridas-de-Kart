@@ -36,7 +36,11 @@ public class KartodromoService {
     }
 
     public ResponseEntity<DetalharKartodromoDTO> detalhar(Long id) {
-        Kartodromo kartodromoSalvo = repositorio.findById(id).orElseThrow(() -> new KartodromoException("Kartodromo não encontrado."));
+        Kartodromo kartodromoSalvo = repositorio.findByIdAndAtivo(id, true);
+        if (kartodromoSalvo == null) {
+            throw new KartodromoException("Kartodromo não encontrado ou não está ativo.");
+        }
+
         DetalharKartodromoDTO kartodromoDetalhado = kartodromoMapper.converteKartodromoParaDetalharKartodromoDto(kartodromoSalvo);
 
         return ResponseEntity.ok(kartodromoDetalhado);
@@ -44,7 +48,10 @@ public class KartodromoService {
 
 
     public ResponseEntity excluir(Long id) {
-        Kartodromo kartodromoSalvo = repositorio.findById(id).orElseThrow(() -> new KartodromoException("Kartodromo não encontrado."));
+        Kartodromo kartodromoSalvo = repositorio.findByIdAndAtivo(id, true);
+        if (kartodromoSalvo == null) {
+            throw new KartodromoException("Kartodromo não encontrado ou não está ativo.");
+        }
         kartodromoSalvo.excluir();
 
         return ResponseEntity.noContent().build();
@@ -58,14 +65,16 @@ public class KartodromoService {
     }
 
     public ResponseEntity<DetalharKartodromoDTO> atualizar(AtualizarKartodromoDTO dados) {
-        Kartodromo kartodromoSalvo = repositorio.findById(dados.id()).orElseThrow(() -> new KartodromoException("Kartodromo não encontrado."));
+        Kartodromo kartodromoSalvo = repositorio.findByIdAndAtivo(dados.id(), true);
+        if (kartodromoSalvo == null) {
+            throw new KartodromoException("Kartodromo não encontrado ou não está ativo.");
+        }
 
         // Atualiza o endereço somente se o objeto endereco não for null
         if (dados.endereco() != null) {
             // Verifica e atualiza cada campo do endereço
             if (isBlank(dados.endereco().getRua())) {
                 dados.endereco().setRua(kartodromoSalvo.getEndereco().getRua());
-                System.out.println(dados.endereco().getRua());
             }
 
             if (isBlank(dados.endereco().getNumero())) {
