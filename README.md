@@ -13,14 +13,17 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 -  [Silvana Sales](https://github.com/SilvanaMenezes) como UX/UI e Fullstack
 
 <br><br><br>
+
 ## 📑 Índice
 
 ---
 <br><br><br>
+
 ## 🎯 Inclusões
 
 - ✅ Criação do Readme da API
 <br><br><br>
+
 ## ⚙️ Funcionalidades
 
 - 🟢 CRUD de Kartodromos
@@ -40,6 +43,7 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 
 ---
 <br><br><br>
+
 ## 📓 Padrões de Nomenclatura nos Commits
 
 Abaixo segue uma tabela onde explicamos um padrão para nossos commits.
@@ -66,6 +70,7 @@ git commit -m "FEAT - CRUD de Usuarios"
 ```
 
 <br><br><br>
+
 # 🖥️🛠️ Como usar?
 
 ## Configurando o Banco de Dados
@@ -101,9 +106,9 @@ Resultado das Variáveis de Ambiente:
 ---
 
 <br><br><br>
+
 # Utilizando o Controller de Usuários
 
-<br><br>
 ## 🛠️ Validadores de Usuário
 
 ### 1. **Usuários**
@@ -124,6 +129,7 @@ Resultado das Variáveis de Ambiente:
 ## ✅ 1. Método de Criação de Novos Usuários
 
 - Para criar um novo usuário, envie uma requisição para o seguinte endereço:
+
 ```
 POST http://localhost:8080/usuario
 ```
@@ -143,6 +149,7 @@ POST http://localhost:8080/usuario
 }
 ```
 <br>
+
 Se tudo ocorrer conforme esperado, você receberá o Status Code `201`.
 
 
@@ -151,9 +158,11 @@ Se tudo ocorrer conforme esperado, você receberá o Status Code `201`.
 
 
 <br>
+
 Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem de erro no formato RFC.
 
 <br>
+
 ** 📃❌ Mensagem com vários erros:**
 
 
@@ -162,8 +171,10 @@ Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem 
 
 ---
 <br><br><br>
+
 ## 📃 2. Listagem de Usuários
 <br>
+
 - Para listar um usuário individualmente, acesse o mesmo URL, passando o ID do usuário a ser listado. Se tudo estiver correto, você receberá os dados do usuário solicitado.
 ```
 http://localhost:8080/usuario/{id}
@@ -174,6 +185,7 @@ http://localhost:8080/usuario/{id}
 
  
 <br>
+
 - Para listar todos os registros de uma entidade, basta acessar o URL:
 
 ```
@@ -192,12 +204,14 @@ http://localhost:8080/usuario/
 http://localhost:8080/usuario?ordem={NomeDoCampoParaOrdenar}
 ```
 <br>
+
 - Para definir o número de registros por página:
 
 ```
 http://localhost:8080/usuario?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}
 ```
 <br>
+
 - Para acessar uma página específica:
 
 ```
@@ -205,6 +219,7 @@ http://localhost:8080/usuario?pagina={QualPaginaDesejaVer}
 ```
 
 <br><br>
+
 Por padrão, a ordenação é crescente. Para ordenação decrescente, adicione:
 
 ```
@@ -213,12 +228,14 @@ http://localhost:8080/usuario?ordem={NomeDoCampoParaOrdenar},desc
 
 
 <br>
+
 - Para combinar métodos de ordenação e paginação, use `&`:
 
 ```
 http://localhost:8080/usuario?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}&ordem={NomeDoCampoParaOrdenar}
 ```
 <br><br>
+
 - **Exemplo de combinação:**
 
 ```
@@ -228,14 +245,17 @@ http://localhost:8080/usuario?tamanho=1&ordem=cpf,desc
 ![image](https://github.com/user-attachments/assets/0766d068-9198-4c15-9f0c-83c984d3d9a8)
 
 <br>
+
 Essa inclusão cobre a criação de entidades e a utilização do controlador de usuários, detalhando o processo de requisições e métodos disponíveis
 
 
 ---
 <br><br><br>
+
 ## ❎ 3. Exclusão de Usuário
 
 <br>
+
 Para excluir um usuário, acesse o mesmo URL, passando o ID do usuário a ser excluído. Se tudo estiver correto, você receberá um feedback indicando que a exclusão foi bem-sucedida.
  
 ![image](https://github.com/user-attachments/assets/eff98137-6060-4adf-b5cc-92185d08743b)
@@ -243,12 +263,14 @@ Para excluir um usuário, acesse o mesmo URL, passando o ID do usuário a ser ex
 
 ---
 <br><br><br>
+
 ## 📝✅ 4. **Atualização de Usuários**
 
 Para atualizar um usuário, envie uma requisição para o seguinte endereço:
 ```
 PUT http://localhost:8080/usuario
 ```
+
 Você **deve enviar o ID do usuário no corpo da requisição**.
 
 **Corpo esperado:**
@@ -290,15 +312,16 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 
 
 <br>
+
 📃❌ **Caso contrário, o Status Code será 400, com uma mensagem de erro formatada de acordo com o padrão RFC**.
 
 ![image](https://github.com/user-attachments/assets/48f216eb-d2f8-4a04-90ff-8f896d77859f)
 
 ---
 <br><br><br>
+
 # Utilizando o Controller de Kartodromos
 
-<br><br>
 ## 🛠️ Validadores de Kartodromos
 
 ### 1. **Kartodromos**
@@ -340,6 +363,7 @@ POST http://localhost:8080/kartodromo
 }
 ```
 <br>
+
 Se tudo ocorrer conforme esperado, você receberá o Status Code `201`.
 
 
@@ -348,6 +372,7 @@ Se tudo ocorrer conforme esperado, você receberá o Status Code `201`.
 
 
 <br>
+
 Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem de erro no formato RFC.
 
 
@@ -355,9 +380,12 @@ Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem 
 
 ---
 <br><br><br>
+
 ## 📃 2. Listagem de Kartodromos
 <br>
+
 - Para listar um kartódromo individualmente, acesse o mesmo URL, passando o ID do kartódromo a ser listado. Se tudo estiver correto, você receberá os dados do kartódromo solicitado.
+  
 ```
 http://localhost:8080/kartodromo/{id}
 ```
@@ -367,6 +395,7 @@ http://localhost:8080/kartodromo/{id}
 
 
 <br>
+
 - Para listar todos os registros de kartódromos, basta acessar o URL:
 
 ```
@@ -385,12 +414,14 @@ http://localhost:8080/kartodromo/
 http://localhost:8080/kartodromo?ordem={NomeDoCampoParaOrdenar}
 ```
 <br>
+
 - Para definir o número de registros por página:
 
 ```
 http://localhost:8080/kartodromo?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}
 ```
 <br>
+
 - Para acessar uma página específica:
 
 ```
@@ -398,6 +429,7 @@ http://localhost:8080/kartodromo?pagina={QualPaginaDesejaVer}
 ```
 
 <br><br>
+
 Por padrão, a ordenação é crescente. Para ordenação decrescente, adicione:
 
 ```
@@ -405,6 +437,7 @@ http://localhost:8080/kartodromo?ordem={NomeDoCampoParaOrdenar},desc
 ```
 
 <br>
+
 - Para combinar métodos de ordenação e paginação, use `&`:
 
 ```
@@ -413,9 +446,11 @@ http://localhost:8080/kartodromo?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}&
 
 ---
 <br><br><br>
+
 ## ❎ 3. Exclusão de Kartodromo
 
 <br>
+
 Para excluir um kartódromo, acesse o mesmo URL, passando o ID do kartódromo a ser excluído. Se tudo estiver correto, você receberá um feedback indicando que a exclusão foi bem-sucedida.
 
 
@@ -424,6 +459,7 @@ Para excluir um kartódromo, acesse o mesmo URL, passando o ID do kartódromo a 
 
 ---
 <br><br><br>
+
 ## 📝✅ 4. Atualização de Kartodromo
 
 Para atualizar um kartódromo, envie uma requisição para o seguinte endereço:
@@ -477,9 +513,210 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 
 
 <br>
+
 📃❌ **Caso contrário, o Status Code será 400, com uma mensagem de erro formatada de acordo com o padrão RFC**.
 
 ![image](https://github.com/user-attachments/assets/63a3bedc-e6de-4b56-b0b0-69910b5574ed)
+
+---
+
+<br><br><br>
+
+# Utilizando o Controller de Campeonatos
+
+## 🛠️ Validadores de Campeonatos
+
+### 1. **Campeonatos**
+
+| **Campo**            | **Validação**                                                                                                 |
+|----------------------|---------------------------------------------------------------------------------------------------------------|
+| **Nome**             | Deve ser "Crash Kart Championship" ou "Desafio dos Loucos".                                                  |
+| **Data Inicial**     | Deve ser uma data válida e não pode ser posterior à Data Final.                                               |
+| **Data Final**       | Deve ser uma data válida e não pode ser anterior à Data Inicial.                                               |
+| **Ano de Criação**   | Deve ser igual ou superior ao ano atual.                                                                      |
+| **Nome Único**       | Não pode haver outro Campeonato com o mesmo Nome, Data Inicial e Data Final.                                 |
+
+---
+
+## ✅ 1. Método de Criação de Novos Campeonatos
+
+- Para criar um novo campeonato, envie uma requisição para o seguinte endereço:
+```
+POST http://localhost:8080/campeonato
+```
+
+**Corpo esperado:**
+
+```json
+{
+    "nome": "Crash Kart Championship",
+    "data_inicial": "2024-01-01",
+    "data_final": "2024-12-31"
+}
+```
+<br>
+
+Se tudo ocorrer conforme esperado, você receberá o Status Code `201`.
+
+
+![image](https://github.com/user-attachments/assets/d2ca1a33-963c-44ee-898a-df670983aa99)
+
+
+
+<br>
+
+Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem de erro no formato RFC.
+
+<br>
+
+** 📃❌ Mensagem com erro:**
+
+![image](https://github.com/user-attachments/assets/3bb72163-a1df-42b2-a39e-1187cb7e4844)
+
+
+---
+
+<br><br><br>
+
+## 📃 2. Listagem de Campeonatos
+
+<br>
+
+- Para listar um campeonato individualmente, acesse o mesmo URL, passando o ID do campeonato a ser listado. Se tudo estiver correto, você receberá os dados do campeonato solicitado.
+```
+http://localhost:8080/campeonato/{id}
+```
+
+![image](https://github.com/user-attachments/assets/f0e85b05-2234-4263-8cbf-ea960ad2d845)
+
+
+<br>
+
+- Para listar todos os registros de campeonatos, basta acessar o URL:
+
+```
+http://localhost:8080/campeonato/
+```
+
+![image](https://github.com/user-attachments/assets/7178c09b-a82c-4234-8171-35413aaf225b)
+
+
+<br>
+
+## 📃 2.1. Métodos de Ordenação e Paginação
+
+- Para ordenar os registros, use:
+
+```
+http://localhost:8080/campeonato?ordem={NomeDoCampoParaOrdenar}
+```
+<br>
+
+- Para definir o número de registros por página:
+
+```
+http://localhost:8080/campeonato?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}
+```
+<br>
+
+- Para acessar uma página específica:
+
+```
+http://localhost:8080/campeonato?pagina={QualPaginaDesejaVer}
+```
+
+<br><br>
+
+Por padrão, a ordenação é crescente. Para ordenação decrescente, adicione:
+
+```
+http://localhost:8080/campeonato?ordem={NomeDoCampoParaOrdenar},desc
+```
+
+<br>
+
+- Para combinar métodos de ordenação e paginação, use `&`:
+
+```
+http://localhost:8080/campeonato?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}&ordem={NomeDoCampoParaOrdenar}
+```
+<br><br>
+
+- **Exemplo de combinação:**
+
+```
+http://localhost:8080/campeonato?tamanho=1&ordem=nome,desc
+```
+
+![image](https://github.com/user-attachments/assets/0766d068-9198-4c15-9f0c-83c984d3d9a8)
+
+<br>
+
+Essa inclusão cobre a criação de campeonatos e a utilização do controlador de campeonatos, detalhando o processo de requisições e métodos disponíveis.
+
+---
+
+<br><br><br>
+
+## ❎ 3. Exclusão de Campeonato
+
+<br>
+
+Para excluir um campeonato, acesse o mesmo URL, passando o ID do campeonato a ser excluído. Se tudo estiver correto, você receberá um feedback indicando que a exclusão foi bem-sucedida.
+
+![image](https://github.com/user-attachments/assets/e2dc9d72-55fd-4ef7-8dc7-dc6944f4fb5f)
+
+
+---
+
+<br><br><br>
+
+## 📝✅ 4. **Atualização de Campeonatos**
+
+Para atualizar um campeonato, envie uma requisição para o seguinte endereço:
+
+```
+PUT http://localhost:8080/campeonato
+```
+
+Você **deve enviar o ID do campeonato no corpo da requisição**.
+
+**Corpo esperado:**
+```json
+{
+    "id": 1,
+    "nome": "Desafio dos Loucos",
+    "data_inicial": "2024-05-01",
+    "data_final": "2024-11-30"
+}
+```
+<br><br>
+
+## 🛠️ Campos que Podem Ser Atualizados
+
+| **Campo**           | **Descrição**                                 |
+|---------------------|-----------------------------------------------|
+| **Nome**            | Nome do campeonato.                          |
+| **Data Inicial**    | Data de início do campeonato.                 |
+| **Data Final**      | Data de término do campeonato.                |
+
+OBS.: As mesmas validações de criação são feitas na de Atualização.
+
+---
+
+<br><br>
+
+✅ Se a atualização for bem-sucedida, você receberá o Status Code `200`.
+
+![image](https://github.com/user-attachments/assets/42b31d53-8731-46a7-ba9c-4e7cd5647791)
+
+
+<br>
+
+📃❌ **Caso contrário, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC**.
+
+![image](https://github.com/user-attachments/assets/f526edae-7385-4467-8753-05fb400d254a)
+
 
 ---
 
