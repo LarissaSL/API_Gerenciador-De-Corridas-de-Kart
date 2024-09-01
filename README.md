@@ -27,7 +27,7 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 ## ⚙️ Funcionalidades
 
 - 🟢 CRUD de Kartodromos
-- 🟡 CRUD de Campeonatos
+- 🟢 CRUD de Campeonatos
 - 🟡 CRUD de Corridas
 - 🟢 CRUD de Usuários
 - 🟡 CRUD de Produtos
