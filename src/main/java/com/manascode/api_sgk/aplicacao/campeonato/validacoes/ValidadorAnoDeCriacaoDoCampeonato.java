@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Component
-public class ValidadorAnoDeCriacaoDoCampeonato implements IValidadorDeCampeonatos{
+public class ValidadorAnoDeCriacaoDoCampeonato implements IValidadorDeCampeonatos {
     @Override
     public void validar(CriarCampeonatoDTO dados) {
         validarDataInicioDoCampeonato(dados.dataInicial());
@@ -16,6 +16,9 @@ public class ValidadorAnoDeCriacaoDoCampeonato implements IValidadorDeCampeonato
 
     @Override
     public void validar(AtualizarCampeonatoDTO dados) {
+        if (dados.dataInicial() != null) {
+            validarDataInicioDoCampeonato(dados.dataInicial());
+        }
         return;
     }
 

@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.dominio.campeonato;
 
+import com.manascode.api_sgk.aplicacao.campeonato.AtualizarCampeonatoDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,4 +40,18 @@ public class Campeonato {
 
     @Column(columnDefinition = "TINYINT(1)")
     private Boolean ativo = true;
+
+    public void atualizar(AtualizarCampeonatoDTO dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+
+        if (dados.dataInicial() != null) {
+            this.dataInicial = dados.dataInicial();
+        }
+
+        if (dados.dataFinal() != null) {
+            this.dataFinal = dados.dataFinal();
+        }
+    }
 }

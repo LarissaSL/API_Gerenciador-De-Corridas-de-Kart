@@ -2,6 +2,7 @@ package com.manascode.api_sgk.aplicacao.campeonato;
 
 import com.manascode.api_sgk.aplicacao.campeonato.validacoes.IValidadorDeCampeonatos;
 import com.manascode.api_sgk.dominio.campeonato.Campeonato;
+import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.CampeonatoException;
 import com.manascode.api_sgk.infraestrutura.persistencia.CampeonatoRepository;
 import com.manascode.api_sgk.interfaceAdaptadores.mapper.CampeonatoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,4 +65,20 @@ public class CampeonatoService {
         return ResponseEntity.ok(listaDeCampeonatoDTO);
     }
 
+    public ResponseEntity<DetalharCampeonatoDTO> atualizar(AtualizarCampeonatoDTO dados) {
+        Campeonato campeonatoSalvo = repositorio.findByIdAndAtivo(dados.id(), true);
+        if (campeonatoSalvo == null) {
+            throw new CampeonatoException("Campeonato não encontrado ou não está ativo.");
+        }
+
+        validadores.forEach(v -> v.validar(dados));
+
+        campeonatoSalvo.atualizar(dados);
+        String sigla = definirSiglaService.definirSigla(dados.nome());
+        campeonatoSalvo.setSigla(sigla);
+
+        DetalharCampeonatoDTO campeonatoDetalhado = campeonatoMapper.converteCampeonatoEmDetalharCampeonatoDTO(campeonatoSalvo);
+
+        return ResponseEntity.ok(campeonatoDetalhado);
+    }
 }

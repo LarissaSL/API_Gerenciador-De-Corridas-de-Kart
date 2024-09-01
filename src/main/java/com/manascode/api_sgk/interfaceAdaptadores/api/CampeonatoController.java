@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.interfaceAdaptadores.api;
 
+import com.manascode.api_sgk.aplicacao.campeonato.AtualizarCampeonatoDTO;
 import com.manascode.api_sgk.aplicacao.campeonato.CampeonatoService;
 import com.manascode.api_sgk.aplicacao.campeonato.CriarCampeonatoDTO;
 import com.manascode.api_sgk.aplicacao.campeonato.ListarCampeonatoDTO;
@@ -34,6 +35,12 @@ public class CampeonatoController {
     @GetMapping("/{id}")
     public ResponseEntity detalharUsuario(@PathVariable Long id) {
         return service.detalhar(id);
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity atualizar(@RequestBody @Valid AtualizarCampeonatoDTO dados) {
+        return service.atualizar(dados);
     }
 
 
