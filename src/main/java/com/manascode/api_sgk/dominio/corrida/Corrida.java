@@ -26,11 +26,11 @@ public class Corrida {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "campeonato_id")
     private Campeonato campeonato;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kartodromo_id")
     private Kartodromo kartodromo;
 
