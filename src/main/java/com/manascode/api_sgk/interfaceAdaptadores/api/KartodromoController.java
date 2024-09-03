@@ -34,7 +34,7 @@ public class KartodromoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity detalherKartodromo(@PathVariable Long id) {
+    public ResponseEntity detalharKartodromo(@PathVariable Long id) {
         return service.detalhar(id);
     }
 
