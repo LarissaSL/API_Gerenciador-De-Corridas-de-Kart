@@ -19,8 +19,8 @@ public class CorridaController {
         return service.cadastrar();
     }
 
-    @GetMapping
-    public ResponseEntity detalharCorrida() {
+    @GetMapping("/{id}")
+    public ResponseEntity detalharCorrida(@PathVariable Long id) {
         return service.detalhar();
     }
 
