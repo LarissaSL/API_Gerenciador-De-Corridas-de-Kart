@@ -2,6 +2,7 @@ package com.manascode.api_sgk.interfaceAdaptadores.mapper;
 
 import com.manascode.api_sgk.aplicacao.corrida.CriarCorridaDTO;
 import com.manascode.api_sgk.aplicacao.corrida.DetalharCorridaDTO;
+import com.manascode.api_sgk.aplicacao.corrida.ListarCorridaDTO;
 import com.manascode.api_sgk.dominio.campeonato.Campeonato;
 import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.dominio.kartodromo.Kartodromo;
@@ -24,4 +25,9 @@ public interface CorridaMapper {
     @Mapping(source = "campeonato.nome", target = "campeonatoNome")
     @Mapping(source = "dadosCorrida.classificacao", target = "classificacao")
     DetalharCorridaDTO converteCorridaEmDetalharCorridaDto(Corrida dadosCorrida);
+
+    @Mapping(source = "kartodromo.nome", target = "kartodromoNome")
+    @Mapping(source = "campeonato.nome", target = "campeonatoNome")
+    @Mapping(source = "dadosCorrida.classificacao", target = "classificacao")
+    ListarCorridaDTO converteCorridaEmListarCorridaDto(Corrida dadosCorrida);
 }

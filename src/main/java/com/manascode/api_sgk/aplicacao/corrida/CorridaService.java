@@ -1,6 +1,7 @@
 package com.manascode.api_sgk.aplicacao.corrida;
 
 import com.manascode.api_sgk.aplicacao.corrida.validacoes.IValidadorCorrida;
+import com.manascode.api_sgk.aplicacao.usuario.ListarUsuarioDTO;
 import com.manascode.api_sgk.dominio.campeonato.Campeonato;
 import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.dominio.kartodromo.Kartodromo;
@@ -14,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 
 import java.util.List;
 
@@ -35,7 +39,6 @@ public class CorridaService {
     @Autowired
     private List<IValidadorCorrida> validadores;
 
-    @Transactional
     public ResponseEntity<DetalharCorridaDTO> cadastrar(CriarCorridaDTO dados) {
         validadores.forEach(v -> v.validar(dados));
 
@@ -74,8 +77,11 @@ public class CorridaService {
         return ResponseEntity.ok(corridaDetalhada);
     }
 
-    public ResponseEntity listarTodos() {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Page<ListarCorridaDTO>> listarTodos(@PageableDefault(size = 10, sort = {"data"}) Pageable paginacao) {
+        Page<Corrida> page = repositorio.findAllByAtivoTrue(paginacao);
+        Page<ListarCorridaDTO> listaDeCorridasDTO = page.map(corridaMapper::converteCorridaEmListarCorridaDto);
+
+        return ResponseEntity.ok(listaDeCorridasDTO);
     }
 
     public ResponseEntity excluir() {
