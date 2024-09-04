@@ -48,9 +48,9 @@ public class CorridaController {
         return service.atualizar();
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity excluirCorrida() {
-        return service.excluir();
+    public ResponseEntity excluirCorrida(@PathVariable Long id) {
+        return service.excluir(id);
     }
 }

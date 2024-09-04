@@ -63,4 +63,8 @@ public class Corrida {
 
     @Column(name = "ativo", columnDefinition = "TINYINT(1)")
     private Boolean ativo = true;
+
+    public void excluir() {
+        this.ativo = false;
+    }
 }

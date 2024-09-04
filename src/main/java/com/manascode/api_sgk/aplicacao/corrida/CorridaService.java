@@ -84,7 +84,14 @@ public class CorridaService {
         return ResponseEntity.ok(listaDeCorridasDTO);
     }
 
-    public ResponseEntity excluir() {
-        return ResponseEntity.ok().build();
+    public ResponseEntity excluir(Long id) {
+        Corrida corrida = repositorio.getReferenceById(id);
+        if (corrida == null) {
+            throw new CorridaException("Corrida não encontrada ou não está ativa.");
+        }
+
+        corrida.excluir();
+
+        return ResponseEntity.noContent().build();
     }
 }
