@@ -10,19 +10,17 @@ public class ValidadorCpf implements IValidadorDeUsuario {
 
     @Override
     public void validar(CriarUsuarioDTO dados) {
-        validadorCpf(dados.cpf());
+        verificar(dados.cpf());
     }
 
     @Override
     public void validar(AtualizarUsuarioDTO dados) {
-        if(dados.cpf() == null) {
-            return;
+        if(dados.cpf() != null) {
+            verificar(dados.cpf());
         }
-
-        validadorCpf(dados.cpf());
     }
 
-    public void validadorCpf(String cpf) {
+    public void verificar(String cpf) {
         // Verificando se nao é uma sequencia de numeros (11111111111)
         if (cpf.length() != 11 || cpf.matches("(\\d)\\1{10}")) {
             throw new UsuarioException("O CPF informado é inválido.");

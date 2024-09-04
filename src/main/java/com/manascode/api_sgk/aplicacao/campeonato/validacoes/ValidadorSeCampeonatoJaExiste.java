@@ -6,7 +6,6 @@ import com.manascode.api_sgk.dominio.campeonato.Campeonato;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.CampeonatoException;
 import com.manascode.api_sgk.infraestrutura.persistencia.CampeonatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -19,13 +18,13 @@ public class ValidadorSeCampeonatoJaExiste implements IValidadorDeCampeonatos{
 
     @Override
     public void validar(CriarCampeonatoDTO dados) {
-        validarCampeonato(dados.nome(), dados.dataInicial(), dados.dataFinal());
+        verificar(dados.nome(), dados.dataInicial(), dados.dataFinal());
     }
 
     @Override
     public void validar(AtualizarCampeonatoDTO dados) {
         if (dados.dataInicial() != null && dados.dataFinal() != null && dados.nome() != null) {
-            validarCampeonato(dados.nome(), dados.dataInicial(), dados.dataFinal());
+            verificar(dados.nome(), dados.dataInicial(), dados.dataFinal());
         } else {
             Campeonato campeonatoSalvo = repositorio.getReferenceById(dados.id());
 
@@ -33,11 +32,11 @@ public class ValidadorSeCampeonatoJaExiste implements IValidadorDeCampeonatos{
             LocalDate dataFinal = dados.dataFinal() != null ? dados.dataFinal() : campeonatoSalvo.getDataFinal();
             String nome = dados.nome() != null ? dados.nome() : campeonatoSalvo.getNome();
 
-            validarCampeonato(dados.nome(), dataInicial, dataFinal);
+            verificar(nome, dataInicial, dataFinal);
         }
     }
 
-    public void validarCampeonato(String nome, LocalDate dataInicio, LocalDate dataFinal) {
+    public void verificar(String nome, LocalDate dataInicio, LocalDate dataFinal) {
         boolean jaExisteCampeonato = repositorio.existsByNomeAndDataInicialAndDataFinal(nome, dataInicio, dataFinal);
 
         if (jaExisteCampeonato) {

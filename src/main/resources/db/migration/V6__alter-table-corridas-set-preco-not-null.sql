@@ -1,1 +1,0 @@
-ALTER TABLE corridas MODIFY preco DECIMAL(10,2) NOT NULL;

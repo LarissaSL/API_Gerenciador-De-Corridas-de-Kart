@@ -78,7 +78,7 @@ public class CampeonatoService {
         validadores.forEach(v -> v.validar(dados));
 
         campeonatoSalvo.atualizar(dados);
-        String sigla = definirSiglaService.definirSigla(dados.nome());
+        String sigla = definirSiglaService.definirSigla(campeonatoSalvo.getNome());
         campeonatoSalvo.setSigla(sigla);
 
         DetalharCampeonatoDTO campeonatoDetalhado = campeonatoMapper.converteCampeonatoEmDetalharCampeonatoDTO(campeonatoSalvo);

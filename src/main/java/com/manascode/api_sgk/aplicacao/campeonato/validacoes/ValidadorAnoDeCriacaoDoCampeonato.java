@@ -11,18 +11,17 @@ import java.time.LocalDate;
 public class ValidadorAnoDeCriacaoDoCampeonato implements IValidadorDeCampeonatos {
     @Override
     public void validar(CriarCampeonatoDTO dados) {
-        validarDataInicioDoCampeonato(dados.dataInicial());
+        verificar(dados.dataInicial());
     }
 
     @Override
     public void validar(AtualizarCampeonatoDTO dados) {
         if (dados.dataInicial() != null) {
-            validarDataInicioDoCampeonato(dados.dataInicial());
+            verificar(dados.dataInicial());
         }
-        return;
     }
 
-    public void validarDataInicioDoCampeonato(LocalDate dataInicio) {
+    public void verificar(LocalDate dataInicio) {
         int anoAtual = LocalDate.now().getYear();
         int anoDaDataInicio = dataInicio.getYear();
 

@@ -13,18 +13,17 @@ public class ValidadorDeIdadeMinima implements IValidadorDeUsuario{
 
     @Override
     public void validar(CriarUsuarioDTO dados) {
-        validarData(dados.dataDeNascimento());
+        verificar(dados.dataDeNascimento());
     }
 
     @Override
     public void validar(AtualizarUsuarioDTO dados) {
-        if (dados.dataDeNascimento() == null) {
-            return;
+        if (dados.dataDeNascimento() != null) {
+            verificar(dados.dataDeNascimento());
         }
-        validarData(dados.dataDeNascimento());
     }
 
-    public void validarData(LocalDate data_de_nascimento) {
+    public void verificar(LocalDate data_de_nascimento) {
         LocalDate dataAtual = LocalDate.now();
 
         int idadeDoUsuario = Period.between(data_de_nascimento, dataAtual).getYears();

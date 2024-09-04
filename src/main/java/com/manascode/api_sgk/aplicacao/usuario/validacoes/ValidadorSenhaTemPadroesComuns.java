@@ -19,19 +19,17 @@ public class ValidadorSenhaTemPadroesComuns implements IValidadorDeUsuario {
 
     @Override
     public void validar(CriarUsuarioDTO dados) {
-        validadorDeSenha(dados.nome(), dados.sobrenome(), dados.senha(), null);
+        verificar(dados.nome(), dados.sobrenome(), dados.senha(), null);
     }
 
     @Override
     public void validar(AtualizarUsuarioDTO dados) {
-        if (dados.senha() == null) {
-            return;
+        if (dados.senha() != null) {
+            verificar(dados.nome(), dados.sobrenome(), dados.senha(), dados.id());
         }
-
-        validadorDeSenha(dados.nome(), dados.sobrenome(), dados.senha(), dados.id());
     }
 
-    private void validadorDeSenha(String nome, String sobrenome, String senha, Long id) {
+    private void verificar(String nome, String sobrenome, String senha, Long id) {
         if (nome == null || sobrenome == null) {
             Usuario usuario = repositorio.getReferenceById(id);
 
