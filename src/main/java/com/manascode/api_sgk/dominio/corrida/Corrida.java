@@ -34,6 +34,8 @@ public class Corrida {
     @JoinColumn(name = "kartodromo_id")
     private Kartodromo kartodromo;
 
+    private String nome;
+
     private LocalDate data;
     private LocalTime horario;
     private Boolean transmissao = false;
@@ -48,5 +50,5 @@ public class Corrida {
     private BigDecimal preco;
 
     @Column(name = "ativo", columnDefinition = "TINYINT(1)")
-    private boolean ativo = true;
+    private Boolean ativo = true;
 }

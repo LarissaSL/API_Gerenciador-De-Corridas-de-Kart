@@ -2,6 +2,7 @@ CREATE TABLE corridas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     campeonato_id INT,
     kartodromo_id INT,
+    nome VARCHAR(45) NOT NULL,
     data DATE NOT NULL,
     horario TIME NOT NULL,
     transmissao BOOLEAN DEFAULT 0,
