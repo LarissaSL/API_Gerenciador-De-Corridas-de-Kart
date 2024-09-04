@@ -1,7 +1,9 @@
 package com.manascode.api_sgk.interfaceAdaptadores.api;
 
 import com.manascode.api_sgk.aplicacao.corrida.CorridaService;
+import com.manascode.api_sgk.aplicacao.corrida.CriarCorridaDTO;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +17,13 @@ public class CorridaController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity criarCorrida() {
-        return service.cadastrar();
+    public ResponseEntity criarCorrida(@RequestBody @Valid CriarCorridaDTO dados) {
+        return service.cadastrar(dados);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity detalharCorrida(@PathVariable Long id) {
-        return service.detalhar();
+        return service.detalhar(id);
     }
 
     @GetMapping

@@ -1,7 +1,7 @@
 package com.manascode.api_sgk.dominio.corrida;
 
-public enum Categoria {
+public enum Classificacao {
     CKC_95,
     CKC_110,
-    LIVRE
+    DDL_90
 }
