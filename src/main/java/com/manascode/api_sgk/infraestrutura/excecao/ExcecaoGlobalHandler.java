@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -73,14 +74,18 @@ public class ExcecaoGlobalHandler {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<ResponseErrorPadraoRFC>  tratarErroEntidadeNaoEncontrada (HttpServletRequest request) {
+    public ResponseEntity<ResponseErrorPadraoRFC> tratarErroEntidadeNaoEncontrada(HttpServletRequest request, EntityNotFoundException excecao) {
         String uri = request.getRequestURI();
-        String titulo = "Erro no Banco de Dados";
+        String titulo = "Erro nos Registros do Banco de Dados";
         HttpStatus status = HttpStatus.NOT_FOUND;
+
+        // Extraindo a Entidade para melhor direcionamento do Usuario
+        String entidadeNaoEncontrada = excecaoService.extrairEntidadeQueNaoFoiEncontrada(excecao.getMessage());
+        String mensagemPersonalizada = String.format("Não foi possível encontrar o registro de %s.", entidadeNaoEncontrada);
 
         ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(
                 titulo,
-                "Não foi possivel encontrar esse registro",
+                mensagemPersonalizada,
                 status,
                 uri
         );
@@ -151,4 +156,25 @@ public class ExcecaoGlobalHandler {
 
         return ResponseEntity.status(status).body(problema);
     }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ResponseErrorPadraoRFC> tratarErrosDeDesserializacao (HttpServletRequest request, HttpMessageNotReadableException excecao) {
+        String uri = request.getRequestURI();
+        String titulo = "Erro nos dados";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        // Extraindo quais valores são esperados em algum Enum
+        String mensagem = String.format("Valores esperados: %s",excecaoService.extrairValoresEsperadosDosEnums(excecao.getMessage()));
+
+        ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(
+                titulo,
+                mensagem,
+                status,
+                uri
+        );
+
+        return ResponseEntity.status(status).body(problema);
+    }
+
+
 }
