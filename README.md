@@ -163,16 +163,18 @@ Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem 
 
 <br>
 
-** 📃❌ Mensagem com vários erros:**
+** 📃❌ Algumas mensagens de Erros:**
 
 
 ![image](https://github.com/user-attachments/assets/07fc5482-4ef6-4724-a174-1a59e4424a24)
 
 
 ---
+
 <br><br><br>
 
 ## 📃 2. Listagem de Usuários
+
 <br>
 
 - Para listar um usuário individualmente, acesse o mesmo URL, passando o ID do usuário a ser listado. Se tudo estiver correto, você receberá os dados do usuário solicitado.
@@ -375,6 +377,10 @@ Se tudo ocorrer conforme esperado, você receberá o Status Code `201`.
 
 Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem de erro no formato RFC.
 
+<br>
+
+** 📃❌ Algumas mensagens de Erros:**
+
 
 ![image](https://github.com/user-attachments/assets/0f9b0335-ffad-4402-94e7-82143551c982)
 
@@ -569,7 +575,7 @@ Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem 
 
 <br>
 
-** 📃❌ Mensagem com erro:**
+** 📃❌ Algumas mensagens de Erros:**
 
 ![image](https://github.com/user-attachments/assets/3bb72163-a1df-42b2-a39e-1187cb7e4844)
 
@@ -720,6 +726,237 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 
 ---
 
+<br><br><br>
+
+# Utilizando o Controller de Corridas
+
+<br><br>
+
+## 🛠️ Validadores de Corridas
+
+### 1. **Corridas**
+
+| **Campo**            | **Validação**                                                                                                      |
+|----------------------|--------------------------------------------------------------------------------------------------------------------|
+| **Campeonato_ID**    | Deve existir um campeonato no sistema e o campeonato deve estar ativo.                                             |
+| **Kartodromo_ID**    | Deve existir um kartódromo no sistema e o kartódromo deve estar ativo.                                             |
+| **Nome**             | Deve ser único para o mesmo Campeonato, Data, Horário e Categoria.                                                 |
+| **Data**             | Deve estar dentro do período de início e término do Campeonato.                                                     |
+| **Horário**          | Deve permitir apenas duas corridas no mesmo horário.                                                               |
+| **Transmissão**      | Opcional. Pode ser verdadeiro ou falso.                                                                            |
+| **Categoria**        | No Campeonato "Desafio dos Loucos", deve ser "DDL_90". No Campeonato "Crash Kart Championship", deve ser "CKC_95" ou "CKC_110". |
+| **Classificação**    | Deve ser um texto não vazio.                                                                                         |
+| **Código**           | Deve ser único.                                                                                                     |
+| **Preço**            | Deve ser um valor decimal maior ou igual a 0.                                                                     |
+---
+
+## ✅ 1. Método de Criação de Novas Corridas
+
+- Para criar uma nova corrida, envie uma requisição para o seguinte endereço:
+  
+```
+POST http://localhost:8080/corrida
+```
+
+**Corpo esperado:**
+
+```json
+{
+    "campeonato_id": 1,
+    "kartodromo_id": 2,
+    "nome": "CKC Etapa 1",
+    "data": "2024-07-15",
+    "horario": "14:00:00",
+    "transmissao": true,
+    "categoria": "LIVRE",
+    "classificacao": " CKC_95",
+    "codigo": "GPV2024",
+    "preco": 150.00
+}
+```
+
+<br>
+
+Se tudo ocorrer conforme esperado, você receberá o Status Code `201`.
+
+![image](https://github.com/user-attachments/assets/151c6237-0244-486c-a249-5bdcdbcd5182)
+
+
+<br>
+
+Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem de erro no formato RFC.
+
+<br>
+
+**📃❌ Algumas mensagens de Erros:**
+
+- Caso você informe um Campeonato ou kartódromo que não existem, você recebera um erro 404(Not Found) ou 400 (Bad Request)
+
+<br>
+
+![image](https://github.com/user-attachments/assets/63c6ece5-8778-4b5a-91ea-17e07c19e9ac)
+
+<br>
+
+- Caso você tente iniciar a corrida fora das datas do Campeonato
+
+![image](https://github.com/user-attachments/assets/ea0d8cae-aadc-4da5-9daf-3cdc6af892f8)
+
+
+---
+
+<br><br><br>
+
+## 📃 2. Listagem de Corridas
+
+<br>
+
+- Para listar uma corrida individualmente, acesse o mesmo URL, passando o ID da corrida a ser listado. Se tudo estiver correto, você receberá os dados da corrida solicitada.
+```
+http://localhost:8080/corrida/{id}
+```
+
+![image](https://github.com/user-attachments/assets/db48440f-78b6-4e56-aefb-7323397e0092)
+
+
+<br>
+
+- Para listar todos os registros de corridas, basta acessar o URL:
+
+  
+`OBS.:` As corridas são ordenadas pela Data.
+
+```
+http://localhost:8080/corrida/
+```
+
+![image](https://github.com/user-attachments/assets/125c22f9-f979-483f-a2fd-1462ce97099b)
+
+
+<br>
+
+## 📃 2.1. Métodos de Ordenação e Paginação
+
+- Para ordenar os registros, use:
+
+```
+http://localhost:8080/corrida?ordem={NomeDoCampoParaOrdenar}
+```
+<br>
+
+- Para definir o número de registros por página:
+
+```
+http://localhost:8080/corrida?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}
+```
+<br>
+
+- Para acessar uma página específica:
+
+```
+http://localhost:8080/corrida?pagina={QualPaginaDesejaVer}
+```
+
+<br><br>
+
+Por padrão, a ordenação é crescente. Para ordenação decrescente, adicione:
+
+```
+http://localhost:8080/corrida?ordem={NomeDoCampoParaOrdenar},desc
+```
+
+<br>
+
+- Para combinar métodos de ordenação e paginação, use `&`:
+
+```
+http://localhost:8080/corrida?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}&ordem={NomeDoCampoParaOrdenar}
+```
+<br><br>
+
+- **Exemplo de combinação:**
+
+```
+http://localhost:8080/corrida?tamanho=1&ordem=data,desc
+```
+
+<br>
+---
+
+<br><br><br>
+
+## ❎ 3. Exclusão de Corrida
+
+<br>
+
+Para excluir uma corrida, acesse o mesmo URL, passando o ID da corrida a ser excluída. Se tudo estiver correto, você receberá um feedback indicando que a exclusão foi bem-sucedida.
+
+![image](https://github.com/user-attachments/assets/77ae9bf1-87bc-430e-a2b7-9eef510457b5)
+
+
+---
+
+<br><br><br>
+
+## 📝✅ 4. **Atualização de Corridas**
+
+Para atualizar uma corrida, envie uma requisição para o seguinte endereço:
+```
+PUT http://localhost:8080/corrida
+```
+Você **deve enviar o ID da corrida no corpo da requisição**.
+
+**Corpo esperado:**
+```json
+{
+    "id": 1,
+    "campeonato_id": 1,
+    "kartodromo_id": 2,
+    "nome": "Grande Prêmio de Inverno",
+    "data": "2024-08-20",
+    "horario": "16:00:00",
+    "transmissao": false,
+    "categoria": "LIVRE",
+    "classificacao": " CKC_110",
+    "codigo": "GPI2024",
+    "preco": 120.00
+}
+```
+<br><br>
+
+## 🛠️ Campos que Podem Ser Atualizados
+
+| **Campo**            | **Descrição**                                     |
+|----------------------|---------------------------------------------------|
+| **Campeonato_ID**    | ID do Campeonato associado à corrida.            |
+| **Kartodromo_ID**    | ID do Kartódromo associado à corrida.            |
+| **Nome**             | Nome da corrida.                                |
+| **Data**             | Data da corrida.                                |
+| **Horário**          | Horário da corrida.                             |
+| **Transmissão**      | Se a corrida será transmitida.                   |
+| **Categoria**        | Categoria da corrida, conforme o campeonato.     |
+| **Classificação**    | Classificação da corrida.                        |
+| **Código**           | Código único da corrida.                         |
+| **Preço**            | Preço da corrida.                                |
+
+OBS.: As mesmas validações de criação são feitas na de Atualização.
+
+---
+
+<br><br>
+
+✅ Se a atualização for bem-sucedida, você receberá o Status Code `200`.
+
+![image](https://github.com/user-attachments/assets/07665d19-cd58-4799-a57b-5f6e1a6cb382)
+
+<br>
+
+📃❌ **Caso contrário, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC**.
+
+![image](https://github.com/user-attachments/assets/7a51d8d4-cc3f-46af-8051-1217d61e3ed4)
+
+
+---
 
 
 
