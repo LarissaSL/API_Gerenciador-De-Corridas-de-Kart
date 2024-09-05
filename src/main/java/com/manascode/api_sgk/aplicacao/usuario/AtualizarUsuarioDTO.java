@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 
 public record AtualizarUsuarioDTO(
-        @NotNull
+        @NotNull (message = "O usuário não pode ser nulo.")
         Long id,
 
         @Size(max = 45, message = "Nome não pode passar de 45 caracteres")

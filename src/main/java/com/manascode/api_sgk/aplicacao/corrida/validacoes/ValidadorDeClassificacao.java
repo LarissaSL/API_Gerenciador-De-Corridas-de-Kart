@@ -4,8 +4,10 @@ import com.manascode.api_sgk.aplicacao.corrida.AtualizarCorridaDTO;
 import com.manascode.api_sgk.aplicacao.corrida.CriarCorridaDTO;
 import com.manascode.api_sgk.dominio.campeonato.Campeonato;
 import com.manascode.api_sgk.dominio.corrida.Classificacao;
+import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.CorridaException;
 import com.manascode.api_sgk.infraestrutura.persistencia.CampeonatoRepository;
+import com.manascode.api_sgk.infraestrutura.persistencia.CorridaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,20 +15,29 @@ import org.springframework.stereotype.Component;
 public class ValidadorDeClassificacao implements IValidadorCorrida{
 
     @Autowired
-    private CampeonatoRepository repositorio;
+    private CampeonatoRepository campeonatoRepository;
+
+    @Autowired
+    private CorridaRepository repositorio;
 
     @Override
     public void validar(CriarCorridaDTO dados) {
-        verificar(dados.campeonato_id(), dados.classificacao());
+        verificar(dados.campeonatoId(), dados.classificacao());
     }
 
     @Override
     public void validar(AtualizarCorridaDTO dados) {
+        if (dados.classificacao() != null) {
+            Corrida corrida = repositorio.getReferenceById(dados.id());
 
+            Long idCampeonato = dados.campeonatoId() != null ? dados.campeonatoId() : corrida.getCampeonato().getId();
+
+            verificar(idCampeonato, dados.classificacao());
+        }
     }
 
     public void verificar(Long idCampeonato, Classificacao classificacaoCorrida) {
-        Campeonato campeonato = repositorio.getReferenceById(idCampeonato);
+        Campeonato campeonato = campeonatoRepository.getReferenceById(idCampeonato);
         String siglaCampeonato = campeonato.getSigla();
 
         // Definindo se a classificação esta certa pela sigla do campeonato, que é determinada pelo nome do mesmo.

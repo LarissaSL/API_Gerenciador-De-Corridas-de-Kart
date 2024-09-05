@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.interfaceAdaptadores.api;
 
+import com.manascode.api_sgk.aplicacao.corrida.AtualizarCorridaDTO;
 import com.manascode.api_sgk.aplicacao.corrida.CorridaService;
 import com.manascode.api_sgk.aplicacao.corrida.CriarCorridaDTO;
 import com.manascode.api_sgk.aplicacao.corrida.ListarCorridaDTO;
@@ -44,8 +45,8 @@ public class CorridaController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity atualizarCorrida() {
-        return service.atualizar();
+    public ResponseEntity atualizarCorrida(@RequestBody @Valid AtualizarCorridaDTO dados) {
+        return service.atualizar(dados);
     }
 
     @DeleteMapping("/{id}")

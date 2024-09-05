@@ -1,23 +1,23 @@
 package com.manascode.api_sgk.aplicacao.corrida;
 
 import com.manascode.api_sgk.aplicacao.corrida.validacoes.IValidadorCorrida;
-import com.manascode.api_sgk.aplicacao.usuario.ListarUsuarioDTO;
 import com.manascode.api_sgk.dominio.campeonato.Campeonato;
 import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.dominio.kartodromo.Kartodromo;
+import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.CampeonatoException;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.CorridaException;
+import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.KartodromoException;
 import com.manascode.api_sgk.infraestrutura.persistencia.CampeonatoRepository;
 import com.manascode.api_sgk.infraestrutura.persistencia.CorridaRepository;
 import com.manascode.api_sgk.infraestrutura.persistencia.KartodromoRepository;
 import com.manascode.api_sgk.interfaceAdaptadores.mapper.CorridaMapper;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -42,8 +42,8 @@ public class CorridaService {
     public ResponseEntity<DetalharCorridaDTO> cadastrar(CriarCorridaDTO dados) {
         validadores.forEach(v -> v.validar(dados));
 
-        Kartodromo kartodromo = kartodromoRepository.getReferenceById(dados.kartodromo_id());
-        Campeonato campeonato = campeonatoRepository.getReferenceById(dados.campeonato_id());
+        Kartodromo kartodromo = kartodromoRepository.getReferenceById(dados.kartodromoId());
+        Campeonato campeonato = campeonatoRepository.getReferenceById(dados.campeonatoId());
 
 
         Corrida corrida = corridaMapper.converteCriarCorridaDtoEmCorrida(dados, kartodromo, campeonato);
@@ -62,11 +62,38 @@ public class CorridaService {
         return ResponseEntity.created(uri).body(corridaDetalhada);
     }
 
-    public ResponseEntity atualizar() {
-        return ResponseEntity.ok().build();
+    public ResponseEntity atualizar(AtualizarCorridaDTO dados) {
+        // Recupera a corrida existente
+        Corrida corridaSalva = repositorio.findByIdAndAtivo(dados.id(), true);
+        if (corridaSalva == null) {
+            throw new CorridaException("Corrida não encontrada ou não está ativa.");
+        }
+
+        // Valida os dados
+        validadores.forEach(v -> v.validar(dados));
+
+        // Atualiza as informações da corrida e já salva esses novos dados
+        corridaSalva.atualizar(dados);
+
+        if (dados.campeonatoId() != null) {
+            Campeonato campeonato = campeonatoRepository.findById(dados.campeonatoId())
+                    .orElseThrow(() -> new CampeonatoException("Campeonato não encontrado."));
+            corridaSalva.setCampeonato(campeonato);
+        }
+
+        if (dados.kartodromoId() != null) {
+            Kartodromo kartodromo = kartodromoRepository.findById(dados.kartodromoId())
+                    .orElseThrow(() -> new KartodromoException("Kartódromo não encontrado."));
+            corridaSalva.setKartodromo(kartodromo);
+        }
+
+        // Exibir as novas informações da corrida
+        DetalharCorridaDTO corridaDetalhada = corridaMapper.converteCorridaEmDetalharCorridaDto(corridaSalva);
+
+        return ResponseEntity.ok(corridaDetalhada);
     }
 
-    public ResponseEntity detalhar(Long id) {
+    public ResponseEntity<DetalharCorridaDTO> detalhar(Long id) {
         Corrida corridaSalva = repositorio.findByIdAndAtivo(id, true);
         if (corridaSalva == null) {
             throw new CorridaException("Corrida não encontrada ou não está ativa.");
@@ -84,7 +111,7 @@ public class CorridaService {
         return ResponseEntity.ok(listaDeCorridasDTO);
     }
 
-    public ResponseEntity excluir(Long id) {
+    public ResponseEntity<Void> excluir(Long id) {
         Corrida corrida = repositorio.getReferenceById(id);
         if (corrida == null) {
             throw new CorridaException("Corrida não encontrada ou não está ativa.");

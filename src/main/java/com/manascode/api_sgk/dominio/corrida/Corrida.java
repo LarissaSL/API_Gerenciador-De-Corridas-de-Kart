@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.dominio.corrida;
 
+import com.manascode.api_sgk.aplicacao.corrida.AtualizarCorridaDTO;
 import com.manascode.api_sgk.dominio.campeonato.Campeonato;
 import com.manascode.api_sgk.dominio.kartodromo.Kartodromo;
 import jakarta.persistence.Column;
@@ -37,11 +38,11 @@ public class Corrida {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "campeonato_id")
+    @JoinColumn(name = "campeonatoId")
     private Campeonato campeonato;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "kartodromo_id")
+    @JoinColumn(name = "kartodromoId")
     private Kartodromo kartodromo;
 
     private String nome;
@@ -66,5 +67,39 @@ public class Corrida {
 
     public void excluir() {
         this.ativo = false;
+    }
+
+    public void atualizar(AtualizarCorridaDTO dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+
+        if (dados.data() != null) {
+            this.data = dados.data();
+        }
+
+        if (dados.horario() != null) {
+            this.horario = dados.horario();
+        }
+
+        if (dados.transmissao() != null) {
+            this.transmissao = dados.transmissao();
+        }
+
+        if (dados.categoria() != null) {
+            this.categoria = dados.categoria();
+        }
+
+        if (dados.classificacao() != null) {
+            this.classificacao = dados.classificacao();
+        }
+
+        if (dados.codigo() != null) {
+            this.codigo = dados.codigo();
+        }
+
+        if (dados.preco() != null) {
+            this.preco = dados.preco();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.aplicacao.corrida;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.manascode.api_sgk.dominio.corrida.Classificacao;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -12,9 +13,11 @@ import java.time.LocalTime;
 
 public record CriarCorridaDTO(
         @NotNull(message = "O Campeonato é obrigatório.")
-        Long campeonato_id,
+        @JsonAlias("campeonato_id")
+        Long campeonatoId,
         @NotNull(message = "O Kartodromo é obrigatório.")
-        Long kartodromo_id,
+        @JsonAlias("kartodromo_id")
+        Long kartodromoId,
 
         @NotBlank(message = "O Nome é obrigatório.")
         @Size(max = 45, message = "O Nome não pode passar de 45 caracteres.")

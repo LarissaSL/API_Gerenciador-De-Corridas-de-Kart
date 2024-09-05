@@ -16,12 +16,14 @@ public class ValidadorChaveEstrageiraCampeonato implements IValidadorCorrida{
 
     @Override
     public void validar(CriarCorridaDTO dados) {
-        verificar(dados.campeonato_id());
+        verificar(dados.campeonatoId());
     }
 
     @Override
     public void validar(AtualizarCorridaDTO dados) {
-
+        if (dados.campeonatoId() != null) {
+            verificar(dados.campeonatoId());
+        }
     }
 
     public void verificar(Long idCampeonato) {

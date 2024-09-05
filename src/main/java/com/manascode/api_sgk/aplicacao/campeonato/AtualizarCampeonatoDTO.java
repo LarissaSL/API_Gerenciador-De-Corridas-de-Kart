@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public record AtualizarCampeonatoDTO(
-        @NotNull
+        @NotNull (message = "O Campeonato não pode ser nulo.")
         Long id,
         String nome,
         String sigla,

@@ -2,6 +2,7 @@ package com.manascode.api_sgk.aplicacao.corrida.validacoes;
 
 import com.manascode.api_sgk.aplicacao.corrida.AtualizarCorridaDTO;
 import com.manascode.api_sgk.aplicacao.corrida.CriarCorridaDTO;
+import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.CorridaException;
 import com.manascode.api_sgk.infraestrutura.persistencia.CorridaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,14 @@ public class ValidadorSeJaExisteDuasCorridasNoMesmoHorarioEDia implements IValid
 
     @Override
     public void validar(AtualizarCorridaDTO dados) {
+        if (dados.horario() != null || dados.data() != null) {
+            Corrida corrida = repositorio.getReferenceById(dados.id());
 
+            LocalDate data = dados.data() != null ? dados.data() : corrida.getData();
+            LocalTime horario = dados.horario() != null ? dados.horario() : corrida.getHorario();
+
+            verificar(data, horario);
+        }
     }
 
     public void verificar(LocalDate dataCorrida, LocalTime horarioCorrida) {

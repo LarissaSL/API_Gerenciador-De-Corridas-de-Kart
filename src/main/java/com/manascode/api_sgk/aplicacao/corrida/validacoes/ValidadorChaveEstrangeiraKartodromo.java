@@ -16,12 +16,14 @@ public class ValidadorChaveEstrangeiraKartodromo implements IValidadorCorrida {
 
     @Override
     public void validar(CriarCorridaDTO dados) {
-        verificar(dados.kartodromo_id());
+        verificar(dados.kartodromoId());
     }
 
     @Override
     public void validar(AtualizarCorridaDTO dados) {
-        return;
+        if (dados.kartodromoId() != null) {
+            verificar(dados.kartodromoId());
+        }
     }
 
     public void verificar(Long idKartodromo) {
