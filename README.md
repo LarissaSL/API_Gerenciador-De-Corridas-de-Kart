@@ -31,7 +31,7 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 - 🟢 CRUD de Corridas
 - 🟢 CRUD de Usuários
 - 🟡 CRUD de Classificação das Corridas
-- 🟡 Autenticação de Usuários
+- 🟠 Autenticação de Usuários
 - 🟡 Compra de Ingressos de Corridas
 - 🟡 Carrinho de Compras
 - 🟡 Check-out de Pagamentos
@@ -106,6 +106,67 @@ Resultado das Variáveis de Ambiente:
 
 <br><br><br>
 
+# Utilizando o Controller de Autenticação
+
+## 🛠️ Validadores de Autenticação
+
+### 1. **Autenticação**
+
+| **Campo**   | **Validação**                                                                                                   |
+|-------------|-----------------------------------------------------------------------------------------------------------------|
+| **Email**   | Deve ser um email válido e registrado no sistema.                                                               |
+| **Senha**   | Deve corresponder à senha registrada para o usuário. A senha deve ser verificada conforme as regras de complexidade estabelecidas no sistema. |
+
+**Nota:** Apenas usuários ativos podem fazer login. Usuários administradores são os únicos autorizados a acessar o aplicativo mobile.
+
+---
+
+## ✅ 1. Método de Autenticação
+
+- Para autenticar um usuário, envie uma requisição para o seguinte endereço:
+
+```
+POST http://localhost:8080/login
+```
+
+**Corpo esperado:**
+
+```json
+{
+    "email": "email@example.com.br",
+    "senha": "senha"
+}
+```
+
+<br>
+
+Se a autenticação for bem-sucedida, você receberá o Status Code `200` com um token de acesso.
+
+![image](https://github.com/user-attachments/assets/41815f24-7be8-4c96-b286-82f439f99c32)
+
+
+<br>
+
+Em caso de falha na autenticação, o Status Code poderá ser `401` ou `403` e a resposta incluirá uma mensagem de erro no formato RFC.
+
+<br>
+
+**📃❌ Algumas mensagens de Erros:**
+
+- Caso a senha seja incorreta:
+
+![image](https://github.com/user-attachments/assets/13cfdd85-7fff-4478-9477-cbc7d9feefdf)
+  
+
+- Caso o usuário tente fazer login no App mobile e não seja um Administrador.
+
+![image](https://github.com/user-attachments/assets/81f8e3eb-8e36-49d7-83d4-a4c7d14eea58)
+
+
+---
+
+<br><br><br>
+
 # Utilizando o Controller de Usuários
 
 ## 🛠️ Validadores de Usuário
@@ -162,7 +223,7 @@ Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem 
 
 <br>
 
-** 📃❌ Algumas mensagens de Erros:**
+**📃❌ Algumas mensagens de Erros:**
 
 
 ![image](https://github.com/user-attachments/assets/07fc5482-4ef6-4724-a174-1a59e4424a24)
@@ -378,7 +439,7 @@ Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem 
 
 <br>
 
-** 📃❌ Algumas mensagens de Erros:**
+**📃❌ Algumas mensagens de Erros:**
 
 
 ![image](https://github.com/user-attachments/assets/0f9b0335-ffad-4402-94e7-82143551c982)
@@ -574,7 +635,7 @@ Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem 
 
 <br>
 
-** 📃❌ Algumas mensagens de Erros:**
+**📃❌ Algumas mensagens de Erros:**
 
 ![image](https://github.com/user-attachments/assets/3bb72163-a1df-42b2-a39e-1187cb7e4844)
 
