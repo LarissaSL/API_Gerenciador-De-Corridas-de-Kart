@@ -1,14 +1,18 @@
 package com.manascode.api_sgk.aplicacao.usuario;
 
 import com.manascode.api_sgk.aplicacao.usuario.validacoes.IValidadorDeUsuario;
+import com.manascode.api_sgk.dominio.usuario.TipoUsuario;
 import com.manascode.api_sgk.dominio.usuario.Usuario;
+import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.AutenticacaoException;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.UsuarioException;
 import com.manascode.api_sgk.infraestrutura.persistencia.UsuarioRepository;
 import com.manascode.api_sgk.interfaceAdaptadores.mapper.UsuarioMapper;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;

@@ -1,9 +1,6 @@
 package com.manascode.api_sgk.infraestrutura.excecao;
 
-import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.CampeonatoException;
-import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.CorridaException;
-import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.KartodromoException;
-import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.UsuarioException;
+import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.*;
 import com.manascode.api_sgk.interfaceAdaptadores.mapper.excecoes.ExcecoesMapper;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -171,6 +168,22 @@ public class ExcecaoGlobalHandler {
                 mensagem,
                 status,
                 uri
+        );
+
+        return ResponseEntity.status(status).body(problema);
+    }
+
+    @ExceptionHandler(AutenticacaoException.class)
+    public ResponseEntity<ResponseErrorPadraoRFC> tratarErrosDeAutenticacao (HttpServletRequest request, AutenticacaoException excecao) {
+        String uri = request.getRequestURI();
+        String titulo = "Erro de Autenticação";
+        HttpStatus status = excecao.getStatus();
+
+        ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(
+            titulo,
+            excecao.getMessage(),
+            status,
+            uri
         );
 
         return ResponseEntity.status(status).body(problema);
