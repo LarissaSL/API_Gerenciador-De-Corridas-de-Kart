@@ -19,10 +19,10 @@ public interface CorridaMapper {
     @Mapping(source = "dadosCorrida.classificacao", target = "classificacao")
     Corrida converteCriarCorridaDtoEmCorrida(CriarCorridaDTO dadosCorrida, Kartodromo kartodromo, Campeonato campeonato);
 
-    @Mapping(source = "kartodromo.id", target = "kartodromoId")
-    @Mapping(source = "kartodromo.nome", target = "kartodromoNome")
-    @Mapping(source = "campeonato.id", target = "campeonatoId")
-    @Mapping(source = "campeonato.nome", target = "campeonatoNome")
+    @Mapping(source = "kartodromo.id", target = "kartodromo.id")
+    @Mapping(source = "kartodromo.nome", target = "kartodromo.nome")
+    @Mapping(source = "campeonato.id", target = "campeonato.id")
+    @Mapping(source = "campeonato.nome", target = "campeonato.nome")
     @Mapping(source = "dadosCorrida.classificacao", target = "classificacao")
     DetalharCorridaDTO converteCorridaEmDetalharCorridaDto(Corrida dadosCorrida);
 
