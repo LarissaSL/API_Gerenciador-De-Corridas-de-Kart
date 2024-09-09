@@ -839,7 +839,7 @@ POST http://localhost:8080/corrida
 
 Se tudo ocorrer conforme esperado, você receberá o Status Code `201`.
 
-![image](https://github.com/user-attachments/assets/151c6237-0244-486c-a249-5bdcdbcd5182)
+![image](https://github.com/user-attachments/assets/f7a80197-5ece-4665-bdea-7f7c838a8aca)
 
 
 <br>
@@ -876,7 +876,8 @@ Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem 
 http://localhost:8080/corrida/{id}
 ```
 
-![image](https://github.com/user-attachments/assets/db48440f-78b6-4e56-aefb-7323397e0092)
+![image](https://github.com/user-attachments/assets/64b1a886-7a75-4615-a528-b19e2f11538c)
+
 
 
 <br>
@@ -890,7 +891,6 @@ http://localhost:8080/corrida/{id}
 http://localhost:8080/corrida/
 ```
 
-![image](https://github.com/user-attachments/assets/125c22f9-f979-483f-a2fd-1462ce97099b)
 
 
 <br>
@@ -1007,7 +1007,8 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 
 ✅ Se a atualização for bem-sucedida, você receberá o Status Code `200`.
 
-![image](https://github.com/user-attachments/assets/07665d19-cd58-4799-a57b-5f6e1a6cb382)
+![image](https://github.com/user-attachments/assets/33bf60e7-8029-4bfa-aa7f-6ba7bb8f0ed6)
+
 
 <br>
 
