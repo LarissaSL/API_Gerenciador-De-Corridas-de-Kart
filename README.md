@@ -1019,6 +1019,218 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 
 ---
 
+<br><br><br>
+
+# Utilizando o Controller de Inscrições
+
+<br><br>
+
+## 🛠️ Validadores de Inscrição
+
+| **Validador**                                                      | **Descrição**                                                                                                      |
+|--------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| **Validador Data de Inscricao Valida**                              | Permite que o usuário se inscreva se a data for anterior ou no dia da corrida. Ex.: Alguém vê a corrida e deseja participar no mesmo dia. |
+| **Validador Usuario Unico por Corrida**                             | Garante que cada usuário possa se inscrever apenas uma vez por corrida.                                             |
+| **Validador Chave Estrangeira Usuario**                             | Permite a inscrição apenas de usuários existentes e que estejam ativos no sistema.                                  |
+| **Validador Chave Estrangeira Corrida**                             | Garante que o usuário se inscreva apenas em corridas existentes e ativas.                                           |
+| **Validador Se Usuario ja esta em outra Corrida no mesmo dia e horario** | Não permite que o usuário se inscreva se já estiver inscrito em outra corrida na mesma data e horário.              |
+
+---
+<br><br><br>
+
+## ✅ 1. Método de Criação de Inscrição
+
+- Para inscrever um usuário em uma corrida, envie uma requisição para o seguinte endereço:
+  
+```
+POST http://localhost:8080/inscricao
+```
+
+**Corpo esperado:**
+
+```json
+{
+    "corrida_id": 1,
+    "usuario_id": 2
+}
+```
+
+<br>
+
+Se a criação for bem-sucedida, você receberá o Status Code `201`.
+
+![image](https://github.com/user-attachments/assets/de0960c7-07e6-40e8-9b2f-973730c27881)
+
+<br>
+
+📃❌ **Caso contrário, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC.**
+
+<br>
+
+**📃❌ Algumas mensagens de Erros:**
+
+- **Caso o usuário já esteja inscrito na corrida:**
+  - Status Code `400` e mensagem de erro informando que o usuário já está inscrito.
+
+  ![image](https://github.com/user-attachments/assets/80aa5cd8-e9e5-4eb3-b1b1-bfe269e200a8)
+
+<br>
+
+- **Caso o usuário já esteja inscrito em outra corrida na mesma data e horário:**
+  - Status Code `400` e mensagem informando sobre o conflito de horário.
+  
+  ![image](https://github.com/user-attachments/assets/593831a6-002d-4efd-af6b-9418ba52f29d)
+
+<br>
+
+- **Caso o usuário tente se inscrever em uma corrida que já aconteceu:**
+  - Status Code `400` e mensagem informando que a corrida já ocorreu.
+  
+  ![image](https://github.com/user-attachments/assets/7a61138e-12d2-4deb-bba7-a8ed5f49b31a)
+
+<br>
+
+- **Caso o usuário não esteja ativo no sistema:**
+  - Status Code `400` e mensagem informando que o usuário está inativo.
+  
+  ![image](https://github.com/user-attachments/assets/87dcd4e2-8944-4fbf-9dff-4ef59c418d9c)
+
+<br>
+
+- **Caso a corrida não esteja ativa no sistema:**
+  - Status Code `400` e mensagem informando que a corrida está inativa.
+  
+  ![image](https://github.com/user-attachments/assets/ef13b224-0962-47b5-b061-e0cf6a1c0b10)
+
+---
+<br><br><br>
+
+## ✅ 2. Exibir uma Inscrição
+
+- Para exibir uma inscrição específica, utilize o seguinte endpoint:
+
+```
+GET http://localhost:8080/inscricao/{id}
+```
+
+<br>
+
+Se o Id de Inscrição for válido, você receberá o Status Code `200`.
+
+![image](https://github.com/user-attachments/assets/c6bc35f7-1d14-40ad-99c3-335058d6c5ad)
+
+<br>
+
+📃❌ **Caso contrário, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC.**
+
+![image](https://github.com/user-attachments/assets/2d5004f3-322a-4d1f-a1e4-8bbec315b05c)
+
+---
+
+<br><br><br>
+
+## ✅ 3. Exibir todas as Inscrições
+
+- Para exibir todas as inscrições, utilize o seguinte endpoint:
+
+```
+GET http://localhost:8080/inscricao
+```
+
+**Nota:** As inscrições são ordenadas pelo ID da corrida por padrão.
+
+![image](https://github.com/user-attachments/assets/68997bf9-4ea1-4612-be4c-ac51a59b7cb6)
+
+---
+
+<br><br><br>
+
+## ✅ 4. Exibir todas as Inscrições de uma Corrida
+
+- Para exibir as inscrições de uma corrida específica, utilize o endpoint abaixo:
+
+```
+GET http://localhost:8080/inscricao/por-corrida?corrida-id=1
+```
+
+![image](https://github.com/user-attachments/assets/ba8dad99-a6fc-42ea-8bdc-d6a1b2bde331)
+
+<br>
+
+### Opções de Ordenação:
+
+- **Ordenar por nome de A-Z:**
+
+```
+GET http://localhost:8080/inscricao/por-corrida?corrida-id=1&ordem=usuario.nome
+```
+
+- **Ordenar por nome de Z-A:**
+
+```
+GET http://localhost:8080/inscricao/por-corrida?corrida-id=1&ordem=usuario.nome,desc
+```
+
+---
+
+<br><br><br>
+
+## ✅ 5. Atualizar uma Inscrição
+
+- Para atualizar os dados de uma inscrição, utilize o seguinte endpoint:
+
+```
+PUT http://localhost:8080/inscricao/{id}
+```
+
+Você **deve enviar o ID da Inscrição no corpo da requisição**.
+
+**Campos disponíveis para atualização:**
+
+- **Id da Corrida**
+- **Id do Usuário**
+- **Status do Pagamento** (`pago`, `pendente`, `cancelado`)
+
+<br>
+
+Se a atualização for bem-sucedida, você receberá o Status Code `200`.
+
+![image](https://github.com/user-attachments/assets/34c3aff2-8674-449a-88c8-6f129e7e6dd4)
+
+---
+
+<br><br><br>
+
+## ✅ 6. Deletar uma Inscrição
+
+- Para deletar uma inscrição, utilize o seguinte endpoint:
+
+```
+DELETE http://localhost:8080/inscricao/{id}
+```
+
+<br>
+
+Se a exclusão for bem-sucedida, você receberá o Status Code `204`.
+
+![image](https://github.com/user-attachments/assets/70e1a0ee-fec7-4d7c-8e84-d74bf935746a)
+
+📃❌ **Caso contrário, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC.**
+
+- **Deletar com Status Pago dentro de 7 dias:**
+  - Status Code `400` e mensagem informando que inscrições pagas dentro de 7 dias não podem ser removidas.
+  
+  ![image](https://github.com/user-attachments/assets/ce5da6a4-8595-40bd-8727-844aab2f87d5)
+
+<br>
+
+- **Deletar com Status Pago fora do prazo de 7 dias:**
+  - Status Code `200` e mensagem de confirmação da remoção.
+
+  ![image](https://github.com/user-attachments/assets/42901261-755c-4136-9c3d-a51607197216)
+
+---
+
 
 
 ## 🛠 Tecnologias
