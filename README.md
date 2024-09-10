@@ -22,7 +22,8 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 ## 🎯 Inclusões
 
 - ✅ Criação do Readme da API
-<br><br><br>
+
+<br><br>
 
 ## ⚙️ Funcionalidades
 
@@ -30,6 +31,7 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 - 🟢 CRUD de Campeonatos
 - 🟢 CRUD de Corridas
 - 🟢 CRUD de Usuários
+- 🟢 CRUD de Inscrição
 - 🟡 CRUD de Classificação das Corridas
 - 🟠 Autenticação de Usuários
 - 🟡 Compra de Ingressos de Corridas
