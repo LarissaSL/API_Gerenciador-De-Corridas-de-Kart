@@ -32,16 +32,11 @@ public class InscricaoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ListarInscricaoDTO>> listarTodos(@PageableDefault(size = 10, sort = {"corrida.id"})Pageable paginacao) {
-        return service.listarTodos(paginacao);
-    }
+    public ResponseEntity<Page<ListarInscricaoDTO>> listarTodosComFiltros(
+            @PageableDefault(size = 10, sort = {"corrida.id"}) Pageable paginacao,
+            @RequestParam(required = false) Long idCorrida) {
 
-    @GetMapping("/por-corrida")
-    public ResponseEntity<Page<ListarInscricaoDTO>> listarTodosPorCorridaID(
-            @RequestParam(name = "corrida-id") Long idCorrida,
-            @PageableDefault(size = 10, sort = {"dataInscricao"}) Pageable paginacao) {
-
-        return service.listarTodosPorCorridaID(idCorrida, paginacao);
+        return service.listarTodosComFiltros(paginacao, idCorrida);
     }
 
     @PutMapping

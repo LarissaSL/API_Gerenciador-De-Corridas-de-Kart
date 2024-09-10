@@ -87,23 +87,19 @@ public class InscricaoService {
         return ResponseEntity.ok(inscricaoDetalhada);
     }
 
-    public ResponseEntity<Page<ListarInscricaoDTO>> listarTodos(@PageableDefault(size = 10, sort = {"corrida.id"}) Pageable paginacao) {
-        // Pagina todos que estao Ativos
-        Page<Inscricao> page = repositorio.findAllByAtivoTrue(paginacao);
+    public ResponseEntity<Page<ListarInscricaoDTO>> listarTodosComFiltros(Pageable paginacao, Long idCorrida) {
+        Page<Inscricao> page;
 
-        // Mapeia a Inscricao para ListarCorridaDTO
+        if (idCorrida != null) {
+            // Filtra por ID da corrida
+            page = repositorio.findByCorridaIdAndStatusPagamentoNot(idCorrida, StatusPagamento.cancelado, paginacao);
+        } else {
+            // Lista todas as inscrições ativas
+            page = repositorio.findAllByAtivoTrue(paginacao);
+        }
+
         Page<ListarInscricaoDTO> listaDeInscricoesDTO = page.map(inscricaoMapper::converteInscricaoEmListarCorridaDto);
-
         return ResponseEntity.ok(listaDeInscricoesDTO);
-    }
-
-    public ResponseEntity<Page<ListarInscricaoDTO>> listarTodosPorCorridaID(Long idCorrida, Pageable paginacao) {
-        // Pagina todos pelo Id da corrida e que o status da corrida nao seja cancelado
-        Page<Inscricao> page = repositorio.findByCorridaIdAndStatusPagamentoNot(idCorrida, StatusPagamento.cancelado, paginacao);
-
-        // Mapeia a Inscricao para ListarCorridaDTO
-        Page<ListarInscricaoDTO> listarInscricaoDTO = page.map(inscricaoMapper::converteInscricaoEmListarCorridaDto);
-        return ResponseEntity.ok(listarInscricaoDTO);
     }
 
 
