@@ -1,0 +1,2 @@
+ALTER TABLE inscricoes
+    ADD COLUMN data_inscricao DATETIME DEFAULT CURRENT_TIMESTAMP AFTER status_pgto;

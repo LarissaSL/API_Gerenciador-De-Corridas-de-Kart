@@ -189,5 +189,20 @@ public class ExcecaoGlobalHandler {
         return ResponseEntity.status(status).body(problema);
     }
 
+    @ExceptionHandler(InscricaoException.class)
+    public ResponseEntity<ResponseErrorPadraoRFC> tratarErrosDeInscricaoNaCorrida (HttpServletRequest request, InscricaoException excecao) {
+        String uri = request.getRequestURI();
+        String titulo = "Erro de Inscrição";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(
+                titulo,
+                excecao.getMessage(),
+                status,
+                uri
+        );
+
+        return ResponseEntity.status(status).body(problema);
+    }
 
 }
