@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/kartodromo")
 public class KartodromoController {
@@ -47,6 +49,11 @@ public class KartodromoController {
     @GetMapping
     public ResponseEntity<Page<ListarKartodromoDTO>> listarTodos(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
         return service.listarTodos(paginacao);
+    }
+
+    @GetMapping("/nomes")
+    public ResponseEntity<List<String>> listarNomesKartodromos() {
+        return ResponseEntity.ok(service.listarKartodromos());
     }
 
     @PutMapping

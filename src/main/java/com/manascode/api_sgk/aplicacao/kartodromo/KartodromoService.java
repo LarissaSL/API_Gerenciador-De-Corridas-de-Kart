@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @Service
 public class KartodromoService {
 
@@ -105,7 +107,12 @@ public class KartodromoService {
         return ResponseEntity.ok(kartodromoDetalhado);
     }
 
+    public List<String> listarKartodromos() {
+        return repositorio.listarNomesDistintosDeKartodromos();
+    }
+
     private boolean isBlank(String value) {
         return value == null || value.trim().isEmpty();
     }
+
 }

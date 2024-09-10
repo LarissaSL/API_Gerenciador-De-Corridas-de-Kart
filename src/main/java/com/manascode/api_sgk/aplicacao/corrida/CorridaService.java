@@ -1,6 +1,7 @@
 package com.manascode.api_sgk.aplicacao.corrida;
 
 import com.manascode.api_sgk.aplicacao.corrida.validacoes.IValidadorCorrida;
+import com.manascode.api_sgk.aplicacao.corrida.validacoes.ValidadorParametrosDeBusca;
 import com.manascode.api_sgk.dominio.campeonato.Campeonato;
 import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.dominio.kartodromo.Kartodromo;
@@ -14,7 +15,6 @@ import com.manascode.api_sgk.interfaceAdaptadores.mapper.CorridaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -38,6 +38,9 @@ public class CorridaService {
 
     @Autowired
     private List<IValidadorCorrida> validadores;
+
+    @Autowired
+    private ValidadorParametrosDeBusca validadorParametrosService;
 
     public ResponseEntity<DetalharCorridaDTO> cadastrar(CriarCorridaDTO dados) {
         validadores.forEach(v -> v.validar(dados));
@@ -104,8 +107,16 @@ public class CorridaService {
         return ResponseEntity.ok(corridaDetalhada);
     }
 
-    public ResponseEntity<Page<ListarCorridaDTO>> listarTodos(@PageableDefault(size = 10, sort = {"data"}) Pageable paginacao) {
-        Page<Corrida> page = repositorio.findAllByAtivoTrue(paginacao);
+    public ResponseEntity<Page<ListarCorridaDTO>> listarTodosComFiltros(Pageable paginacao,
+                                                        String kartodromo,
+                                                        String mes,
+                                                        String dia,
+                                                        String nome) {
+
+        Integer mesInt = validadorParametrosService.validarMes(mes);
+        Integer diaInt = validadorParametrosService.validarDia(dia);
+
+        Page<Corrida> page = repositorio.listarCorridasPorFiltrosDeNomeKartodromoMesDia(paginacao, kartodromo, mesInt, diaInt, nome);
         Page<ListarCorridaDTO> listaDeCorridasDTO = page.map(corridaMapper::converteCorridaEmListarCorridaDto);
 
         return ResponseEntity.ok(listaDeCorridasDTO);

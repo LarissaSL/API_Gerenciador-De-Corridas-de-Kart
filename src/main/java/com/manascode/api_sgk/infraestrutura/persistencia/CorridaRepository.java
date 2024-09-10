@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -27,4 +26,17 @@ public interface CorridaRepository extends JpaRepository<Corrida, Long> {
     int countByDataAndHorario(LocalDate data, LocalTime horario);
 
     Page<Corrida> findAllByAtivoTrue(Pageable paginacao);
+
+    @Query("SELECT c FROM Corrida c WHERE " +
+            "(:kartodromo IS NULL OR c.kartodromo.nome = :kartodromo) AND " +
+            "(:mes IS NULL OR FUNCTION('MONTH', c.data) = :mes) AND " +
+            "(:dia IS NULL OR FUNCTION('DAY', c.data) = :dia) AND " +
+            "(:nome IS NULL OR c.nome LIKE %:nome%)")
+    Page<Corrida> listarCorridasPorFiltrosDeNomeKartodromoMesDia(Pageable paginacao,
+                                                                 String kartodromo,
+                                                                 Integer mes,
+                                                                 Integer dia,
+                                                                 String nome);
+
+
 }
