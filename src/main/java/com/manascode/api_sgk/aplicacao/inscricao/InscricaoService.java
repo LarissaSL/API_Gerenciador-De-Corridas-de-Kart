@@ -92,7 +92,7 @@ public class InscricaoService {
 
         if (idCorrida != null) {
             // Filtra por ID da corrida
-            page = repositorio.findByCorridaIdAndStatusPagamentoNot(idCorrida, StatusPagamento.cancelado, paginacao);
+            page = repositorio.contarInscricoesPorIdCorridaEStatusDiferenteDeCancelado(idCorrida, StatusPagamento.cancelado, paginacao);
         } else {
             // Lista todas as inscrições ativas
             page = repositorio.findAllByAtivoTrue(paginacao);
