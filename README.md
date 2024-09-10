@@ -943,6 +943,77 @@ http://localhost:8080/corrida?tamanho=1&ordem=data,desc
 ```
 
 <br>
+
+## 📃 2.2. Métodos de Filtros para Listagem
+
+**Parâmetros Opcionais:**
+
+| Parâmetro   | Descrição                                     | Exemplo                    |
+|-------------|-----------------------------------------------|----------------------------|
+| `kartodromo`| Nome do kartódromo                            | Kartodromo%20KGV           |
+| `mes`        | Mês da corrida                                | 12 (dezembro)              |
+| `dia`        | Dia da corrida                               | 15                         |
+| `nome`       | Nome da corrida                              | CKC%20etapa%201.5          |
+
+- Filtrar por dia
+
+```
+http://localhost:8080/corrida/filtros?dia=14
+```
+
+<br>
+
+- Filtrar por mês
+
+```
+http://localhost:8080/corrida/filtros?mes=12
+```
+
+<br>
+
+- Filtrar por nome
+
+```
+http://localhost:8080/corrida/filtros?nome=CKC%20etapa%1
+```
+
+<br>
+
+- Filtrar por kartodromo
+
+```
+http://localhost:8080/corrida/filtros?kartodromo=Kartodromo%20Teste%203
+```
+
+<br>
+
+### Combinação de Filtros
+
+**Nota:** Perceba que em vez de Espaço entre as diferentes palavras, usamos o %20, ou seja, em vez de Kartodromo KGV ficaria Kartodromo%20KGV
+
+- Filtro de Kartodromo + Filtro de Mês
+
+```
+http://localhost:8080/corrida/filtros?kartodromo=Kartodromo%20KGV&mes=12
+```
+<br>
+
+![image](https://github.com/user-attachments/assets/a1925fb1-abd3-4584-ba01-ed2c615e3d34)
+
+
+<br><br>
+
+- Combinando todos os Filtros
+```
+http://localhost:8080/corrida?kartodromo=Kartodromo%20Teste%203&mes=12&dia=14&nome=CKC%20etapa%201.5
+```
+
+<br>
+
+![image](https://github.com/user-attachments/assets/3bbbf953-0f22-4f39-a513-890f33a0fbce)
+
+
+
 ---
 
 <br><br><br>
@@ -1147,15 +1218,16 @@ GET http://localhost:8080/inscricao
 
 <br><br><br>
 
-## ✅ 4. Exibir todas as Inscrições de uma Corrida
+## 3.1. Exibir todas as Inscrições de uma Corrida
 
 - Para exibir as inscrições de uma corrida específica, utilize o endpoint abaixo:
 
 ```
-GET http://localhost:8080/inscricao/por-corrida?corrida-id=1
+GET http://localhost:8080/inscricao?idCorrida=1
 ```
 
-![image](https://github.com/user-attachments/assets/ba8dad99-a6fc-42ea-8bdc-d6a1b2bde331)
+![image](https://github.com/user-attachments/assets/9cf10d20-ca2c-4263-af3e-1b03980b110f)
+
 
 <br>
 
@@ -1164,13 +1236,13 @@ GET http://localhost:8080/inscricao/por-corrida?corrida-id=1
 - **Ordenar por nome de A-Z:**
 
 ```
-GET http://localhost:8080/inscricao/por-corrida?corrida-id=1&ordem=usuario.nome
+GET http://localhost:8080/inscricao?idCorrida=1&ordem=usuario.nome
 ```
 
 - **Ordenar por nome de Z-A:**
 
 ```
-GET http://localhost:8080/inscricao/por-corrida?corrida-id=1&ordem=usuario.nome,desc
+GET http://localhost:8080/inscricao?idCorrida=1&ordem=usuario.nome,desc
 ```
 
 ---
