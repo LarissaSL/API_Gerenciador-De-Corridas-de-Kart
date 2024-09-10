@@ -958,7 +958,7 @@ http://localhost:8080/corrida?tamanho=1&ordem=data,desc
 - Filtrar por dia
 
 ```
-http://localhost:8080/corrida/filtros?dia=14
+http://localhost:8080/corrida?dia=14
 ```
 
 <br>
@@ -966,7 +966,7 @@ http://localhost:8080/corrida/filtros?dia=14
 - Filtrar por mês
 
 ```
-http://localhost:8080/corrida/filtros?mes=12
+http://localhost:8080/corrida?mes=12
 ```
 
 <br>
@@ -974,7 +974,7 @@ http://localhost:8080/corrida/filtros?mes=12
 - Filtrar por nome
 
 ```
-http://localhost:8080/corrida/filtros?nome=CKC%20etapa%1
+http://localhost:8080/corrida?nome=CKC%20etapa%1
 ```
 
 <br>
@@ -982,7 +982,7 @@ http://localhost:8080/corrida/filtros?nome=CKC%20etapa%1
 - Filtrar por kartodromo
 
 ```
-http://localhost:8080/corrida/filtros?kartodromo=Kartodromo%20Teste%203
+http://localhost:8080/corrida?kartodromo=Kartodromo%20Teste%203
 ```
 
 <br>
@@ -994,11 +994,12 @@ http://localhost:8080/corrida/filtros?kartodromo=Kartodromo%20Teste%203
 - Filtro de Kartodromo + Filtro de Mês
 
 ```
-http://localhost:8080/corrida/filtros?kartodromo=Kartodromo%20KGV&mes=12
+http://localhost:8080/corrida?kartodromo=Kartodromo%20KGV&mes=12
 ```
 <br>
 
-![image](https://github.com/user-attachments/assets/a1925fb1-abd3-4584-ba01-ed2c615e3d34)
+![image](https://github.com/user-attachments/assets/ece4d156-e4ef-4ad7-8083-ff9bf0537808)
+
 
 
 <br><br>
@@ -1010,8 +1011,7 @@ http://localhost:8080/corrida?kartodromo=Kartodromo%20Teste%203&mes=12&dia=14&no
 
 <br>
 
-![image](https://github.com/user-attachments/assets/3bbbf953-0f22-4f39-a513-890f33a0fbce)
-
+![image](https://github.com/user-attachments/assets/bd5d2eda-3187-42aa-a854-bf9f46d12b96)
 
 
 ---
