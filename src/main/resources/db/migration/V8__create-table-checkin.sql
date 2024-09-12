@@ -5,7 +5,7 @@ CREATE TABLE checkins (
     peso_final DECIMAL(5,2) CHECK (peso_final >= 0),
     numero_do_kart INT NULL,
     lastro INT NULL,
-    adv TINYINT(1) DEFAULT 1,
+    adv TINYINT(1) DEFAULT 0,
     data_checkin DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (inscricao_id) REFERENCES inscricoes(id)
 );
