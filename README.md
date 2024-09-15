@@ -4,6 +4,10 @@ API desenvolvida para atender as necessidades de um Organizador de Corridas de K
 
 O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que não havia uma boa estrutura, além de não conseguirmos conectar essa Aplicação com a do Mobile. Logo, a solução de criar uma API que lidasse com os dois tipos de APP foi a solução adotada.
 
+---
+
+<br><br>
+
 ## 🚀👩‍💻 Time de Desenvolvimento
 
 -  [Emily Izabelle](https://github.com/em1ky) como Engenheira de Banco de Dados
@@ -12,7 +16,9 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 -  [Leticia Graziele](https://github.com/LeticiaGraziel) como UX/UI e Auxiliar de Banco de Dados
 -  [Silvana Sales](https://github.com/SilvanaMenezes) como UX/UI e Fullstack
 
-<br><br><br>
+---
+
+<br><br>
 
 ## 📌 Pré-requisitos de Tecnologias
 
@@ -54,16 +60,70 @@ spring.datasource.driver-class-name=org.postgresql.Driver
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-<br><br><br>
-
 ---
 
+<br><br><br>
 
 ## 📑 Índice
-- [Padrões de Nomenclaturas de Commits](https://github.com/LarissaSL/API_Gerenciador-De-Corridas-de-Kart?tab=readme-ov-file#-padr%C3%B5es-de-nomenclatura-nos-commits)
+### 1. Inclusões
+- [Inclusões](#-inclus%C3%B5es)
+
+### 2. Funcionalidades
+- [Funcionalidades](#%EF%B8%8F-funcionalidades)
+
+### 3. Como usar?
 - [Configurando o Banco de Dados](#configurando-o-banco-de-dados)
 
+### 4. Utilizando o Controller de Autenticação
+- [Validadores de Autenticação](#%EF%B8%8F-validadores-de-autentica%C3%A7%C3%A3o)
+- [Método de Autenticação](#-1-m%C3%A9todo-de-autentica%C3%A7%C3%A3o)
 
+### 5. Utilizando o Controller de Usuários
+- [Validadores de Usuário](#%EF%B8%8F-validadores-de-usu%C3%A1rio)
+- [Criação de Novos Usuários](#-1-m%C3%A9todo-de-cria%C3%A7%C3%A3o-de-novos-usu%C3%A1rios)
+- [Listagem de Usuários](#-2-listagem-de-usu%C3%A1rios)
+- [Métodos de Ordenação e Paginação](#-21-m%C3%A9todos-de-ordena%C3%A7%C3%A3o-e-pagina%C3%A7%C3%A3o)
+- [Exclusão de Usuário](#-3-exclus%C3%A3o-de-usu%C3%A1rio)
+- [Atualização de Usuário](#-4-atualiza%C3%A7%C3%A3o-de-usu%C3%A1rios)
+
+### 6. Utilizando o Controller de Kartodromos
+- [Validadores de Kartodromo](#%EF%B8%8F-validadores-de-kartodromos)
+- [Criação de Novos Kartodromos](#-1-m%C3%A9todo-de-cria%C3%A7%C3%A3o-de-novos-kartodromos)
+- [Listagem de Kartodromos](#-2-listagem-de-kartodromos)
+- [Métodos de Ordenação e Paginação](#-21-m%C3%A9todos-de-ordena%C3%A7%C3%A3o-e-pagina%C3%A7%C3%A3o-1)
+- [Exclusão de Kartodromo](#-3-exclus%C3%A3o-de-kartodromo)
+- [Atualização de Kartodromo](#-4-atualiza%C3%A7%C3%A3o-de-kartodromo)
+
+### 7. Utilizando o Controller de Campeonatos
+- [Validadores de Campeonato](#%EF%B8%8F-validadores-de-campeonatos)
+- [Criação de Novos Campeonatos](#-1-m%C3%A9todo-de-cria%C3%A7%C3%A3o-de-novos-campeonatos)
+- [Listagem de Campeonatos](#-2-listagem-de-campeonatos)
+- [Métodos de Ordenação e Paginação](#-21-m%C3%A9todos-de-ordena%C3%A7%C3%A3o-e-pagina%C3%A7%C3%A3o-2)
+- [Exclusão de Campeonato](#-3-exclus%C3%A3o-de-campeonato)
+- [Atualização de Campeonato](#-4-atualiza%C3%A7%C3%A3o-de-campeonatos)
+
+### 8. Utilizando o Controller de Corridas
+- [Validadores de Corrida](#%EF%B8%8F-validadores-de-corridas)
+- [Criação de Novos Corridas](#-1-m%C3%A9todo-de-cria%C3%A7%C3%A3o-de-novas-corridas)
+- [Listagem de Corridas](#-2-listagem-de-corridas)
+- [Métodos de Ordenação e Paginação](#-21-m%C3%A9todos-de-ordena%C3%A7%C3%A3o-e-pagina%C3%A7%C3%A3o-3)
+- [Métodos de Filtros para Listagem](#-22-m%C3%A9todos-de-filtros-para-listagem)
+- [Combinação de Filtros](#combina%C3%A7%C3%A3o-de-filtros)
+- [Exclusão de Corrida](#-3-exclus%C3%A3o-de-corrida)
+- [Atualização de Corrida](#-4-atualiza%C3%A7%C3%A3o-de-corridas)
+
+### 9. Utilizando o Controller de Inscrição
+- [Validadores de Inscrição](#%EF%B8%8F-validadores-de-inscri%C3%A7%C3%A3o)
+- [Criação de Novas Inscrições](#-1-m%C3%A9todo-de-cria%C3%A7%C3%A3o-de-inscri%C3%A7%C3%A3o)
+- [Listagem de Inscrições](#-2-listagem-de-inscri%C3%A7%C3%B5es)
+- [Exibir todas as Incrições de uma Corrida](#21-exibir-todas-as-inscri%C3%A7%C3%B5es-de-uma-corrida)
+- [Métodos de Ordenação e Paginação](#-22-m%C3%A9todos-de-ordena%C3%A7%C3%A3o-e-pagina%C3%A7%C3%A3o)
+- [Exclusão de Inscrição](#-3-exclus%C3%A3o-de-inscri%C3%A7%C3%A3o)
+- [Atualização de Inscrição](#-4-atualiza%C3%A7%C3%A3o-de-inscri%C3%A7%C3%B5es)
+
+### Extra 
+- [Tecnologias](#-tecnologias)
+- [Apêndices](#-ap%C3%AAndices)
 
 ---
 
@@ -93,6 +153,7 @@ spring.jpa.hibernate.ddl-auto=update
 - 🟡 Compartilhamento via Whatsapp da Lista de Pilotos
 
 ---
+
 <br><br><br>
 
 ## 📓 Padrões de Nomenclatura nos Commits
@@ -119,6 +180,8 @@ Abaixo segue uma tabela onde explicamos um padrão para nossos commits.
 ```
 git commit -m "FEAT - CRUD de Usuarios"
 ```
+
+---
 
 <br><br><br>
 
