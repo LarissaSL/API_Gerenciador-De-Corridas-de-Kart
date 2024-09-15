@@ -117,7 +117,7 @@ spring.jpa.hibernate.ddl-auto=update
 - [Criação de Novas Inscrições](#-1-m%C3%A9todo-de-cria%C3%A7%C3%A3o-de-inscri%C3%A7%C3%A3o)
 - [Listagem de Inscrições](#-2-listagem-de-inscri%C3%A7%C3%B5es)
 - [Exibir todas as Incrições de uma Corrida](#21-exibir-todas-as-inscri%C3%A7%C3%B5es-de-uma-corrida)
-- [Métodos de Ordenação e Paginação](#-22-m%C3%A9todos-de-ordena%C3%A7%C3%A3o-e-pagina%C3%A7%C3%A3o)
+- [Métodos de Ordenação e Paginação](#-23-m%C3%A9todos-de-ordena%C3%A7%C3%A3o-e-pagina%C3%A7%C3%A3o)
 - [Exclusão de Inscrição](#-3-exclus%C3%A3o-de-inscri%C3%A7%C3%A3o)
 - [Atualização de Inscrição](#-4-atualiza%C3%A7%C3%A3o-de-inscri%C3%A7%C3%B5es)
 
@@ -1449,15 +1449,52 @@ GET http://localhost:8080/inscricao
 - Para exibir as inscrições de uma corrida específica, utilize o endpoint abaixo:
 
 ```
-GET http://localhost:8080/inscricao?idCorrida=1
+GET http://localhost:8080/inscricao?id_corrida=2
 ```
 
 ![image](https://github.com/user-attachments/assets/9cf10d20-ca2c-4263-af3e-1b03980b110f)
 
+---
+
+## 📃 2.2. Métodos de Filtros para Listagem
+
+**Parâmetros Opcionais:**
+
+| Parâmetro   | Descrição                                     | Exemplo                    | Valores aceitos            |
+|-------------|-----------------------------------------------|----------------------------|----------------------------|
+| `id_corrida`| Id da Corrida                      | 1          | Númericos e que o Id exista no Banco
+| `check`        | Se é para Check-in e Check-out  | true              | true e false
+| `status_pagamento`        | Status de Pagamentos nas Inscrições   | pago  | pago, pendente e cancelado
 
 <br>
 
-## 📃 2.2. Métodos de Ordenação e Paginação
+- Filtrar id de corrida e status de pagamento (pago, cancelado, pendente)
+
+```
+GET http://localhost:8080/inscricao?id_corrida=2&status_pagamento=pago
+```
+
+<br>
+
+- Filtrar corridas para fazer Check-in e Check-out
+
+```
+GET http://localhost:8080/inscricao?id_corrida=2&check=true
+```
+
+<br>
+
+- Filtrar id de corrida e status de pagamento (pago, cancelado, pendente) e para check-in e check-out
+
+```
+GET http://localhost:8080/inscricao?id_corrida=2&status_pagamento=pago&check=true
+```
+
+<br>
+
+---
+
+## 📃 2.3. Métodos de Ordenação e Paginação
 
 - **Ordenar por nome de A-Z:**
 
@@ -1470,6 +1507,7 @@ GET http://localhost:8080/inscricao?idCorrida=1&ordem=usuario.nome
 ```
 GET http://localhost:8080/inscricao?idCorrida=1&ordem=usuario.nome,desc
 ```
+
 
 <br>
 
