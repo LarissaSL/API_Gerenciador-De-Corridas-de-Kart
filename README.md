@@ -133,6 +133,8 @@ spring.jpa.hibernate.ddl-auto=update
 
 - ✅ Criação do Readme da API
 
+---
+
 <br><br>
 
 ## ⚙️ Funcionalidades
@@ -151,6 +153,10 @@ spring.jpa.hibernate.ddl-auto=update
 - 🟡 Check-out de Pilotos
 - 🟡 Sorteador de Números de Karts
 - 🟡 Compartilhamento via Whatsapp da Lista de Pilotos
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -180,6 +186,10 @@ Abaixo segue uma tabela onde explicamos um padrão para nossos commits.
 ```
 git commit -m "FEAT - CRUD de Usuarios"
 ```
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -216,6 +226,9 @@ Resultado das Variáveis de Ambiente:
 
 ![image](https://github.com/user-attachments/assets/efe01ed8-593a-43da-ad54-38ceae473ead)
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -233,6 +246,10 @@ Resultado das Variáveis de Ambiente:
 | **Senha**   | Deve corresponder à senha registrada para o usuário. A senha deve ser verificada conforme as regras de complexidade estabelecidas no sistema. |
 
 **Nota:** Apenas usuários ativos podem fazer login. Usuários administradores são os únicos autorizados a acessar o aplicativo mobile.
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -277,6 +294,10 @@ Em caso de falha na autenticação, o Status Code poderá ser `401` ou `403` e a
 
 ![image](https://github.com/user-attachments/assets/81f8e3eb-8e36-49d7-83d4-a4c7d14eea58)
 
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -343,6 +364,10 @@ Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem 
 
 ![image](https://github.com/user-attachments/assets/07fc5482-4ef6-4724-a174-1a59e4424a24)
 
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -426,7 +451,12 @@ http://localhost:8080/usuario?tamanho=1&ordem=cpf,desc
 Essa inclusão cobre a criação de entidades e a utilização do controlador de usuários, detalhando o processo de requisições e métodos disponíveis
 
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
+
 <br><br><br>
 
 ## ❎ 3. Exclusão de Usuário
@@ -438,7 +468,12 @@ Para excluir um usuário, acesse o mesmo URL, passando o ID do usuário a ser ex
 ![image](https://github.com/user-attachments/assets/eff98137-6060-4adf-b5cc-92185d08743b)
 
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
+
 <br><br><br>
 
 ## 📝✅ 4. **Atualização de Usuários**
@@ -494,7 +529,12 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 
 ![image](https://github.com/user-attachments/assets/48f216eb-d2f8-4a04-90ff-8f896d77859f)
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
+
 <br><br><br>
 
 # Utilizando o Controller de Kartodromos
@@ -513,6 +553,10 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 | **Cidade**        | Opcional, máximo 45 caracteres.                                                                   |
 | **Estado**        | Opcional, máximo 45 caracteres.                                                                   |
 | **Endereco Foto** | Opcional, máximo 100 caracteres.                                                                  |
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -559,7 +603,12 @@ Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem 
 
 ![image](https://github.com/user-attachments/assets/0f9b0335-ffad-4402-94e7-82143551c982)
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
+
 <br><br><br>
 
 ## 📃 2. Listagem de Kartodromos
@@ -625,7 +674,12 @@ http://localhost:8080/kartodromo?ordem={NomeDoCampoParaOrdenar},desc
 http://localhost:8080/kartodromo?tamanho={NumeroDeQuantosRegistrosDesejaTrazer}&ordem={NomeDoCampoParaOrdenar}
 ```
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
+
 <br><br><br>
 
 ## ❎ 3. Exclusão de Kartodromo
@@ -638,7 +692,12 @@ Para excluir um kartódromo, acesse o mesmo URL, passando o ID do kartódromo a 
 ![image](https://github.com/user-attachments/assets/69233a40-0388-4e82-84a9-f27b4ed48ced)
 
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
+
 <br><br><br>
 
 ## 📝✅ 4. Atualização de Kartodromo
@@ -684,6 +743,10 @@ Você **deve enviar o ID do kartódromo no corpo da requisição**.
 
 OBS.: As mesmas validações de criação são feitas na de Atualização.
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
 
 <br><br>
@@ -698,6 +761,11 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 📃❌ **Caso contrário, o Status Code será 400, com uma mensagem de erro formatada de acordo com o padrão RFC**.
 
 ![image](https://github.com/user-attachments/assets/63a3bedc-e6de-4b56-b0b0-69910b5574ed)
+
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -716,6 +784,10 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 | **Data Final**       | Deve ser uma data válida e não pode ser anterior à Data Inicial.                                               |
 | **Ano de Criação**   | Deve ser igual ou superior ao ano atual.                                                                      |
 | **Nome Único**       | Não pode haver outro Campeonato com o mesmo Nome, Data Inicial e Data Final.                                 |
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -754,6 +826,10 @@ Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem 
 
 ![image](https://github.com/user-attachments/assets/3bb72163-a1df-42b2-a39e-1187cb7e4844)
 
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -833,7 +909,7 @@ http://localhost:8080/campeonato?tamanho=1&ordem=nome,desc
 
 <br>
 
-Essa inclusão cobre a criação de campeonatos e a utilização do controlador de campeonatos, detalhando o processo de requisições e métodos disponíveis.
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -847,6 +923,10 @@ Para excluir um campeonato, acesse o mesmo URL, passando o ID do campeonato a se
 
 ![image](https://github.com/user-attachments/assets/e2dc9d72-55fd-4ef7-8dc7-dc6944f4fb5f)
 
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -899,6 +979,10 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 ![image](https://github.com/user-attachments/assets/f526edae-7385-4467-8753-05fb400d254a)
 
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
 
 <br><br><br>
@@ -923,6 +1007,11 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 | **Classificação**    | Deve ser um texto não vazio.                                                                                         |
 | **Código**           | Deve ser único.                                                                                                     |
 | **Preço**            | Deve ser um valor decimal maior ou igual a 0.                                                                     |
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
 
 ## ✅ 1. Método de Criação de Novas Corridas
@@ -978,6 +1067,10 @@ Em caso de erros, o Status Code será `400` e a resposta incluirá uma mensagem 
 ![image](https://github.com/user-attachments/assets/ea0d8cae-aadc-4da5-9daf-3cdc6af892f8)
 
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
 
 <br><br><br>
@@ -994,7 +1087,6 @@ http://localhost:8080/corrida/{id}
 ![image](https://github.com/user-attachments/assets/64b1a886-7a75-4615-a528-b19e2f11538c)
 
 
-
 <br>
 
 - Para listar todos os registros de corridas, basta acessar o URL:
@@ -1005,8 +1097,6 @@ http://localhost:8080/corrida/{id}
 ```
 http://localhost:8080/corrida/
 ```
-
-
 
 <br>
 
@@ -1126,6 +1216,9 @@ http://localhost:8080/corrida?kartodromo=Kartodromo%20Teste%203&mes=12&dia=14&no
 
 ![image](https://github.com/user-attachments/assets/bd5d2eda-3187-42aa-a854-bf9f46d12b96)
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -1139,6 +1232,9 @@ Para excluir uma corrida, acesse o mesmo URL, passando o ID da corrida a ser exc
 
 ![image](https://github.com/user-attachments/assets/77ae9bf1-87bc-430e-a2b7-9eef510457b5)
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -1187,6 +1283,10 @@ Você **deve enviar o ID da corrida no corpo da requisição**.
 
 OBS.: As mesmas validações de criação são feitas na de Atualização.
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
 
 <br><br>
@@ -1202,6 +1302,10 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 
 ![image](https://github.com/user-attachments/assets/7a51d8d4-cc3f-46af-8051-1217d61e3ed4)
 
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
@@ -1220,6 +1324,10 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 | **Validador Chave Estrangeira Usuario**                             | Permite a inscrição apenas de usuários existentes e que estejam ativos no sistema.                                  |
 | **Validador Chave Estrangeira Corrida**                             | Garante que o usuário se inscreva apenas em corridas existentes e ativas.                                           |
 | **Validador Se Usuario ja esta em outra Corrida no mesmo dia e horario** | Não permite que o usuário se inscreva se já estiver inscrito em outra corrida na mesma data e horário.              |
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 <br><br><br>
@@ -1288,7 +1396,12 @@ POST http://localhost:8080/inscricao
   
   ![image](https://github.com/user-attachments/assets/ef13b224-0962-47b5-b061-e0cf6a1c0b10)
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
+
 <br><br><br>
 
 ## ✅ 2. Listagem de Inscrições
@@ -1354,6 +1467,10 @@ GET http://localhost:8080/inscricao?idCorrida=1&ordem=usuario.nome
 GET http://localhost:8080/inscricao?idCorrida=1&ordem=usuario.nome,desc
 ```
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
 
 <br><br><br>
@@ -1387,6 +1504,11 @@ DELETE http://localhost:8080/inscricao/{id}
 
   ![image](https://github.com/user-attachments/assets/42901261-755c-4136-9c3d-a51607197216)
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
+---
 
 <br><br><br>
 
@@ -1418,6 +1540,10 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 
 ![image](https://github.com/user-attachments/assets/34c3aff2-8674-449a-88c8-6f129e7e6dd4)
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
 ---
 
 
@@ -1439,3 +1565,6 @@ As seguintes tecnologias foram utilizadas no desenvolvimento desse projeto:
 - `Confira o Projeto Mobile aqui:` ➡️➡️ [Projeto Mobile](https://github.com/Giuliana09/app-mobile-CKC)
 - `Confira o Novo Projeto Web aqui:` ➡️➡️ [Projeto Web via JS](https://github.com/LarissaSL/API_Gerenciador-De-Corridas-de-Kart)
 
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
