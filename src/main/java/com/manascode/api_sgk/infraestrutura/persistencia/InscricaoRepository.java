@@ -25,8 +25,13 @@ public interface InscricaoRepository extends JpaRepository <Inscricao, Long> {
 
     Page<Inscricao> findAllByAtivoTrue(Pageable paginacao);
 
-    @Query("SELECT i FROM Inscricao i WHERE i.corrida.id = :idCorrida AND i.statusPagamento <> :statusCancelado AND i.ativo = true")
-    Page<Inscricao> contarInscricoesPorIdCorridaEStatusDiferenteDeCancelado(Long idCorrida, StatusPagamento statusCancelado, Pageable paginacao);
+    @Query("SELECT i FROM Inscricao i WHERE i.corrida.id = :idCorrida AND i.ativo = true ORDER BY i.dataInscricao")
+    Page<Inscricao> contarInscricoesPorIdCorridaEOrdemPorDataInscricao(Long idCorrida, Pageable paginacao);
 
+    // Usar para o APP Mobile, aba de Check-in e Check-out
+    @Query("SELECT i FROM Inscricao i WHERE i.corrida.id = :idCorrida AND i.statusPagamento = :status AND i.ativo = true ORDER BY i.dataInscricao")
+    Page<Inscricao> contarInscricoesPorIdCorridaEStatus(Long idCorrida, StatusPagamento status, Pageable paginacao);
 
+    @Query("SELECT i FROM Inscricao i WHERE i.statusPagamento = :statusPagamento")
+    Page<Inscricao> contarInscricoesPorStatusPagamento(StatusPagamento statusPagamento, Pageable paginacao);
 }

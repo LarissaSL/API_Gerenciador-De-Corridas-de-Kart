@@ -14,7 +14,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -37,6 +36,9 @@ public class InscricaoService {
 
     @Autowired
     private InscricaoMapper inscricaoMapper;
+
+    @Autowired
+    private PaginacaoInscricaoService paginacaoInscricaoService;
 
     @Autowired
     private List<IValidadorInscricao> validadores;
@@ -87,16 +89,8 @@ public class InscricaoService {
         return ResponseEntity.ok(inscricaoDetalhada);
     }
 
-    public ResponseEntity<Page<ListarInscricaoDTO>> listarTodosComFiltros(Pageable paginacao, Long idCorrida) {
-        Page<Inscricao> page;
-
-        if (idCorrida != null) {
-            // Filtra por ID da corrida
-            page = repositorio.contarInscricoesPorIdCorridaEStatusDiferenteDeCancelado(idCorrida, StatusPagamento.cancelado, paginacao);
-        } else {
-            // Lista todas as inscrições ativas
-            page = repositorio.findAllByAtivoTrue(paginacao);
-        }
+    public ResponseEntity<Page<ListarInscricaoDTO>> listarTodos(Pageable paginacao, Long idCorrida, Boolean check, StatusPagamento statusPagamento) {
+        Page<Inscricao> page = paginacaoInscricaoService.definirPaginacao(paginacao, idCorrida, statusPagamento, check);
 
         Page<ListarInscricaoDTO> listaDeInscricoesDTO = page.map(inscricaoMapper::converteInscricaoEmListarCorridaDto);
         return ResponseEntity.ok(listaDeInscricoesDTO);

@@ -4,6 +4,7 @@ import com.manascode.api_sgk.aplicacao.inscricao.AtualizarInscricaoDTO;
 import com.manascode.api_sgk.aplicacao.inscricao.CriarInscricaoDTO;
 import com.manascode.api_sgk.aplicacao.inscricao.InscricaoService;
 import com.manascode.api_sgk.aplicacao.inscricao.ListarInscricaoDTO;
+import com.manascode.api_sgk.dominio.inscricao.StatusPagamento;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,11 @@ public class InscricaoController {
     @GetMapping
     public ResponseEntity<Page<ListarInscricaoDTO>> listarTodosComFiltros(
             @PageableDefault(size = 10, sort = {"corrida.id"}) Pageable paginacao,
-            @RequestParam(required = false) Long idCorrida) {
+            @RequestParam(required = false) Long id_corrida,
+            @RequestParam(required = false) Boolean check,
+            @RequestParam(required = false) StatusPagamento status_pagamento) {
 
-        return service.listarTodosComFiltros(paginacao, idCorrida);
+        return service.listarTodos(paginacao, id_corrida, check, status_pagamento);
     }
 
     @PutMapping
