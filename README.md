@@ -1131,7 +1131,7 @@ POST http://localhost:8080/inscricao
 
 <br>
 
-Se a criação for bem-sucedida, você receberá o Status Code `201`.
+✅ Se a criação for bem-sucedida, você receberá o Status Code `201`.
 
 ![image](https://github.com/user-attachments/assets/de0960c7-07e6-40e8-9b2f-973730c27881)
 
@@ -1179,7 +1179,7 @@ Se a criação for bem-sucedida, você receberá o Status Code `201`.
 ---
 <br><br><br>
 
-## ✅ 2. Exibir uma Inscrição
+## ✅ 2. Listagem de Inscrições
 
 - Para exibir uma inscrição específica, utilize o seguinte endpoint:
 
@@ -1201,9 +1201,6 @@ Se o Id de Inscrição for válido, você receberá o Status Code `200`.
 
 ---
 
-<br><br><br>
-
-## ✅ 3. Exibir todas as Inscrições
 
 - Para exibir todas as inscrições, utilize o seguinte endpoint:
 
@@ -1215,11 +1212,10 @@ GET http://localhost:8080/inscricao
 
 ![image](https://github.com/user-attachments/assets/68997bf9-4ea1-4612-be4c-ac51a59b7cb6)
 
----
 
-<br><br><br>
+<br><br>
 
-## 3.1. Exibir todas as Inscrições de uma Corrida
+## 2.1. Exibir todas as Inscrições de uma Corrida
 
 - Para exibir as inscrições de uma corrida específica, utilize o endpoint abaixo:
 
@@ -1232,7 +1228,7 @@ GET http://localhost:8080/inscricao?idCorrida=1
 
 <br>
 
-### Opções de Ordenação:
+## 📃 2.2. Métodos de Ordenação e Paginação
 
 - **Ordenar por nome de A-Z:**
 
@@ -1250,33 +1246,8 @@ GET http://localhost:8080/inscricao?idCorrida=1&ordem=usuario.nome,desc
 
 <br><br><br>
 
-## ✅ 5. Atualizar uma Inscrição
 
-- Para atualizar os dados de uma inscrição, utilize o seguinte endpoint:
-
-```
-PUT http://localhost:8080/inscricao/{id}
-```
-
-Você **deve enviar o ID da Inscrição no corpo da requisição**.
-
-**Campos disponíveis para atualização:**
-
-- **Id da Corrida**
-- **Id do Usuário**
-- **Status do Pagamento** (`pago`, `pendente`, `cancelado`)
-
-<br>
-
-Se a atualização for bem-sucedida, você receberá o Status Code `200`.
-
-![image](https://github.com/user-attachments/assets/34c3aff2-8674-449a-88c8-6f129e7e6dd4)
-
----
-
-<br><br><br>
-
-## ✅ 6. Deletar uma Inscrição
+## ✅ 3. Exclusão de Inscrição
 
 - Para deletar uma inscrição, utilize o seguinte endpoint:
 
@@ -1286,7 +1257,7 @@ DELETE http://localhost:8080/inscricao/{id}
 
 <br>
 
-Se a exclusão for bem-sucedida, você receberá o Status Code `204`.
+✅ Se a exclusão for bem-sucedida, você receberá o Status Code `204`.
 
 ![image](https://github.com/user-attachments/assets/70e1a0ee-fec7-4d7c-8e84-d74bf935746a)
 
@@ -1303,6 +1274,37 @@ Se a exclusão for bem-sucedida, você receberá o Status Code `204`.
   - Status Code `200` e mensagem de confirmação da remoção.
 
   ![image](https://github.com/user-attachments/assets/42901261-755c-4136-9c3d-a51607197216)
+
+
+<br><br><br>
+
+## 📝✅ 4. **Atualização de Inscrições**
+
+- Para atualizar os dados de uma inscrição, utilize o seguinte endpoint:
+
+```
+PUT http://localhost:8080/inscricao/{id}
+```
+
+Você **deve enviar o ID da Inscrição no corpo da requisição**.
+
+<br>
+
+## 🛠️ Campos que Podem Ser Atualizados
+
+| **Campo**            | **Descrição**                                     |
+|----------------------|---------------------------------------------------|
+| **Id da Corrida**    | ID da Corrida associado à corrida.            |
+| **Id do Usuário**    | ID do Usuário associado ao Usuário.            |
+| **Status do Pagamento**  | (`pago`, `pendente`, `cancelado`)  |
+
+OBS.: As mesmas validações de criação são feitas na de Atualização.
+
+<br>
+
+✅ Se a atualização for bem-sucedida, você receberá o Status Code `200`.
+
+![image](https://github.com/user-attachments/assets/34c3aff2-8674-449a-88c8-6f129e7e6dd4)
 
 ---
 
