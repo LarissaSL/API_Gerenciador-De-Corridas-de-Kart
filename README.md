@@ -14,10 +14,59 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 
 <br><br><br>
 
+## 📌 Pré-requisitos de Tecnologias
+
+Para iniciar o projeto, você precisa ter os seguintes requisitos instalados:
+
+- **[Java 17 ou superior](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html)**  
+  Verifique se você tem o Java instalado no seu ambiente de desenvolvimento. Caso contrário, instale a versão mais recente.
+
+- **IDE para JAVA**  
+  Você pode escolher entre as seguintes opções de IDE:
+  - [Visual Studio Code](https://code.visualstudio.com/)
+  - [IntelliJ (Recomendada)](https://www.jetbrains.com/idea/download/)
+  - [Eclipse](https://www.eclipse.org/downloads/)
+
+- **[MySQL Workbench](https://dev.mysql.com/downloads/workbench/)**  
+  Para gerenciar o banco de dados, o MySQL Workbench é recomendado.
+
+  **OBS.:** Caso não tenha o MySQL, você pode utilizar o [PostgreSQL](https://www.postgresql.org/download/) ou outro banco de dados relacional. Lembre-se de alterar o arquivo `application.properties` para configurar a criação das tabelas manualmente.
+
+<br>
+
+### Exemplo de Configuração no `application.properties` para MySQL:
+```properties
+spring.datasource.url=jdbc:mysql://${DB_HOST}/${DB_NAME}?createDatabaseIfNotExist=true
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=update
+```
+
+<br>
+
+### Exemplo de Configuração no `application.properties` para PostgreSQL:
+```properties
+spring.datasource.url=jdbc:postgresql://${DB_HOST}/${DB_NAME}
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.hibernate.ddl-auto=update
+```
+
+<br><br><br>
+
+---
+
+
 ## 📑 Índice
 - [Padrões de Nomenclaturas de Commits](https://github.com/LarissaSL/API_Gerenciador-De-Corridas-de-Kart?tab=readme-ov-file#-padr%C3%B5es-de-nomenclatura-nos-commits)
 - [Configurando o Banco de Dados](#configurando-o-banco-de-dados)
+
+
+
 ---
+
 <br><br><br>
 
 ## 🎯 Inclusões
