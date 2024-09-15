@@ -15,7 +15,7 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 <br><br><br>
 
 ## 📑 Índice
-
+- [Padrões de Nomenclaturas de Commits](https://github.com/LarissaSL/API_Gerenciador-De-Corridas-de-Kart?tab=readme-ov-file#-padr%C3%B5es-de-nomenclatura-nos-commits)
 ---
 <br><br><br>
 
