@@ -117,6 +117,7 @@ spring.jpa.hibernate.ddl-auto=update
 - [Criação de Novas Inscrições](#-1-m%C3%A9todo-de-cria%C3%A7%C3%A3o-de-inscri%C3%A7%C3%A3o)
 - [Listagem de Inscrições](#-2-listagem-de-inscri%C3%A7%C3%B5es)
 - [Exibir todas as Incrições de uma Corrida](#21-exibir-todas-as-inscri%C3%A7%C3%B5es-de-uma-corrida)
+- [Métodos de Filtros para Listagem](#-22-m%C3%A9todos-de-filtros-para-listagem-1)
 - [Métodos de Ordenação e Paginação](#-23-m%C3%A9todos-de-ordena%C3%A7%C3%A3o-e-pagina%C3%A7%C3%A3o)
 - [Exclusão de Inscrição](#-3-exclus%C3%A3o-de-inscri%C3%A7%C3%A3o)
 - [Atualização de Inscrição](#-4-atualiza%C3%A7%C3%A3o-de-inscri%C3%A7%C3%B5es)
