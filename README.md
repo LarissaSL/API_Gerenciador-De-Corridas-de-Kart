@@ -518,6 +518,7 @@ Você **deve enviar o ID do usuário no corpo da requisição**.
 
 
 OBS.: As mesmas validações de criação são feitas na de Atualização.
+
 ---
 
 <br><br>
@@ -1535,7 +1536,7 @@ Você **deve enviar o ID da Inscrição no corpo da requisição**.
 | **Id do Usuário**    | ID do Usuário associado ao Usuário.            |
 | **Status do Pagamento**  | (`pago`, `pendente`, `cancelado`)  |
 
-OBS.: As mesmas validações de criação são feitas na de Atualização.
+OBS.:  validações de criação são feitas na de Atualização.
 
 <br>
 
