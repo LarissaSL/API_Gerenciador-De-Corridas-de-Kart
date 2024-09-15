@@ -1453,7 +1453,8 @@ GET http://localhost:8080/inscricao
 GET http://localhost:8080/inscricao?id_corrida=2
 ```
 
-![image](https://github.com/user-attachments/assets/9cf10d20-ca2c-4263-af3e-1b03980b110f)
+![image](https://github.com/user-attachments/assets/dbc239af-7d1f-41d9-8865-97c213bef2d5)
+
 
 ---
 
