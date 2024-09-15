@@ -16,24 +16,25 @@ public class ValidadorUsuarioJaEstaEmOutraCorridaNoMesmoDiaEHorario implements I
 
     @Override
     public void validar(CriarInscricaoDTO dados) {
-        verificar(dados.usuarioId(), dados.corridaId());
+        verificar(dados.usuarioId(), dados.corridaId(), null);
     }
 
     @Override
     public void validar(AtualizarInscricaoDTO dados) {
         if (dados.corridaId() != null && dados.usuarioId() != null) {
-            verificar(dados.usuarioId(), dados.corridaId());
+            verificar(dados.usuarioId(), dados.corridaId(), dados.id());
         }
 
         Inscricao inscricao = repositorio.getReferenceById(dados.id());
         verificar(dados.usuarioId() != null ? dados.usuarioId() : inscricao.getUsuario().getId(),
-                dados.corridaId() != null ? dados.corridaId() : inscricao.getCorrida().getId());
+                dados.corridaId() != null ? dados.corridaId() : inscricao.getCorrida().getId(),
+                dados.id());
 
     }
 
-    public void verificar(Long idUsuario, Long idCorrida) {
+    public void verificar(Long idUsuario, Long idCorrida, Long idInscricao) {
         Long qtdDeInscricoesDoUsuarioEmOutraCorridaNoMesmoDiaEHorario = repositorio
-                .contarInscricoesConflitantesDeDataEHorario(idUsuario,idCorrida);
+                .contarInscricoesConflitantesDeDataEHorario(idUsuario, idCorrida, idInscricao);
 
         if (qtdDeInscricoesDoUsuarioEmOutraCorridaNoMesmoDiaEHorario > 0) {
             throw new InscricaoException("Usuário já está inscrito em outra corrida na mesma data e horário.");

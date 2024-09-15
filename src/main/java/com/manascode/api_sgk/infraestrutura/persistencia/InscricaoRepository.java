@@ -7,19 +7,21 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface InscricaoRepository extends JpaRepository <Inscricao, Long> {
-    @Query("SELECT COUNT(i) FROM Inscricao i WHERE i.usuario.id = :usuarioId AND i.corrida.id = :corridaId")
-    long contarInscricoesPorUsuarioECorrida(Long usuarioId, Long corridaId);
+public interface InscricaoRepository extends JpaRepository<Inscricao, Long> {
+    @Query("SELECT COUNT(i) FROM Inscricao i WHERE i.usuario.id = :usuarioId AND i.corrida.id = :corridaId AND i.id <> :inscricaoId")
+    long contarInscricoesPorUsuarioECorrida(Long usuarioId, Long corridaId, Long inscricaoId);
 
     @Query("""
-           SELECT COUNT(i) FROM Inscricao i
-           JOIN i.corrida c
-           WHERE i.usuario.id = :usuarioId
-           AND c.data = (SELECT c2.data FROM Corrida c2 WHERE c2.id = :corridaId)
-           AND c.horario = (SELECT c2.horario FROM Corrida c2 WHERE c2.id = :corridaId)
-           """)
+            SELECT COUNT(i) FROM Inscricao i
+            JOIN i.corrida c
+            WHERE i.usuario.id = :usuarioId
+            AND c.data = (SELECT c2.data FROM Corrida c2 WHERE c2.id = :corridaId)
+            AND c.horario = (SELECT c2.horario FROM Corrida c2 WHERE c2.id = :corridaId)
+            AND i.id <> :inscricaoId
+            """)
     long contarInscricoesConflitantesDeDataEHorario(Long usuarioId,
-                                     Long corridaId);
+                                                    Long corridaId,
+                                                    Long inscricaoId);
 
     Inscricao findByIdAndAtivo(Long id, boolean status);
 
