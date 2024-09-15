@@ -1159,12 +1159,12 @@ http://localhost:8080/corrida?tamanho=1&ordem=data,desc
 
 **Parâmetros Opcionais:**
 
-| Parâmetro   | Descrição                                     | Exemplo                    |
-|-------------|-----------------------------------------------|----------------------------|
-| `kartodromo`| Nome do kartódromo                            | Kartodromo%20KGV           |
-| `mes`        | Mês da corrida                                | 12 (dezembro)              |
-| `dia`        | Dia da corrida                               | 15                         |
-| `nome`       | Nome da corrida                              | CKC%20etapa%201.5          |
+| Parâmetro   | Descrição                                     | Exemplo                    | Valores aceitos            |
+|-------------|-----------------------------------------------|----------------------------|----------------------------|
+| `kartodromo`| Nome do kartódromo                            | Kartodromo%20KGV           | Nomes dos Kartodromos Cadastrados (Ignora o Case - UpperCase/LowerCase) |
+| `mes`        | Mês da corrida                                | 12 (dezembro)             | Número dos meses (1-12)             |
+| `dia`        | Dia da corrida                               | 15                         | Número dos dias do Mês (1-31)       |
+| `nome`       | Nome da corrida                              | CKC%20etapa%201.5          | Nomes das Corridas Cadastradas (Ignora o Case - UpperCase/LowerCase) |
 
 - Filtrar por dia
 
