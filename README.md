@@ -253,6 +253,8 @@ Resultado das Variáveis de Ambiente:
 
 ---
 
+<br><br>
+
 ## ✅ 1. Método de Autenticação
 
 - Para autenticar um usuário, envie uma requisição para o seguinte endereço:
@@ -321,6 +323,8 @@ Em caso de falha na autenticação, o Status Code poderá ser `401` ou `403` e a
 | **Data de Nascimento** | Deve ser uma data válida e o usuário deve ter a idade mínima para o registro (15 anos).                               |
 
 ---
+
+<br><br>
 
 ## ✅ 1. Método de Criação de Novos Usuários
 
@@ -560,6 +564,8 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 
 ---
 
+<br><br>
+
 ## ✅ 1. Método de Criação de Novos Kartodromos
 
 - Para criar um novo kartódromo, envie uma requisição para o seguinte endereço:
@@ -743,10 +749,6 @@ Você **deve enviar o ID do kartódromo no corpo da requisição**.
 
 OBS.: As mesmas validações de criação são feitas na de Atualização.
 
-<br>
-
-**🔝 [Voltar ao Índice](#-%C3%ADndice)**
-
 ---
 
 <br><br>
@@ -790,6 +792,8 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 **🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
+
+<br><br>
 
 ## ✅ 1. Método de Criação de Novos Campeonatos
 
@@ -1013,6 +1017,8 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 **🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
+
+<br><br>
 
 ## ✅ 1. Método de Criação de Novas Corridas
 
@@ -1283,10 +1289,6 @@ Você **deve enviar o ID da corrida no corpo da requisição**.
 
 OBS.: As mesmas validações de criação são feitas na de Atualização.
 
-<br>
-
-**🔝 [Voltar ao Índice](#-%C3%ADndice)**
-
 ---
 
 <br><br>
@@ -1330,7 +1332,8 @@ OBS.: As mesmas validações de criação são feitas na de Atualização.
 **🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
-<br><br><br>
+
+<br><br>
 
 ## ✅ 1. Método de Criação de Inscrição
 
