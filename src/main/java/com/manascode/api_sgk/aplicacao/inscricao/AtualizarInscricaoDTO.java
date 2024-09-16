@@ -13,6 +13,6 @@ public record AtualizarInscricaoDTO(
         @JsonAlias("usuario_id")
         Long usuarioId,
 
-        @JsonAlias("status_pgto")
+        @JsonAlias("status_pagamento")
         StatusPagamento statusPagamento) {
 }

@@ -92,7 +92,13 @@ public class InscricaoService {
     public ResponseEntity<Page<ListarInscricaoDTO>> listarTodos(Pageable paginacao, Long idCorrida, Boolean check, StatusPagamento statusPagamento) {
         Page<Inscricao> page = paginacaoInscricaoService.definirPaginacao(paginacao, idCorrida, statusPagamento, check);
 
-        Page<ListarInscricaoDTO> listaDeInscricoesDTO = page.map(inscricaoMapper::converteInscricaoEmListarCorridaDto);
+        Page listaDeInscricoesDTO;
+
+        if (check != null && check.booleanValue()) {
+            listaDeInscricoesDTO = page.map(inscricaoMapper::converteInscricaoEmListarInscricaoParaCheckDto);
+        } else {
+            listaDeInscricoesDTO = page.map(inscricaoMapper::converteInscricaoEmListarCorridaDto);
+        }
         return ResponseEntity.ok(listaDeInscricoesDTO);
     }
 
