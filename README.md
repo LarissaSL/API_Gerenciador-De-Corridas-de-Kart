@@ -122,6 +122,16 @@ spring.jpa.hibernate.ddl-auto=update
 - [Exclusão de Inscrição](#-3-exclus%C3%A3o-de-inscri%C3%A7%C3%A3o)
 - [Atualização de Inscrição](#-4-atualiza%C3%A7%C3%A3o-de-inscri%C3%A7%C3%B5es)
 
+### 10. Utilizando o Controller de Check-in
+- [Validadores de Check-in](#%EF%B8%8F-validadores-de-check-in)
+- [Criação de Novas Check-ins](#-1-m%C3%A9todo-de-cria%C3%A7%C3%A3o-de-check-in)
+- [Listagem de Check-ins](#-2-listagem-de-check-ins)
+- [Exibir todas os Check-ins de uma Corrida](#21-exibir-todos-os-check-ins-de-uma-corrida)
+- [Métodos de Filtro para Listagem](#-22-m%C3%A9todos-de-filtro-para-listagem)
+- [Exclusão de Check-in](#-3-exclus%C3%A3o-de-check-in)
+- [Atualização de Check-in](#-4-atualiza%C3%A7%C3%A3o-de-check-in)
+- [Quantida de Check-ins por Corrida](#-5-quantidade-de-check-ins-por-corrida)
+
 ### Extra 
 - [Tecnologias](#-tecnologias)
 - [Apêndices](#-ap%C3%AAndices)
