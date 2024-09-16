@@ -1590,6 +1590,314 @@ OBS.:  validações de criação são feitas na de Atualização.
 
 ---
 
+<br><br><br>
+
+# Utilizando o Controller de Check-in
+
+<br><br>
+
+## 🛠️ Validadores de Check-in
+
+| **Validador**                           | **Descrição**                                                                                                   |
+|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| **Validador de Peso**                   | Permite que o usuário faça check-in se o peso estiver correto conforme as regras da corrida.                    |
+| **Validador Chave Estrangeira Usuário** | Permite check-ins apenas para inscrições existentes e com status de pagamento pago.                             |
+| **Validador CheckIn já feito**          | Garante que o check-in seja feito apenas uma vez por usuário.                                                   |
+| **Validador Usuário Ativo**             | Permite check-ins apenas de usuários que estejam ativos no sistema.                                             |
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
+---
+
+<br><br>
+
+## ✅ 1. Método de Criação de Check-in
+
+- Para registrar o check-in de um usuário em uma corrida, envie uma requisição para o seguinte endpoint:
+  
+```
+POST http://localhost:8080/check-in
+```
+
+**Corpo esperado:**
+
+```json
+{
+	"inscricao_id": 9,
+	"peso_inicial": 88,
+	"lastro": 2
+}
+```
+
+<br>
+
+✅ Se a criação for bem-sucedida, você receberá o Status Code `201`.
+
+<br>
+
+![image](https://github.com/user-attachments/assets/6927ca68-c4be-47a0-83fe-28adcc909825)
+
+<br>
+
+📃❌ **Em caso de erro, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC.**
+
+<br>
+
+**📃❌ Algumas mensagens de erro comuns:**
+
+- **Check-in já realizado:**
+  - Status Code `400` e mensagem informando que o check-in já foi feito.
+  
+<br>
+ 
+![image](https://github.com/user-attachments/assets/e0062c94-6b71-409c-8476-dcd808b297e5)
+
+<br>
+
+- **Peso insuficiente para a corrida:**
+  - Status Code `400` e mensagem informando o peso esperado e o peso total do usuário.
+
+<br>
+
+![image](https://github.com/user-attachments/assets/fbd87354-538a-41d6-9e4f-34ff6b2661e4)
+
+<br>
+
+- **Check-in fora da data da corrida:**
+  - Status Code `400` e mensagem informando a data correta da corrida.
+
+<br>
+
+![image](https://github.com/user-attachments/assets/039027f3-a148-4c5b-8146-7d59c83e7989)
+
+
+<br>
+
+- **Inscrição não paga:**
+  - Status Code `400` e mensagem informando que o usuário não realizou o pagamento.
+
+<br>
+
+![image](https://github.com/user-attachments/assets/1010cf97-4e25-43db-a087-79b83e4504f4)
+
+<br>
+
+
+- **Usuário inativo:**
+  - Status Code `400` e mensagem informando que o usuário está inativo no sistema.
+
+<br>
+
+![image](https://github.com/user-attachments/assets/371ad243-067f-44e2-ac0e-2ecc4ae2e760)
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
+---
+
+<br><br><br>
+
+## ✅ 2. Listagem de Check-ins
+
+- Para exibir um check-in específico, utilize o seguinte endpoint:
+
+```
+GET http://localhost:8080/check-in/{idInscricao}
+```
+
+<br>
+
+✅ Se o ID da Inscrição for válido, você receberá o Status Code `200`.
+
+<br>
+
+![image](https://github.com/user-attachments/assets/2873f5a7-821a-4011-aebd-793efbb5fbea)
+
+
+<br>
+
+📃❌ **Em caso contrário, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC.**
+
+
+![image](https://github.com/user-attachments/assets/7bc400c6-357f-43bd-bee1-d9d9a02115da)
+
+
+---
+
+- Para exibir todos os check-ins, utilize o seguinte endpoint:
+
+```
+GET http://localhost:8080/check-in
+```
+
+**Nota:** Os check-ins são ordenados pela data de criação.
+
+<br>
+
+![image](https://github.com/user-attachments/assets/3ab2163f-8b1d-4f6d-9c14-9aacb53ec919)
+
+
+<br><br>
+
+### 2.1. Exibir todos os check-ins de uma corrida
+
+- Para listar os check-ins de uma corrida específica, utilize o endpoint abaixo:
+
+```
+GET http://localhost:8080/check-in?id_corrida=6
+```
+
+**Nota:** Os check-ins são ordenados pela data de criação.
+
+<br>
+
+![image](https://github.com/user-attachments/assets/b7e9377f-2bf1-4142-bf94-d02098bcbf29)
+
+<br><br>
+
+---
+
+## 📃 2.2. Métodos de Filtro para Listagem
+
+**Parâmetros Opcionais:**
+
+| Parâmetro   | Descrição                                | Exemplo                    | Valores Aceitos            |
+|-------------|------------------------------------------|----------------------------|----------------------------|
+| `id_corrida`| Id da corrida                            | 1                          | Números inteiros e existentes no banco de dados |
+
+<br>
+
+- Filtrar por ID de corrida:
+
+```
+GET http://localhost:8080/check-in?id_corrida=2
+```
+
+---
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
+---
+
+<br><br><br>
+
+## ✅ 3. Exclusão de Check-in
+
+- Para deletar um check-in, utilize o seguinte endpoint:
+
+```
+DELETE http://localhost:8080/check-in/{id}
+```
+
+<br>
+
+✅ Se a exclusão for bem-sucedida, você receberá o Status Code `204`.
+
+<br>
+
+![image](https://github.com/user-attachments/assets/f3535a48-63a2-4831-a712-7d1e0d8a0575)
+
+
+<br>
+
+📃❌ **Em caso contrário, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC.**
+
+- **Tentativa de deletar um check-in inexistente:**
+  - Status Code `400` e mensagem informando que o check-in não foi encontrado.
+
+<br>
+
+![image](https://github.com/user-attachments/assets/7b815596-2515-4bed-ba5f-a3b03b9c5389)
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
+---
+
+<br><br><br>
+
+## 📝✅ 4. Atualização de Check-in
+
+- Para atualizar os dados de um check-in, utilize o seguinte endpoint:
+
+```
+PUT http://localhost:8080/check-in
+```
+
+Você **deve enviar o ID da inscrição no corpo da requisição**.
+
+**JSON esperado:**
+
+```json
+{
+	"inscricao_id": 9,
+	"peso_inicial": 90,
+	"lastro": 5
+}
+```
+
+<br>
+
+## 🛠️ Campos que Podem Ser Atualizados
+
+| **Campo**         | **Descrição**            |
+|-------------------|--------------------------|
+| **Peso Inicial**  | Peso do usuário no check-in |
+| **Lastro**        | Valor do lastro em número inteiro |
+
+**Nota:** As validações da criação também são aplicadas na atualização.
+
+<br>
+
+✅ Se a atualização for bem-sucedida, você receberá o Status Code `200`.
+
+<br>
+
+![image](https://github.com/user-attachments/assets/149995d9-9d3c-49c9-9377-a30bdd3a2288)
+
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
+---
+
+<br><br><br>
+
+## 📝✅ 5. Quantidade de Check-ins por corrida
+
+- Para verificar a quantidade de check-ins realizados em uma corrida específica, utilize o endpoint:
+
+```
+GET http://localhost:8080/check-in/qtdPorCorrida/2
+```
+
+- Se houver check-ins já realizados, o retorno será o número total de check-ins.
+
+
+![image](https://github.com/user-attachments/assets/a6059cf8-baa3-4c0d-ad69-889ab03c1c75)
+
+<br>
+  
+- Caso contrário, o retorno será `0`.
+
+![image](https://github.com/user-attachments/assets/1f1044eb-6351-4a24-aa72-eb1b2797965b)
+
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
+---
+
+<br><br><br>
+
 
 
 ## 🛠 Tecnologias
