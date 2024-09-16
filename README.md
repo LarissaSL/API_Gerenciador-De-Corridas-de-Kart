@@ -39,6 +39,7 @@ Para iniciar o projeto, você precisa ter os seguintes requisitos instalados:
   **OBS.:** Caso não tenha o MySQL, você pode utilizar o [PostgreSQL](https://www.postgresql.org/download/) ou outro banco de dados relacional. Lembre-se de alterar o arquivo `application.properties` para configurar a criação das tabelas manualmente.
 
 - **[Imnsomnia](https://insomnia.rest/download)**
+  Para poder testar os Endpoints da API
 
 <br>
 
