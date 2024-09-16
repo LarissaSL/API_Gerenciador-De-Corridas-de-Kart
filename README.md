@@ -24,7 +24,7 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 
 Para iniciar o projeto, você precisa ter os seguintes requisitos instalados:
 
-- **[Java 17 ou superior](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html)**  
+- **[Java 17 ou superior](https://www.oracle.com/br/java/technologies/downloads/)**  
   Verifique se você tem o Java instalado no seu ambiente de desenvolvimento. Caso contrário, instale a versão mais recente.
 
 - **IDE para JAVA**  
@@ -37,6 +37,8 @@ Para iniciar o projeto, você precisa ter os seguintes requisitos instalados:
   Para gerenciar o banco de dados, o MySQL Workbench é recomendado.
 
   **OBS.:** Caso não tenha o MySQL, você pode utilizar o [PostgreSQL](https://www.postgresql.org/download/) ou outro banco de dados relacional. Lembre-se de alterar o arquivo `application.properties` para configurar a criação das tabelas manualmente.
+
+- **[Imnsomnia](https://insomnia.rest/download)**
 
 <br>
 
@@ -131,6 +133,7 @@ spring.jpa.hibernate.ddl-auto=update
 - [Exclusão de Check-in](#-3-exclus%C3%A3o-de-check-in)
 - [Atualização de Check-in](#-4-atualiza%C3%A7%C3%A3o-de-check-in)
 - [Quantida de Check-ins por Corrida](#-5-quantidade-de-check-ins-por-corrida)
+- [Solicitar Lista de Check-in para Compartilhar via Whatsapp](#-6-solicitar-lista-de-pilotos-que-fizeram-check-in)
 
 ### Extra 
 - [Tecnologias](#-tecnologias)
@@ -164,7 +167,7 @@ spring.jpa.hibernate.ddl-auto=update
 - 🟡 Check-out de Pagamentos
 - 🟡 Check-out de Pilotos
 - 🟡 Sorteador de Números de Karts
-- 🟡 Compartilhamento via Whatsapp da Lista de Pilotos
+- 🟢 Compartilhamento via Whatsapp da Lista de Pilotos
 
 <br>
 
@@ -1909,6 +1912,38 @@ GET http://localhost:8080/check-in/qtdPorCorrida/2
 
 <br><br><br>
 
+## 📝 6. Solicitar lista de Pilotos que fizeram Check-in
+
+- Para solicitar a Lista de pilotos que fizeram Check-in em uma determinada corrida, utiliza o seguinte endpoint:
+
+```
+GET http://localhost:8080/check-in/compartilhar/{idCorrida}
+```
+
+<br>
+
+✅ Se a requisição for bem-sucedida, você receberá o Status Code `200`.
+
+<br>
+
+![image](https://github.com/user-attachments/assets/a06e58a7-e685-4d89-b1b7-1af4aa2aeed2)
+
+<br>
+
+📃❌ **Em caso contrário, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC.**
+
+- **Tentativa de solicitar uma lista de check-in em que a corrida não existe ou está inativa:**
+  - Status Code `400` e mensagem informando que a corrida não foi encontrada.
+
+<br>
+
+![image](https://github.com/user-attachments/assets/77c81cf1-a2d5-401a-b73f-ff89e9d8a83d)
+
+<br>
+
+---
+
+<br><br><br>
 
 
 ## 🛠 Tecnologias
