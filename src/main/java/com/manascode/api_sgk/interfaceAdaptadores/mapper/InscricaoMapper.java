@@ -3,6 +3,7 @@ package com.manascode.api_sgk.interfaceAdaptadores.mapper;
 import com.manascode.api_sgk.aplicacao.inscricao.CriarInscricaoDTO;
 import com.manascode.api_sgk.aplicacao.inscricao.DetalharInscricaoDTO;
 import com.manascode.api_sgk.aplicacao.inscricao.ListarInscricaoDTO;
+import com.manascode.api_sgk.aplicacao.inscricao.ListarInscricaoParaCheckDTO;
 import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.dominio.inscricao.Inscricao;
 import com.manascode.api_sgk.dominio.usuario.Usuario;
@@ -43,4 +44,11 @@ public interface InscricaoMapper {
     @Mapping(source = "corrida.horario", target = "corrida.horario")
     @Mapping(source = "corrida.data", target = "corrida.data")
     ListarInscricaoDTO converteInscricaoEmListarCorridaDto(Inscricao inscricao);
+
+    @Mapping(source = "inscricao.id", target = "idInscricao")
+    @Mapping(source = "inscricao.statusPagamento", target = "statusPagamento")
+    @Mapping(source = "usuario.id", target = "usuario.id")
+    @Mapping(source = "usuario.nome", target = "usuario.nome")
+    @Mapping(source = "usuario.sobrenome", target = "usuario.sobrenome")
+    ListarInscricaoParaCheckDTO converteInscricaoEmListarInscricaoParaCheckDto(Inscricao inscricao);
 }

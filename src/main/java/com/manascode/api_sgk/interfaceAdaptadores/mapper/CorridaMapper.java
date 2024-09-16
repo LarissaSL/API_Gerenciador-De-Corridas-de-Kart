@@ -3,6 +3,7 @@ package com.manascode.api_sgk.interfaceAdaptadores.mapper;
 import com.manascode.api_sgk.aplicacao.corrida.CriarCorridaDTO;
 import com.manascode.api_sgk.aplicacao.corrida.DetalharCorridaDTO;
 import com.manascode.api_sgk.aplicacao.corrida.ListarCorridaDTO;
+import com.manascode.api_sgk.aplicacao.inscricao.DetalharInscricaoCorridaDTO;
 import com.manascode.api_sgk.dominio.campeonato.Campeonato;
 import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.dominio.kartodromo.Kartodromo;

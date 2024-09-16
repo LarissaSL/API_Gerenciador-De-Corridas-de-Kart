@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.interfaceAdaptadores.mapper;
 
+import com.manascode.api_sgk.aplicacao.inscricao.DetalharInscricaoUsuarioDTO;
 import com.manascode.api_sgk.aplicacao.usuario.CriarUsuarioDTO;
 import com.manascode.api_sgk.aplicacao.usuario.DetalharUsuarioDTO;
 import com.manascode.api_sgk.aplicacao.usuario.ListarUsuarioDTO;
@@ -17,4 +18,6 @@ public interface UsuarioMapper {
     Usuario converteDTOParaUsuario(CriarUsuarioDTO dadosUsuario);
     DetalharUsuarioDTO converteUsuarioParaDTODetalhamento(Usuario dadosUsuario);
     ListarUsuarioDTO converteUsuarioParaListarUsuarioDTO(Usuario dadosUsuario);
+
+    DetalharInscricaoUsuarioDTO converterUsuarioEmDetalharInscricaoUsuarioDto(Usuario usuario);
 }
