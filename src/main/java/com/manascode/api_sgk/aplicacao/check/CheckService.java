@@ -2,9 +2,11 @@ package com.manascode.api_sgk.aplicacao.check;
 
 import com.manascode.api_sgk.aplicacao.check.validacoes.IValidadorCheckIn;
 import com.manascode.api_sgk.dominio.check.Check;
+import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.dominio.inscricao.Inscricao;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.CheckException;
 import com.manascode.api_sgk.infraestrutura.persistencia.CheckRepository;
+import com.manascode.api_sgk.infraestrutura.persistencia.CorridaRepository;
 import com.manascode.api_sgk.infraestrutura.persistencia.InscricaoRepository;
 import com.manascode.api_sgk.interfaceAdaptadores.mapper.CheckMapper;
 import jakarta.validation.Valid;
@@ -17,7 +19,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CheckService {
@@ -30,6 +31,12 @@ public class CheckService {
 
     @Autowired
     private InscricaoRepository inscricaoRepository;
+
+    @Autowired
+    private CorridaRepository corridaRepository;
+
+    @Autowired
+    private MensagemWhatsappService mensagemWhatsappService;
 
     @Autowired
     private List<IValidadorCheckIn> validadorCheckIns;
@@ -69,8 +76,8 @@ public class CheckService {
     }
 
     public ResponseEntity<Page<ListarCheckInDTO>> listarTodosComFiltros(Pageable paginacao, Long idCorrida) {
-        Page <Check> page = repositorio.listarCheckPorFiltrosIdCorrida(paginacao, idCorrida);
-        Page <ListarCheckInDTO> listarCheckInDTOS = page.map(checkMapper::converterCheckEmListarCheckInDto);
+        Page<Check> page = repositorio.listarCheckPorFiltrosIdCorrida(paginacao, idCorrida);
+        Page<ListarCheckInDTO> listarCheckInDTOS = page.map(checkMapper::converterCheckEmListarCheckInDto);
 
         return ResponseEntity.ok(listarCheckInDTOS);
     }
@@ -109,5 +116,28 @@ public class CheckService {
 
     public int contarCheckInsPorCorrida(Long idCorrida) {
         return repositorio.contarCheckInsPorIdCorrida(idCorrida);
+    }
+
+    public ResponseEntity<String> compartilharCheckInPorWhatsapp(Long idCorrida) {
+        Corrida corrida = corridaRepository.findByIdAndAtivo(idCorrida, true);
+
+        if (corrida == null) {
+            throw new CheckException("Não é possivel compartilhar o check-in de uma corrida que não existe ou não está ativa.");
+        }
+
+        List<CompartilharCheckInProjecao> listaDeCheckInsDaCorrida = repositorio.listarCheckInPorIdCorrida(idCorrida);
+
+        if (listaDeCheckInsDaCorrida.size() == 0) {
+            throw new CheckException("Nenhum check-in feito para essa corrida.");
+        }
+
+        String nomeCorrida = corrida.getNome();
+        String classificacaoCorrida = corrida.getClassificacao().name();
+        String categoriaCorrida = corrida.getCategoria();
+
+        String mensagemFormatada = mensagemWhatsappService
+                .gerarMensagem(listaDeCheckInsDaCorrida, nomeCorrida, categoriaCorrida, classificacaoCorrida);
+
+        return ResponseEntity.ok(mensagemFormatada);
     }
 }

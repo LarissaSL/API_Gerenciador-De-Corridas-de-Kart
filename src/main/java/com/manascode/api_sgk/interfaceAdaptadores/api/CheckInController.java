@@ -24,9 +24,9 @@ public class CheckInController {
         return service.cadastrar(dados);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<DetalharCheckDTO> detalharCheckIn(@PathVariable Long id) {
-        return service.detalhar(id);
+    @GetMapping("/{idInscricao}")
+    public ResponseEntity<DetalharCheckDTO> detalharCheckIn(@PathVariable Long idInscricao) {
+        return service.detalhar(idInscricao);
     }
 
     @GetMapping
@@ -53,5 +53,11 @@ public class CheckInController {
     public int mostrarQtdDeCheckInPorCorrida(@PathVariable Long idCorrida) {
         return service.contarCheckInsPorCorrida(idCorrida);
     }
+
+    @GetMapping("/compartilhar/{idCorrida}")
+    public ResponseEntity<String> compartilhar(@PathVariable Long idCorrida) {
+        return service.compartilharCheckInPorWhatsapp(idCorrida);
+    }
+
 
 }
