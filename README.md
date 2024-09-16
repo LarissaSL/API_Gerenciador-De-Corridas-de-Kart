@@ -155,12 +155,13 @@ spring.jpa.hibernate.ddl-auto=update
 - 🟢 CRUD de Corridas
 - 🟢 CRUD de Usuários
 - 🟢 CRUD de Inscrição
+- 🟢 CRUD de Check-in
+- 🟢 Funcionalidade de Check-in de Pilotos
 - 🟡 CRUD de Classificação das Corridas
 - 🟠 Autenticação de Usuários
 - 🟡 Compra de Ingressos de Corridas
 - 🟡 Carrinho de Compras
 - 🟡 Check-out de Pagamentos
-- 🟡 Check-in de Pilotos
 - 🟡 Check-out de Pilotos
 - 🟡 Sorteador de Números de Karts
 - 🟡 Compartilhamento via Whatsapp da Lista de Pilotos
