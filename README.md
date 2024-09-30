@@ -111,6 +111,7 @@ spring.jpa.hibernate.ddl-auto=update
 - [Listagem de Corridas](#-2-listagem-de-corridas)
 - [Métodos de Ordenação e Paginação](#-21-m%C3%A9todos-de-ordena%C3%A7%C3%A3o-e-pagina%C3%A7%C3%A3o-3)
 - [Métodos de Filtros para Listagem](#-22-m%C3%A9todos-de-filtros-para-listagem)
+- [Exibir todas as Corridas que tenham Check-ins feitos](#filtrar-corridas-que-tenham-check-ins-feitos)
 - [Combinação de Filtros](#combina%C3%A7%C3%A3o-de-filtros)
 - [Exclusão de Corrida](#-3-exclus%C3%A3o-de-corrida)
 - [Atualização de Corrida](#-4-atualiza%C3%A7%C3%A3o-de-corridas)
@@ -1177,9 +1178,10 @@ http://localhost:8080/corrida?tamanho=1&ordem=data,desc
 | Parâmetro   | Descrição                                     | Exemplo                    | Valores aceitos            |
 |-------------|-----------------------------------------------|----------------------------|----------------------------|
 | `kartodromo`| Nome do kartódromo                            | Kartodromo%20KGV           | Nomes dos Kartodromos Cadastrados (Ignora o Case - UpperCase/LowerCase) |
-| `mes`        | Mês da corrida                                | 12 (dezembro)             | Número dos meses (1-12)             |
+| `mes`        | Mês da corrida                               | 12 (dezembro)              | Número dos meses (1-12)             |
 | `dia`        | Dia da corrida                               | 15                         | Número dos dias do Mês (1-31)       |
 | `nome`       | Nome da corrida                              | CKC%20etapa%201.5          | Nomes das Corridas Cadastradas (Ignora o Case - UpperCase/LowerCase) |
+| `check`      | Se é para Check-in ou Check-out a exibição   | check=true                 | true ou false |
 
 - Filtrar por dia
 
@@ -1209,6 +1211,28 @@ http://localhost:8080/corrida?nome=CKC%20etapa%1
 
 ```
 http://localhost:8080/corrida?kartodromo=Kartodromo%20Teste%203
+```
+
+<br><br>
+
+### Filtrar Corridas que tenham Check-ins feitos
+
+- Filtro para listagem de todas as corridas que tenham Check-ins feitos
+
+```
+http://localhost:8080/corrida?check=true
+```
+
+![image](https://github.com/user-attachments/assets/e3abe5ad-36bd-4b9b-b844-ba2ef3688937)
+
+<br>
+
+**Nota:** Você pode combinar esse Filtro com os outros disponiveis na corrida, como nome, kartodromo, dia e mes, basta colocar &parametro=valor
+
+<br>
+
+```
+http://localhost:8080/corrida?check=true&nome=ckc
 ```
 
 <br>
