@@ -39,4 +39,12 @@ public interface CorridaRepository extends JpaRepository<Corrida, Long> {
                                                                  String nome);
 
 
+    @Query("SELECT DISTINCT c FROM Corrida c " +
+            "WHERE EXISTS (SELECT ch FROM Check ch WHERE ch.inscricao.corrida.id = c.id) " +
+            "AND (:kartodromo IS NULL OR LOWER(c.kartodromo.nome) = LOWER(:kartodromo)) " +
+            "AND (:mesInt IS NULL OR FUNCTION('MONTH', c.data) = :mesInt) " +
+            "AND (:diaInt IS NULL OR FUNCTION('DAY', c.data) = :diaInt) " +
+            "AND (:nome IS NULL OR LOWER(c.nome) LIKE LOWER(CONCAT('%', :nome, '%'))) " +
+            "ORDER BY c.data")
+    Page<Corrida> listarCorridasComCheckinEComFiltrosDeNomeKartodromoMesDia(Pageable paginacao, String kartodromo, Integer mesInt, Integer diaInt, String nome);
 }

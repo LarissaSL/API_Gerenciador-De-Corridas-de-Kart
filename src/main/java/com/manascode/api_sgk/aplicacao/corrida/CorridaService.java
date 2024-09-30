@@ -108,15 +108,24 @@ public class CorridaService {
     }
 
     public ResponseEntity<Page<ListarCorridaDTO>> listarTodosComFiltros(Pageable paginacao,
-                                                        String kartodromo,
-                                                        String mes,
-                                                        String dia,
-                                                        String nome) {
+                                                                        String kartodromo,
+                                                                        String mes,
+                                                                        String dia,
+                                                                        String nome,
+                                                                        Boolean check) {
 
         Integer mesInt = validadorParametrosService.validarMes(mes);
         Integer diaInt = validadorParametrosService.validarDia(dia);
 
-        Page<Corrida> page = repositorio.listarCorridasPorFiltrosDeNomeKartodromoMesDia(paginacao, kartodromo, mesInt, diaInt, nome);
+        Page<Corrida> page = null;
+
+        // Verificando se foi passado o parametro de Check-in, pois se existir o filtro é para o APP Mobile
+        if (check != null && check) {
+            page = repositorio.listarCorridasComCheckinEComFiltrosDeNomeKartodromoMesDia(paginacao, kartodromo, mesInt, diaInt, nome);
+        } else {
+            page = repositorio.listarCorridasPorFiltrosDeNomeKartodromoMesDia(paginacao, kartodromo, mesInt, diaInt, nome);
+        }
+
         Page<ListarCorridaDTO> listaDeCorridasDTO = page.map(corridaMapper::converteCorridaEmListarCorridaDto);
 
         return ResponseEntity.ok(listaDeCorridasDTO);

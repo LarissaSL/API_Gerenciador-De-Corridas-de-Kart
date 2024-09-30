@@ -37,9 +37,10 @@ public class CorridaController {
             @RequestParam(required = false) String kartodromo,
             @RequestParam(required = false) String mes,
             @RequestParam(required = false) String dia,
-            @RequestParam(required = false) String nome) {
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) Boolean check) {
 
-        return service.listarTodosComFiltros(paginacao, kartodromo, mes, dia, nome);
+        return service.listarTodosComFiltros(paginacao, kartodromo, mes, dia, nome, check);
     }
 
     @PutMapping
