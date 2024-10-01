@@ -172,7 +172,7 @@ spring.jpa.hibernate.ddl-auto=update
 - 🟡 Compra de Ingressos de Corridas
 - 🟡 Carrinho de Compras
 - 🟡 Check-out de Pagamentos
-- 🟡 Check-out de Pilotos
+- 🟢 Check-out de Pilotos
 - 🟡 Sorteador de Números de Karts
 - 🟢 Compartilhamento via Whatsapp da Lista de Pilotos
 
