@@ -1,7 +1,8 @@
 package com.manascode.api_sgk.dominio.check;
 
 
-import com.manascode.api_sgk.aplicacao.check.AtualizarCheckInDTO;
+import com.manascode.api_sgk.aplicacao.checkIn.AtualizarCheckInDTO;
+import com.manascode.api_sgk.aplicacao.checkOut.RealizarCheckOutDTO;
 import com.manascode.api_sgk.dominio.inscricao.Inscricao;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -62,6 +63,16 @@ public class Check {
 
         if (dados.lastro() != null) {
             this.lastro = dados.lastro();
+        }
+    }
+
+    public void atualizarDadosParaCheckOut(RealizarCheckOutDTO dados) {
+        if (dados.pesoFinal() != null) {
+            this.pesoFinal = dados.pesoFinal();
+        }
+
+        if (dados.classificado() != null) {
+            this.classificado = dados.classificado();
         }
     }
 }

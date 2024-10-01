@@ -1,8 +1,9 @@
 package com.manascode.api_sgk.interfaceAdaptadores.mapper;
 
-import com.manascode.api_sgk.aplicacao.check.CriarCheckInDTO;
-import com.manascode.api_sgk.aplicacao.check.DetalharCheckDTO;
-import com.manascode.api_sgk.aplicacao.check.ListarCheckInDTO;
+import com.manascode.api_sgk.aplicacao.checkIn.CriarCheckInDTO;
+import com.manascode.api_sgk.aplicacao.checkIn.DetalharCheckDTO;
+import com.manascode.api_sgk.aplicacao.checkIn.ListarCheckInDTO;
+import com.manascode.api_sgk.aplicacao.checkOut.ListarNomesESeFezCheckOutDosPilotosComCheckInDTO;
 import com.manascode.api_sgk.dominio.check.Check;
 import com.manascode.api_sgk.dominio.inscricao.Inscricao;
 import jakarta.validation.Valid;
@@ -35,4 +36,9 @@ public interface CheckMapper {
     @Mapping(source = "inscricao.usuario", target = "inscricao.usuario")
     @Mapping(source = "dataCheckin", target = "dataDoCheckIn")
     ListarCheckInDTO converterCheckEmListarCheckInDto(Check check);
+
+    @Mapping(source = "inscricao.id", target = "idCheckIn")
+    @Mapping(source = "inscricao.usuario", target = "usuario")
+    @Mapping(target = "checkOut", expression = "java(check.getPesoFinal() != null && check.getPesoFinal().compareTo(BigDecimal.ZERO) > 0)")
+    ListarNomesESeFezCheckOutDosPilotosComCheckInDTO converteCheckEmListarNomesEPesoPilotosComCheckInDTO(Check check);
 }
