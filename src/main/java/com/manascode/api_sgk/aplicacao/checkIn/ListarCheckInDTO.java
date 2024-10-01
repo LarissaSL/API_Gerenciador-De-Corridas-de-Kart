@@ -1,4 +1,4 @@
-package com.manascode.api_sgk.aplicacao.check;
+package com.manascode.api_sgk.aplicacao.checkIn;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.manascode.api_sgk.aplicacao.inscricao.ListarInscricaoDTO;

@@ -1,10 +1,10 @@
 package com.manascode.api_sgk.interfaceAdaptadores.api;
 
-import com.manascode.api_sgk.aplicacao.check.AtualizarCheckInDTO;
-import com.manascode.api_sgk.aplicacao.check.CheckService;
-import com.manascode.api_sgk.aplicacao.check.CriarCheckInDTO;
-import com.manascode.api_sgk.aplicacao.check.DetalharCheckDTO;
-import com.manascode.api_sgk.aplicacao.check.ListarCheckInDTO;
+import com.manascode.api_sgk.aplicacao.checkIn.AtualizarCheckInDTO;
+import com.manascode.api_sgk.aplicacao.checkIn.CheckInService;
+import com.manascode.api_sgk.aplicacao.checkIn.CriarCheckInDTO;
+import com.manascode.api_sgk.aplicacao.checkIn.DetalharCheckDTO;
+import com.manascode.api_sgk.aplicacao.checkIn.ListarCheckInDTO;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CheckInController {
 
     @Autowired
-    private CheckService service;
+    private CheckInService service;
 
     @PostMapping
     @Transactional

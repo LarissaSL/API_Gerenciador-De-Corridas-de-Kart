@@ -1,6 +1,5 @@
 package com.manascode.api_sgk.aplicacao.inscricao;
 
-public record DetalharInscricaoUsuarioDTO (Long id,
-                                           String nome,
-                                           String sobrenome) {
+public record DetalharInscricaoUsuarioDTO(String nome,
+                                          String sobrenome) {
 }

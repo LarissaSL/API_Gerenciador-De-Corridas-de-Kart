@@ -1,7 +1,7 @@
-package com.manascode.api_sgk.aplicacao.check.validacoes;
+package com.manascode.api_sgk.aplicacao.checkIn.validacoes;
 
-import com.manascode.api_sgk.aplicacao.check.AtualizarCheckInDTO;
-import com.manascode.api_sgk.aplicacao.check.CriarCheckInDTO;
+import com.manascode.api_sgk.aplicacao.checkIn.AtualizarCheckInDTO;
+import com.manascode.api_sgk.aplicacao.checkIn.CriarCheckInDTO;
 import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.dominio.inscricao.Inscricao;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.CheckException;

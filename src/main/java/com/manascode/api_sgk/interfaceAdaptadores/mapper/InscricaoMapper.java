@@ -21,7 +21,6 @@ public interface InscricaoMapper {
     @Mapping(source = "usuario", target = "usuario")
     Inscricao converteCriarInscricaoDtoEmInscricao(CriarInscricaoDTO dadosInscricao, Corrida corrida, Usuario usuario);
 
-    @Mapping(source = "usuario.id", target = "usuario.id")
     @Mapping(source = "usuario.nome", target = "usuario.nome")
     @Mapping(source = "usuario.sobrenome", target = "usuario.sobrenome")
     @Mapping(source = "corrida.id", target = "corrida.id")
@@ -33,7 +32,6 @@ public interface InscricaoMapper {
     @Mapping(source = "corrida.data", target = "corrida.data")
     DetalharInscricaoDTO converteInscricaoEmDetalharInscricaoDto(Inscricao dadosInscricao);
 
-    @Mapping(source = "usuario.id", target = "usuario.id")
     @Mapping(source = "usuario.nome", target = "usuario.nome")
     @Mapping(source = "usuario.sobrenome", target = "usuario.sobrenome")
     @Mapping(source = "corrida.id", target = "corrida.id")
@@ -43,11 +41,10 @@ public interface InscricaoMapper {
     @Mapping(source = "corrida.classificacao", target = "corrida.classificacao")
     @Mapping(source = "corrida.horario", target = "corrida.horario")
     @Mapping(source = "corrida.data", target = "corrida.data")
-    ListarInscricaoDTO converteInscricaoEmListarCorridaDto(Inscricao inscricao);
+    ListarInscricaoDTO converteInscricaoEmListarInscricaoDto(Inscricao inscricao);
 
     @Mapping(source = "inscricao.id", target = "idInscricao")
     @Mapping(source = "inscricao.statusPagamento", target = "statusPagamento")
-    @Mapping(source = "usuario.id", target = "usuario.id")
     @Mapping(source = "usuario.nome", target = "usuario.nome")
     @Mapping(source = "usuario.sobrenome", target = "usuario.sobrenome")
     ListarInscricaoParaCheckDTO converteInscricaoEmListarInscricaoParaCheckDto(Inscricao inscricao);

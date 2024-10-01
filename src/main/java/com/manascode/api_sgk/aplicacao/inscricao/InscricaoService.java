@@ -97,7 +97,7 @@ public class InscricaoService {
         if (check != null && check.booleanValue()) {
             listaDeInscricoesDTO = page.map(inscricaoMapper::converteInscricaoEmListarInscricaoParaCheckDto);
         } else {
-            listaDeInscricoesDTO = page.map(inscricaoMapper::converteInscricaoEmListarCorridaDto);
+            listaDeInscricoesDTO = page.map(inscricaoMapper::converteInscricaoEmListarInscricaoDto);
         }
         return ResponseEntity.ok(listaDeInscricoesDTO);
     }

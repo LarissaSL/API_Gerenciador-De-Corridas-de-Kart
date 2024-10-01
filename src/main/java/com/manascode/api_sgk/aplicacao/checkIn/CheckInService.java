@@ -1,6 +1,6 @@
-package com.manascode.api_sgk.aplicacao.check;
+package com.manascode.api_sgk.aplicacao.checkIn;
 
-import com.manascode.api_sgk.aplicacao.check.validacoes.IValidadorCheckIn;
+import com.manascode.api_sgk.aplicacao.checkIn.validacoes.IValidadorCheckIn;
 import com.manascode.api_sgk.dominio.check.Check;
 import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.dominio.inscricao.Inscricao;
@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class CheckService {
+public class CheckInService {
 
     @Autowired
     private CheckRepository repositorio;

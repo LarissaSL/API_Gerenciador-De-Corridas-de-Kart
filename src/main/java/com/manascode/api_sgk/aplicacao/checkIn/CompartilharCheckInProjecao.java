@@ -1,4 +1,4 @@
-package com.manascode.api_sgk.aplicacao.check;
+package com.manascode.api_sgk.aplicacao.checkIn;
 
 public interface CompartilharCheckInProjecao {
     String getNome();
