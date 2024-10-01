@@ -137,6 +137,11 @@ spring.jpa.hibernate.ddl-auto=update
 - [Quantida de Check-ins por Corrida](#-5-quantidade-de-check-ins-por-corrida)
 - [Solicitar Lista de Check-in para Compartilhar via Whatsapp](#-6-solicitar-lista-de-pilotos-que-fizeram-check-in)
 
+11. Utilizando o Controller de Check-out
+- [Passo a Passo de como realizar Check-out no APP Mobile](#passo-a-passo-de-como-realizar-check-out-no-app-mobile)
+- [Passo 1 - Agrupando todos os Check-ins da Corrida](#-1-agrupando-todos-os-check-ins-da-corrida)
+- [Passo 2 - Realizando o Check-out](#-2-realizando-o-check-out)
+
 ### Extra 
 - [Tecnologias](#-tecnologias)
 - [Apêndices](#-ap%C3%AAndices)
@@ -262,7 +267,7 @@ Resultado das Variáveis de Ambiente:
 | **Email**   | Deve ser um email válido e registrado no sistema.                                                               |
 | **Senha**   | Deve corresponder à senha registrada para o usuário. A senha deve ser verificada conforme as regras de complexidade estabelecidas no sistema. |
 
-**Nota:** Apenas usuários ativos podem fazer login. Usuários administradores são os únicos autorizados a acessar o aplicativo mobile.
+**⚠️ Nota:** Apenas usuários ativos podem fazer login. Usuários administradores são os únicos autorizados a acessar o aplicativo mobile.
 
 <br>
 
@@ -534,7 +539,7 @@ Você **deve enviar o ID do usuário no corpo da requisição**.
 | **Senha**              | Senha do usuário.                                   |
 
 
-OBS.: As mesmas validações de criação são feitas na de Atualização.
+⚠️ OBS.: As mesmas validações de criação são feitas na de Atualização.
 
 ---
 
@@ -765,7 +770,7 @@ Você **deve enviar o ID do kartódromo no corpo da requisição**.
 | **Endereco Foto**   | URL da foto do endereço do kartódromo.             |
 | **Ativo**           | Estado de ativação do kartódromo (1 para ativo).   |
 
-OBS.: As mesmas validações de criação são feitas na de Atualização.
+⚠️ OBS.: As mesmas validações de criação são feitas na de Atualização.
 
 ---
 
@@ -983,7 +988,7 @@ Você **deve enviar o ID do campeonato no corpo da requisição**.
 | **Data Inicial**    | Data de início do campeonato.                 |
 | **Data Final**      | Data de término do campeonato.                |
 
-OBS.: As mesmas validações de criação são feitas na de Atualização.
+⚠️ OBS.: As mesmas validações de criação são feitas na de Atualização.
 
 ---
 
@@ -1227,7 +1232,7 @@ http://localhost:8080/corrida?check=true
 
 <br>
 
-**Nota:** Você pode combinar esse Filtro com os outros disponiveis na corrida, como nome, kartodromo, dia e mes, basta colocar &parametro=valor
+**⚠️ Nota:** Você pode combinar esse Filtro com os outros disponiveis na corrida, como nome, kartodromo, dia e mes, basta colocar &parametro=valor
 
 <br>
 
@@ -1239,7 +1244,7 @@ http://localhost:8080/corrida?check=true&nome=ckc
 
 ### Combinação de Filtros
 
-**Nota:** Perceba que em vez de Espaço entre as diferentes palavras, usamos o %20, ou seja, em vez de Kartodromo KGV ficaria Kartodromo%20KGV
+**⚠️ Nota:** Perceba que em vez de Espaço entre as diferentes palavras, usamos o %20, ou seja, em vez de Kartodromo KGV ficaria Kartodromo%20KGV
 
 - Filtro de Kartodromo + Filtro de Mês
 
@@ -1408,35 +1413,30 @@ POST http://localhost:8080/inscricao
 **📃❌ Algumas mensagens de Erros:**
 
 - **Caso o usuário já esteja inscrito na corrida:**
-  - Status Code `400` e mensagem de erro informando que o usuário já está inscrito.
 
   ![image](https://github.com/user-attachments/assets/80aa5cd8-e9e5-4eb3-b1b1-bfe269e200a8)
 
 <br>
 
 - **Caso o usuário já esteja inscrito em outra corrida na mesma data e horário:**
-  - Status Code `400` e mensagem informando sobre o conflito de horário.
   
   ![image](https://github.com/user-attachments/assets/593831a6-002d-4efd-af6b-9418ba52f29d)
 
 <br>
 
 - **Caso o usuário tente se inscrever em uma corrida que já aconteceu:**
-  - Status Code `400` e mensagem informando que a corrida já ocorreu.
   
   ![image](https://github.com/user-attachments/assets/7a61138e-12d2-4deb-bba7-a8ed5f49b31a)
 
 <br>
 
 - **Caso o usuário não esteja ativo no sistema:**
-  - Status Code `400` e mensagem informando que o usuário está inativo.
   
   ![image](https://github.com/user-attachments/assets/87dcd4e2-8944-4fbf-9dff-4ef59c418d9c)
 
 <br>
 
 - **Caso a corrida não esteja ativa no sistema:**
-  - Status Code `400` e mensagem informando que a corrida está inativa.
   
   ![image](https://github.com/user-attachments/assets/ef13b224-0962-47b5-b061-e0cf6a1c0b10)
 
@@ -1615,7 +1615,7 @@ Você **deve enviar o ID da Inscrição no corpo da requisição**.
 | **Id do Usuário**    | ID do Usuário associado ao Usuário.            |
 | **Status do Pagamento**  | (`pago`, `pendente`, `cancelado`)  |
 
-OBS.:  validações de criação são feitas na de Atualização.
+⚠️ OBS.:  validações de criação são feitas na de Atualização.
 
 <br>
 
@@ -1772,7 +1772,7 @@ GET http://localhost:8080/check-in/{idInscricao}
 GET http://localhost:8080/check-in
 ```
 
-**Nota:** Os check-ins são ordenados pela data de criação.
+**⚠️ Nota:** Os check-ins são ordenados pela data de criação.
 
 <br>
 
@@ -1789,7 +1789,7 @@ GET http://localhost:8080/check-in
 GET http://localhost:8080/check-in?id_corrida=6
 ```
 
-**Nota:** Os check-ins são ordenados pela data de criação.
+**⚠️ Nota:** Os check-ins são ordenados pela data de criação.
 
 <br>
 
@@ -1890,7 +1890,7 @@ Você **deve enviar o ID da inscrição no corpo da requisição**.
 | **Peso Inicial**  | Peso do usuário no check-in |
 | **Lastro**        | Valor do lastro em número inteiro |
 
-**Nota:** As validações da criação também são aplicadas na atualização.
+**⚠️ Nota:** As validações da criação também são aplicadas na atualização.
 
 <br>
 
@@ -1965,6 +1965,115 @@ GET http://localhost:8080/check-in/compartilhar/{idCorrida}
 ![image](https://github.com/user-attachments/assets/77c81cf1-a2d5-401a-b73f-ff89e9d8a83d)
 
 <br>
+
+---
+
+<br><br><br>
+
+---
+
+# Utilizando o Controller de Check-out
+
+## 🛠️ Validadores de Check-out
+
+### 1. **Check-out**
+
+| **Campo**   | **Validação**                                                                                                   |
+|-------------|-----------------------------------------------------------------------------------------------------------------|
+| **id_corrida**   | Não deve ser nulo e deve estar registrado no sistema.                                                              |
+| **id_check_in**   | Não deve ser nulo e deve estar registrado no sistema.  |
+| **Validador de Peso Final e Classificado**   | Caso o Peso final seja inferior ao Peso inicial do Piloto na Corrida, ele deve ser Desclassificado. |
+| **Validador Número de Kart**   | Deve constar um Número de Kart para o Piloto, caso contrário o sistema assume que o Piloto não participou da corrida. |
+
+**⚠️ Nota:** Os Check-outs são exibidos em grupos e pelo ID da Corrida.
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
+---
+
+<br><br>
+
+## Passo a Passo de como realizar Check-out no APP Mobile
+## ✅ 1. Agrupando todos os Check-ins da Corrida
+
+
+- Primeiro você precisa ter Check-ins de determinada Corrida, então tenha o ID dessa Corrida e, em seguida, envie uma requisição para o seguinte endereço:
+
+```
+GET http://localhost:8080/check-out?id_corrida=XX
+```
+
+**⚠️ Nota 1**: Para o Check-out é OBRIGATÓRIO passar o ID da Corrida via Parâmetro na URL
+
+
+**⚠️ Nota 2**: A lista é ordenada por Ordem de Data de Inscrição, ou seja, quem se inscreveu primeiro, aparece primeiro na Lista.
+
+
+**⚠️ Nota 3**: Você pode checar se um check-out já foi feito através da chave check_out_feito, que verifica se existe o peso_final registrado e se ele é maior que 0 e retorna true ou false.
+
+<br><br>
+
+## ✅ 2. Realizando o Check-out
+
+- Depois de listar todos os Check-ins de Determinada corrida, guarde o ID desse Check-in e envie uma requisição para o seguinte endereço:
+
+```
+PUT http://localhost:8080/check-out
+```
+
+<br>
+
+**Corpo esperado:**
+
+```json
+{
+	"id_check_in": 12,
+	"peso_final": 70.55,
+	"classificado": true
+}
+```
+
+**⚠️ Nota 1**: Para fazer o Check-out é OBRIGATÓRIO passar o ID do Check-in no JSON
+
+
+**⚠️ Nota 2**: Caso você não altere o classificado, pode tirar essa Chave e Valor no JSON
+
+
+<br>
+
+✅ Se a requisição for bem-sucedida, você receberá o Status Code `200`.
+
+![image](https://github.com/user-attachments/assets/f118f523-86f4-4196-a1f7-8b8f4a0880f0)
+
+<br>
+
+📃❌ **Em caso contrário, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC.**
+
+<br>
+
+**📃❌ Algumas mensagens de Erros:**
+
+- **Caso o ID do Check-in não Exista:**
+
+![image](https://github.com/user-attachments/assets/cc2b7bbd-d249-48ee-9195-5db16fa2f849)
+
+
+
+- **Caso Peso Final for menor que o Inicial e o Status de Classificado seja Verdadeiro:**
+
+![image](https://github.com/user-attachments/assets/f0023076-d2d8-492f-8e0c-5f8cf01efd0a)
+
+
+- **Caso o piloto não tenha o Número do Kart Registrado na ficha de Check-in:**
+
+![image](https://github.com/user-attachments/assets/e4dfcb98-0bc5-4043-bd0f-ab1308c9b991)
+
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
 
 ---
 
