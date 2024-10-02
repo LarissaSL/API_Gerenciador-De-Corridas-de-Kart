@@ -1950,6 +1950,9 @@ GET http://localhost:8080/check-in/qtdPorCorrida/2
 http://localhost:8080/check-in/compartilhar?id_corrida=2
 ```
 
+
+**⚠️ Nota:** O ID da corrida é Obrigatório.
+
 <br>
 
 ✅ Se a requisição for bem-sucedida, você receberá o Status Code `200`.
