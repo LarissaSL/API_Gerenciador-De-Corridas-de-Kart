@@ -142,6 +142,11 @@ spring.jpa.hibernate.ddl-auto=update
 - [Passo 1 - Agrupando todos os Check-ins da Corrida](#-1-agrupando-todos-os-check-ins-da-corrida)
 - [Passo 2 - Realizando o Check-out](#-2-realizando-o-check-out)
 
+12. Utilizando o Controller do Sorteador
+- [Passo a Passo de como realizar Sorteio no APP Mobile](#passo-a-passo-de-como-realizar-sorteio-de-karts-no-app-mobile)
+- [Passo 1 - Agrupando todos os Pilotos do Sorteio](#-1-agrupando-todos-os-pilotos-do-sorteio)
+- [Passo 2 - Realizando o Sorteio](#-2-realizando-o-sorteio)
+
 ### Extra 
 - [Tecnologias](#-tecnologias)
 - [Apêndices](#-ap%C3%AAndices)
@@ -166,14 +171,14 @@ spring.jpa.hibernate.ddl-auto=update
 - 🟢 CRUD de Usuários
 - 🟢 CRUD de Inscrição
 - 🟢 CRUD de Check-in
-- 🟢 Funcionalidade de Check-in de Pilotos
+- 🟢 Check-in de Pilotos
 - 🟡 CRUD de Classificação das Corridas
 - 🟠 Autenticação de Usuários
 - 🟡 Compra de Ingressos de Corridas
 - 🟡 Carrinho de Compras
 - 🟡 Check-out de Pagamentos
 - 🟢 Check-out de Pilotos
-- 🟡 Sorteador de Números de Karts
+- 🟢 Sorteador de Números de Karts
 - 🟢 Compartilhamento via Whatsapp da Lista de Pilotos
 
 <br>
@@ -2079,6 +2084,106 @@ PUT http://localhost:8080/check-out
 ---
 
 <br><br><br>
+
+
+## Passo a Passo de como realizar Sorteio de Karts no APP Mobile
+## ✅ 1. Agrupando todos os Pilotos do Sorteio
+
+
+- Apenas pilotos que tiverem feito Check-in poderão participar, envie uma requisição para o seguinte endereço:
+
+```
+GET http://localhost:8080/sorteador?id_corrida=XX
+```
+
+**⚠️ Nota 1**: Para exibir a Lista de Pilotos que estão no Sorteio é OBRIGATÓRIO passar o ID da Corrida via Parâmetro na URL
+
+
+**⚠️ Nota 2**: Será listado apenas os Nomes dos pilotos que estão com Check-in feito e a lista é ordenada por Ordem de Data de Inscrição, ou seja, quem se inscreveu primeiro, aparece primeiro na Lista.
+
+
+**⚠️ Nota 3**: Caso não haja Check-in/pilotos para o Sorteio, a paginação não retornará elemento nenhum.
+
+<br>
+
+✅ Se a requisição for bem-sucedida, você receberá o Status Code `200`.
+
+
+![image](https://github.com/user-attachments/assets/78103059-a7d1-4b80-b372-f19d16e0e40f)
+
+
+<br><br>
+
+## ✅ 2. Realizando o Sorteio
+
+- Depois de listar todos os pilotos que irão participar do Sorteio, envie uma requisição para o seguinte endereço:
+
+```
+POST http://localhost:8080/sorteador
+```
+
+<br>
+
+**Corpo esperado:**
+
+```json
+{
+	"id_corrida": 2,
+	"maior_numero_de_kart": 10,
+	"numeros_fora_do_sorteio": [1,2,3]
+}
+```
+
+**⚠️ Nota 1**: Para fazer o Sorteio é OBRIGATÓRIO passar o ID da Corrida no JSON
+
+
+**⚠️ Nota 2**: Os números fora do Sorteio devem ser passados via Vetor/Array, mesmo que seja apenas um número só.
+
+
+<br>
+
+✅ Se a requisição for bem-sucedida, você receberá o Status Code `200`.
+
+![image](https://github.com/user-attachments/assets/e4501177-274f-4a63-9097-b4965cb1a404)
+
+
+<br>
+
+📃❌ **Em caso contrário, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC.**
+
+<br>
+
+**📃❌ Algumas mensagens de Erros:**
+
+- **Caso tente fazer o Sorteio para uma corrida sem Check-in:**
+
+![image](https://github.com/user-attachments/assets/611019ad-9f7b-499d-af14-1b43243e69bb)
+
+
+<br>
+
+- **Caso tente fazer o Sorteio fora do dia da Corrida:**
+
+![image](https://github.com/user-attachments/assets/a3b80afc-ac31-4864-8f7c-c747e76da2b5)
+
+
+<br>
+
+- **Caso tente fazer o Sorteio com quantidade de números retirados maior que a de usuários com Check-in feito, pois desse modo faltará números para sorteio:**
+
+![image](https://github.com/user-attachments/assets/ac1f703e-e576-473b-b32b-ea059911d0db)
+
+
+
+
+<br>
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
+---
+
+<br><br><br>
+
 
 
 ## 🛠 Tecnologias
