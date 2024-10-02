@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public record RealizarCheckOutDTO(@NotNull
+public record RealizarCheckOutDTO(@NotNull(message = "Check-in é um campo obrigatório.")
                                   @JsonAlias("id_check_in")
                                   Long idCheckIn,
 
