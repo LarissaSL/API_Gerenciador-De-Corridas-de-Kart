@@ -135,7 +135,7 @@ spring.jpa.hibernate.ddl-auto=update
 - [Exclusão de Check-in](#-3-exclus%C3%A3o-de-check-in)
 - [Atualização de Check-in](#-4-atualiza%C3%A7%C3%A3o-de-check-in)
 - [Quantida de Check-ins por Corrida](#-5-quantidade-de-check-ins-por-corrida)
-- [Solicitar Lista de Check-in para Compartilhar via Whatsapp](#-6-solicitar-lista-de-pilotos-que-fizeram-check-in)
+- [Solicitar Lista de Check-in para Compartilhar via Whatsapp](#-6-solicitar-lista-de-pilotos-que-fizeram-check-in-para-compartilhar-via-whatsapp)
 
 11. Utilizando o Controller de Check-out
 - [Passo a Passo de como realizar Check-out no APP Mobile](#passo-a-passo-de-como-realizar-check-out-no-app-mobile)
@@ -1937,12 +1937,12 @@ GET http://localhost:8080/check-in/qtdPorCorrida/2
 
 <br><br><br>
 
-## 📝 6. Solicitar lista de Pilotos que fizeram Check-in
+## 📝 6. Solicitar lista de Pilotos que fizeram Check-in para Compartilhar via Whatsapp
 
 - Para solicitar a Lista de pilotos que fizeram Check-in em uma determinada corrida, utiliza o seguinte endpoint:
 
 ```
-GET http://localhost:8080/check-in/compartilhar/{idCorrida}
+http://localhost:8080/check-in/compartilhar?id_corrida=2
 ```
 
 <br>
@@ -1951,7 +1951,8 @@ GET http://localhost:8080/check-in/compartilhar/{idCorrida}
 
 <br>
 
-![image](https://github.com/user-attachments/assets/a06e58a7-e685-4d89-b1b7-1af4aa2aeed2)
+![image](https://github.com/user-attachments/assets/6e67c610-8468-41bf-8e06-a42f4303e2f6)
+
 
 <br>
 
