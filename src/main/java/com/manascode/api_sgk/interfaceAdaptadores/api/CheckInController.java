@@ -41,7 +41,7 @@ public class CheckInController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ListarCheckInDTO>>  listarTodosComFiltros (
+    public ResponseEntity<Page<ListarCheckInDTO>> listarTodosComFiltros(
             @PageableDefault(size = 10, sort = {"inscricao.dataInscricao"}) Pageable paginacao,
             @RequestParam(required = false) Long id_corrida) {
 
@@ -65,9 +65,9 @@ public class CheckInController {
         return service.contarCheckInsPorCorrida(idCorrida);
     }
 
-    @GetMapping("/compartilhar/{idCorrida}")
-    public ResponseEntity<String> compartilhar(@PathVariable Long idCorrida) {
-        return service.compartilharCheckInPorWhatsapp(idCorrida);
+    @GetMapping("/compartilhar")
+    public ResponseEntity<String> compartilhar(@RequestParam(required = true) Long id_corrida) {
+        return service.compartilharCheckInPorWhatsapp(id_corrida);
     }
 
 
