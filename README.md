@@ -137,12 +137,12 @@ spring.jpa.hibernate.ddl-auto=update
 - [Quantida de Check-ins por Corrida](#-5-quantidade-de-check-ins-por-corrida)
 - [Solicitar Lista de Check-in para Compartilhar via Whatsapp](#-6-solicitar-lista-de-pilotos-que-fizeram-check-in-para-compartilhar-via-whatsapp)
 
-11. Utilizando o Controller de Check-out
+### 11. Utilizando o Controller de Check-out
 - [Passo a Passo de como realizar Check-out no APP Mobile](#passo-a-passo-de-como-realizar-check-out-no-app-mobile)
 - [Passo 1 - Agrupando todos os Check-ins da Corrida](#-1-agrupando-todos-os-check-ins-da-corrida)
 - [Passo 2 - Realizando o Check-out](#-2-realizando-o-check-out)
 
-12. Utilizando o Controller do Sorteador
+### 12. Utilizando o Controller do Sorteador
 - [Passo a Passo de como realizar Sorteio no APP Mobile](#passo-a-passo-de-como-realizar-sorteio-de-karts-no-app-mobile)
 - [Passo 1 - Agrupando todos os Pilotos do Sorteio](#-1-agrupando-todos-os-pilotos-do-sorteio)
 - [Passo 2 - Realizando o Sorteio](#-2-realizando-o-sorteio)
