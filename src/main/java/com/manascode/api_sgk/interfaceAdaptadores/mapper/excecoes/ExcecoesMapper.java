@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ExcecoesMapper {
 
-    @Mapping(target = "type", constant = "http://ckc.com/problemas/erros-de-cadastro")
+    @Mapping(target = "type", constant = "http://ckc.com/problemas/erros")
     @Mapping(target = "title", source = "titulo")
     @Mapping(target = "status", source = "httpStatus")
     @Mapping(target = "details", source = "exceptionMessage")

@@ -1,11 +1,14 @@
 package com.manascode.api_sgk.infraestrutura.persistencia;
 
+import com.manascode.api_sgk.aplicacao.usuario.DetalharNomeESobrenomeUsuarioProjecao;
 import com.manascode.api_sgk.dominio.inscricao.Inscricao;
 import com.manascode.api_sgk.dominio.inscricao.StatusPagamento;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface InscricaoRepository extends JpaRepository<Inscricao, Long> {
     @Query("SELECT COUNT(i) FROM Inscricao i WHERE i.usuario.id = :usuarioId AND i.corrida.id = :corridaId AND i.id <> :inscricaoId")
@@ -36,4 +39,20 @@ public interface InscricaoRepository extends JpaRepository<Inscricao, Long> {
 
     @Query("SELECT i FROM Inscricao i WHERE i.statusPagamento = :statusPagamento")
     Page<Inscricao> contarInscricoesPorStatusPagamento(StatusPagamento statusPagamento, Pageable paginacao);
+
+    @Query("SELECT u FROM Usuario u " +
+            "JOIN Inscricao i ON u.id = i.usuario.id " +
+            "JOIN Check c ON c.inscricao.id = i.id " +
+            "WHERE i.corrida.id = :idCorrida " +
+            "ORDER BY i.dataInscricao")
+    List<DetalharNomeESobrenomeUsuarioProjecao> listaDeUsuarioPorCorridaECheckInFeitoOrdenadoPorDataInscricao(Long idCorrida);
+
+    Inscricao findByUsuarioIdAndCorridaId(Long usuarioId, Long idCorrida);
+
+    @Query("SELECT u FROM Usuario u " +
+            "JOIN Inscricao i ON u.id = i.usuario.id " +
+            "JOIN Check c ON c.inscricao.id = i.id " +
+            "WHERE i.corrida.id = :idCorrida " +
+            "ORDER BY i.dataInscricao")
+    Page<DetalharNomeESobrenomeUsuarioProjecao> listaDeUsuarioPorCorridaECheckInFeitoParaSorteio(Long idCorrida, Pageable paginacao);
 }

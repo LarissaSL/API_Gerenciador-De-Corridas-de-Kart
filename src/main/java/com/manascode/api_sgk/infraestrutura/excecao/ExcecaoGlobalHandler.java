@@ -221,4 +221,20 @@ public class ExcecaoGlobalHandler {
         return ResponseEntity.status(status).body(problema);
     }
 
+    @ExceptionHandler(SorteioException.class)
+    public ResponseEntity<ResponseErrorPadraoRFC> tratarErrosDeCheckInECheckOut (HttpServletRequest request, SorteioException excecao) {
+        String uri = request.getRequestURI();
+        String titulo = "Erro de Sorteio";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(
+                titulo,
+                excecao.getMessage(),
+                status,
+                uri
+        );
+
+        return ResponseEntity.status(status).body(problema);
+    }
+
 }

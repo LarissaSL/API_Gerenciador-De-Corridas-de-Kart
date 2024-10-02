@@ -75,4 +75,8 @@ public class Check {
             this.classificado = dados.classificado();
         }
     }
+
+    public void inserirNumeroDeKart(int numeroDoKart) {
+        this.numeroDoKart = numeroDoKart;
+    }
 }
