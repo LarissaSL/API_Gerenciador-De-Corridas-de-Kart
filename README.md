@@ -146,6 +146,7 @@ spring.jpa.hibernate.ddl-auto=update
 - [Passo a Passo de como realizar Sorteio no APP Mobile](#passo-a-passo-de-como-realizar-sorteio-de-karts-no-app-mobile)
 - [Passo 1 - Agrupando todos os Pilotos do Sorteio](#-1-agrupando-todos-os-pilotos-do-sorteio)
 - [Passo 2 - Realizando o Sorteio](#-2-realizando-o-sorteio)
+- [Excluir números sorteados de uma corrida](#-3-excluindo-n%C3%BAmeros-de-kart-sorteados-de-uma-corrida)
 
 ### Extra 
 - [Tecnologias](#-tecnologias)
@@ -2185,7 +2186,51 @@ POST http://localhost:8080/sorteador
 
 ---
 
+<br><br>
+
+## ❌ 3. Excluindo números de kart sorteados de uma corrida
+
+- Envie uma requisição para o seguinte endereço:
+
+```
+DELETE http://localhost:8080/sorteador/{idCorrida}
+```
+
+<br>
+
+
+**⚠️ Nota**: Para fazer a Exclusão dos números sorteados para a corrida é OBRIGATÓRIO passar o ID da Corrida na URL.
+
+
+<br>
+
+✅ Se a requisição for bem-sucedida, você receberá o Status Code `204`.
+
+
+![image](https://github.com/user-attachments/assets/5f2b1fc8-0ae4-4008-bd0c-ac4e69bf53ba)
+
+
+<br>
+
+📃❌ **Em caso contrário, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC.**
+
+<br>
+
+**📃❌ Algumas mensagens de Erros:**
+
+- **Caso tente fazer a exclusão dos números sorteados de uma corrida sem Check-in:**
+
+![image](https://github.com/user-attachments/assets/4f617ee6-e023-49d1-b7d1-c34c44fa50f5)
+
+<br>
+
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
+---
+
 <br><br><br>
+
 
 
 
