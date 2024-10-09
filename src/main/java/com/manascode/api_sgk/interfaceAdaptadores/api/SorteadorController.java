@@ -34,4 +34,10 @@ public class SorteadorController {
 
         return service.listarUsuariosParaSorteio(paginacao, id_corrida);
     }
+
+    @DeleteMapping("/{idCorrida}")
+    @Transactional
+    public ResponseEntity excluirSorteiosDeKartPorIdCorrida(@PathVariable Long idCorrida) {
+        return service.excluir(idCorrida);
+    }
 }

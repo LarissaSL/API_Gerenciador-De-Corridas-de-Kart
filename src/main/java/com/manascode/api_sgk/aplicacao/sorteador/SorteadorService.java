@@ -5,6 +5,7 @@ import com.manascode.api_sgk.aplicacao.sorteador.validacoes.IValidadorNumerosDoS
 import com.manascode.api_sgk.aplicacao.sorteador.validacoes.IValidadorSorteio;
 import com.manascode.api_sgk.aplicacao.usuario.DetalharNomeESobrenomeUsuarioProjecao;
 import com.manascode.api_sgk.dominio.check.Check;
+import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.dominio.inscricao.Inscricao;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.SorteioException;
 import com.manascode.api_sgk.infraestrutura.persistencia.CheckRepository;
@@ -140,5 +141,21 @@ public class SorteadorService {
         Page<ListarUsuariosParaSorteioDTO> listarUsuariosParaSorteio = page.map(mapper::converteParaListarUsuariosParaSorteioDTO);
 
         return ResponseEntity.ok(listarUsuariosParaSorteio);
+    }
+
+    public ResponseEntity excluir(Long idCorrida) {
+        boolean existeCheckInPorCorrida = checkRepository.existsCheckInsByCorridaId(idCorrida);
+
+        if (!existeCheckInPorCorrida) {
+            throw new SorteioException("Nenhum check-in encontrado para essa Corrida.");
+        }
+
+        int registrosAfetados = checkRepository.colocarNumeroDeKartComoNulo(idCorrida);
+
+        if (registrosAfetados <= 0) {
+            throw new SorteioException("Nenhum registro excluido.");
+        }
+
+        return ResponseEntity.noContent().build();
     }
 }
