@@ -28,6 +28,7 @@ public interface CorridaRepository extends JpaRepository<Corrida, Long> {
     Page<Corrida> findAllByAtivoTrue(Pageable paginacao);
 
     @Query("SELECT c FROM Corrida c WHERE " +
+            "c.ativo = true AND " + // Verifica se a corrida está ativa
             "(:kartodromo IS NULL OR LOWER(c.kartodromo.nome) = LOWER(:kartodromo)) AND " +
             "(:mes IS NULL OR FUNCTION('MONTH', c.data) = :mes) AND " +
             "(:dia IS NULL OR FUNCTION('DAY', c.data) = :dia) AND " +
