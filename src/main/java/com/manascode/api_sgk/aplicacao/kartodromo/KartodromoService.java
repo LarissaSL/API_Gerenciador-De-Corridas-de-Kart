@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -108,6 +109,10 @@ public class KartodromoService {
     }
 
     public List<String> listarKartodromos() {
+        List<String> listaNomesDeKartodromos = repositorio.listarNomesDistintosDeKartodromos();
+        if (listaNomesDeKartodromos.isEmpty()) {
+            throw new KartodromoException("Não foi possível carregar os nomes dos Kartodromos, verifique se existe algum registrado.");
+        }
         return repositorio.listarNomesDistintosDeKartodromos();
     }
 
