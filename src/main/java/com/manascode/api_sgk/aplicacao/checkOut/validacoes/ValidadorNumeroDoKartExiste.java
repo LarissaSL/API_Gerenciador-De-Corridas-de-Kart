@@ -14,7 +14,7 @@ public class ValidadorNumeroDoKartExiste implements IValidadorCheckOut{
 
     @Override
     public void validar(RealizarCheckOutDTO dados) {
-        Check checkInSalvo = repositorio.encontrarPorId(dados.idCheckIn());
+        Check checkInSalvo = repositorio.encontrarPorIdInscricao(dados.idInscricao());
 
         if (checkInSalvo.getNumeroDoKart() == null) {
             throw new CheckException("O Piloto não tem número de Kart, verifique se ele realmente correu e preencha o número do Kart.");

@@ -37,7 +37,7 @@ public interface CheckMapper {
     @Mapping(source = "dataCheckin", target = "dataDoCheckIn")
     ListarCheckInDTO converterCheckEmListarCheckInDto(Check check);
 
-    @Mapping(source = "inscricao.id", target = "idCheckIn")
+    @Mapping(source = "inscricao.id", target = "idInscricao")
     @Mapping(source = "inscricao.usuario", target = "usuario")
     @Mapping(target = "checkOut", expression = "java(check.getPesoFinal() != null && check.getPesoFinal().compareTo(BigDecimal.ZERO) > 0)")
     ListarNomesESeFezCheckOutDosPilotosComCheckInDTO converteCheckEmListarNomesEPesoPilotosComCheckInDTO(Check check);

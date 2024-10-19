@@ -18,7 +18,7 @@ public class ValidadorPesoInferiorAoInicialEClassificadoVerdadeiro implements IV
         // Faz essa validação apenas se o Peso Final for informado
         if (dados.pesoFinal() != null) {
             // Recuperando o Check-in do Banco, não está verificando se é nulo pois tem uma validação antes dessa que faz isso
-            Check checkInSalvo = repositorio.encontrarPorId(dados.idCheckIn());
+            Check checkInSalvo = repositorio.encontrarPorIdInscricao(dados.idInscricao());
 
             // Definindo se o valor de classificado será o que está no banco ou o novo informado
             Boolean classificado = dados.classificado() == null ? checkInSalvo.getClassificado() : dados.classificado();

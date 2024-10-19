@@ -3,6 +3,7 @@ package com.manascode.api_sgk.infraestrutura.persistencia;
 import com.manascode.api_sgk.aplicacao.checkIn.CompartilharCheckInProjecao;
 import com.manascode.api_sgk.dominio.check.Check;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,7 +24,7 @@ public interface CheckRepository extends JpaRepository<Check, Long> {
     @Query("SELECT ch FROM Check ch " +
             "JOIN ch.inscricao i " +
             "JOIN i.corrida c " +
-            "WHERE (:idCorrida IS NULL OR c.id = :idCorrida)" +
+            "WHERE (:idCorrida IS NULL OR c.id = :idCorrida) " +
             "ORDER BY i.dataInscricao")
     Page<Check> listarCheckPorFiltrosIdCorrida(Pageable paginacao, Long idCorrida);
 
@@ -47,4 +48,7 @@ public interface CheckRepository extends JpaRepository<Check, Long> {
     @Transactional
     @Query("UPDATE Check c SET c.numeroDoKart = NULL WHERE c.inscricao.corrida.id = :idCorrida")
     int colocarNumeroDeKartComoNulo(Long idCorrida);
+
+    @Query("SELECT c FROM Check c WHERE c.inscricao.id = :checkInId")
+    Check encontrarPorIdInscricao(Long checkInId);
 }

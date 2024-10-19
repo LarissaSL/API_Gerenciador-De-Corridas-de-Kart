@@ -15,7 +15,7 @@ public class ValidadorCheckInExiste implements IValidadorCheckOut{
 
     @Override
     public void validar(RealizarCheckOutDTO dados) {
-        Check checkInSalvo = repositorio.encontrarPorId(dados.idCheckIn());
+        Check checkInSalvo = repositorio.encontrarPorIdInscricao(dados.idInscricao());
 
         if (checkInSalvo == null) {
             throw new CheckException("Check-in não encontrado.");

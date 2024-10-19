@@ -48,7 +48,7 @@ public class CheckOutService {
         validadores.forEach(v -> v.validar(dados));
 
         // Buscando o CheckInSalvo no Banco
-        Check checkInSalvo = repositorio.encontrarPorId(dados.idCheckIn());
+        Check checkInSalvo = repositorio.encontrarPorIdInscricao(dados.idInscricao());
 
         // Atualizando as informações para concluir o Check-out
         checkInSalvo.atualizarDadosParaCheckOut(dados);
