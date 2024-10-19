@@ -1904,7 +1904,7 @@ Você **deve enviar o ID da inscrição no corpo da requisição**.
 
 <br>
 
-![image](https://github.com/user-attachments/assets/149995d9-9d3c-49c9-9377-a30bdd3a2288)
+![image](https://github.com/user-attachments/assets/4c300fb0-1eb6-40e4-8421-67f54f1d8b21)
 
 
 <br>
@@ -1960,7 +1960,7 @@ http://localhost:8080/check-in/compartilhar?id_corrida=2
 
 <br>
 
-![image](https://github.com/user-attachments/assets/6e67c610-8468-41bf-8e06-a42f4303e2f6)
+![image](https://github.com/user-attachments/assets/dba1d4fc-57f8-4684-b856-5983b3780e35)
 
 
 <br>
@@ -1991,7 +1991,7 @@ http://localhost:8080/check-in/compartilhar?id_corrida=2
 | **Campo**   | **Validação**                                                                                                   |
 |-------------|-----------------------------------------------------------------------------------------------------------------|
 | **id_corrida**   | Não deve ser nulo e deve estar registrado no sistema.                                                              |
-| **id_check_in**   | Não deve ser nulo e deve estar registrado no sistema.  |
+| **id_inscricao**   | Não deve ser nulo e deve estar registrado no sistema.  |
 | **Validador de Peso Final e Classificado**   | Caso o Peso final seja inferior ao Peso inicial do Piloto na Corrida, ele deve ser Desclassificado. |
 | **Validador Número de Kart**   | Deve constar um Número de Kart para o Piloto, caso contrário o sistema assume que o Piloto não participou da corrida. |
 
@@ -2023,6 +2023,22 @@ GET http://localhost:8080/check-out?id_corrida=XX
 
 **⚠️ Nota 3**: Você pode checar se um check-out já foi feito através da chave check_out_feito, que verifica se existe o peso_final registrado e se ele é maior que 0 e retorna true ou false.
 
+✅ Se a requisição for bem-sucedida, você receberá o Status Code `200`.
+
+
+![image](https://github.com/user-attachments/assets/2ccc61a8-80cc-4a93-acfa-9a7929de9c0e)
+
+<br>
+
+📃❌ **Em caso contrário, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC.**
+
+<br>
+
+**📃❌ Algumas mensagens de Erros:**
+
+![image](https://github.com/user-attachments/assets/3385f285-53b2-4e77-9ee0-ff0ad9902dd7)
+
+
 <br><br>
 
 ## ✅ 2. Realizando o Check-out
@@ -2039,13 +2055,13 @@ PUT http://localhost:8080/check-out
 
 ```json
 {
-	"id_check_in": 12,
+	"id_inscricao": 12,
 	"peso_final": 70.55,
 	"classificado": true
 }
 ```
 
-**⚠️ Nota 1**: Para fazer o Check-out é OBRIGATÓRIO passar o ID do Check-in no JSON
+**⚠️ Nota 1**: Para fazer o Check-out é OBRIGATÓRIO passar o ID de Inscricao no JSON
 
 
 **⚠️ Nota 2**: Caso você não altere o classificado, pode tirar essa Chave e Valor no JSON
@@ -2055,7 +2071,8 @@ PUT http://localhost:8080/check-out
 
 ✅ Se a requisição for bem-sucedida, você receberá o Status Code `200`.
 
-![image](https://github.com/user-attachments/assets/f118f523-86f4-4196-a1f7-8b8f4a0880f0)
+![image](https://github.com/user-attachments/assets/4a200316-d4e9-4049-a6c3-13b5eb70bfa7)
+
 
 <br>
 
@@ -2065,20 +2082,19 @@ PUT http://localhost:8080/check-out
 
 **📃❌ Algumas mensagens de Erros:**
 
-- **Caso o ID do Check-in não Exista:**
+- **Caso o ID de Inscricao não Exista:**
 
-![image](https://github.com/user-attachments/assets/cc2b7bbd-d249-48ee-9195-5db16fa2f849)
-
+![image](https://github.com/user-attachments/assets/b42f7e32-4af3-4d0b-b909-e2cd9fe7e5ec)
 
 
 - **Caso Peso Final for menor que o Inicial e o Status de Classificado seja Verdadeiro:**
 
-![image](https://github.com/user-attachments/assets/f0023076-d2d8-492f-8e0c-5f8cf01efd0a)
-
+![image](https://github.com/user-attachments/assets/15ebba59-603b-4722-9f9b-de6b95a8e934)
 
 - **Caso o piloto não tenha o Número do Kart Registrado na ficha de Check-in:**
 
-![image](https://github.com/user-attachments/assets/e4dfcb98-0bc5-4043-bd0f-ab1308c9b991)
+![image](https://github.com/user-attachments/assets/4fcbde5e-e8b0-488e-8841-2a07bf2d1703)
+
 
 
 <br>
