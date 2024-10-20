@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.interfaceAdaptadores.api;
 
+import com.manascode.api_sgk.aplicacao.inscricao.ListarUsuariosComNumeroDeKartDTO;
 import com.manascode.api_sgk.aplicacao.sorteador.ConfiguracoesDoSorteioDTO;
 import com.manascode.api_sgk.aplicacao.sorteador.ListarUsuariosParaSorteioDTO;
 import com.manascode.api_sgk.aplicacao.sorteador.SorteadorService;
@@ -33,6 +34,13 @@ public class SorteadorController {
             @RequestParam(required = true) Long id_corrida) {
 
         return service.listarUsuariosParaSorteio(paginacao, id_corrida);
+    }
+
+    @GetMapping("/verificar")
+    public ResponseEntity<ListarUsuariosComNumeroDeKartDTO> listarUsuariosComNumeroDeKart(
+            @RequestParam(required = true) Long id_corrida) {
+
+        return service.listarUsuariosComNumeroDeKartPorIdCorrida(id_corrida);
     }
 
     @DeleteMapping("/{idCorrida}")

@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.interfaceAdaptadores.mapper;
 
+import com.manascode.api_sgk.aplicacao.inscricao.ListarUsuariosComNumeroDeKartDTO;
 import com.manascode.api_sgk.aplicacao.sorteador.DetalharInformacaoPilotoDoSorteioDTO;
 import com.manascode.api_sgk.aplicacao.sorteador.ListarUsuariosParaSorteioDTO;
 import com.manascode.api_sgk.aplicacao.sorteador.validacoes.DetalharInformacaoGeralDoSorteioDTO;
@@ -29,4 +30,11 @@ public interface SorteadorMapper {
 
 
     ListarUsuariosParaSorteioDTO converteParaListarUsuariosParaSorteioDTO(DetalharNomeESobrenomeUsuarioProjecao usuario);
+
+    @Mapping(source = "usuariosComNumeroDeKart", target = "usuariosComNumeroDeKart")
+    ListarUsuariosComNumeroDeKartDTO converteParaListarUsuariosComNumeroDeKartDTO(
+            int totalUsuariosComCheckIn,
+            int totalUsuariosComNumeroDeKart,
+            List<DetalharNomeESobrenomeUsuarioProjecao> usuariosComNumeroDeKart
+    );
 }

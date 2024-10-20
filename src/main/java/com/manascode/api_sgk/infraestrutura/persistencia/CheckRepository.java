@@ -3,7 +3,6 @@ package com.manascode.api_sgk.infraestrutura.persistencia;
 import com.manascode.api_sgk.aplicacao.checkIn.CompartilharCheckInProjecao;
 import com.manascode.api_sgk.dominio.check.Check;
 import jakarta.transaction.Transactional;
-import jakarta.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

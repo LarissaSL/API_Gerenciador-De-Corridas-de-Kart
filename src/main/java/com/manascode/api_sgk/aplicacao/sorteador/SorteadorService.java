@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.aplicacao.sorteador;
 
+import com.manascode.api_sgk.aplicacao.inscricao.ListarUsuariosComNumeroDeKartDTO;
 import com.manascode.api_sgk.aplicacao.sorteador.validacoes.DetalharInformacaoGeralDoSorteioDTO;
 import com.manascode.api_sgk.aplicacao.sorteador.validacoes.IValidadorNumerosDoSorteio;
 import com.manascode.api_sgk.aplicacao.sorteador.validacoes.IValidadorSorteio;
@@ -157,5 +158,19 @@ public class SorteadorService {
         }
 
         return ResponseEntity.noContent().build();
+    }
+
+    public ResponseEntity<ListarUsuariosComNumeroDeKartDTO> listarUsuariosComNumeroDeKartPorIdCorrida(Long idCorrida) {
+        List<DetalharNomeESobrenomeUsuarioProjecao> usuariosComNumeroDeKart = inscricaoRepository.listaDeUsuariosComNumeroDeKart(idCorrida);
+        int totalUsuariosComCheckIn = inscricaoRepository.contarUsuariosComCheckIn(idCorrida);
+        int totalUsuariosComNumeroDeKart = inscricaoRepository.contarUsuariosComSorteioFeito(idCorrida);
+
+        ListarUsuariosComNumeroDeKartDTO responseDTO = mapper.converteParaListarUsuariosComNumeroDeKartDTO(
+                totalUsuariosComCheckIn,
+                totalUsuariosComNumeroDeKart,
+                usuariosComNumeroDeKart
+        );
+
+        return ResponseEntity.ok(responseDTO);
     }
 }

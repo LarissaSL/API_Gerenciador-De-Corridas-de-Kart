@@ -55,4 +55,18 @@ public interface InscricaoRepository extends JpaRepository<Inscricao, Long> {
             "WHERE i.corrida.id = :idCorrida " +
             "ORDER BY i.dataInscricao")
     Page<DetalharNomeESobrenomeUsuarioProjecao> listaDeUsuarioPorCorridaECheckInFeitoParaSorteio(Long idCorrida, Pageable paginacao);
+
+    @Query("SELECT u.id AS id, u.nome AS nome, u.sobrenome AS sobrenome " +
+            "FROM Check c " +
+            "JOIN c.inscricao i " +
+            "JOIN i.usuario u " +
+            "WHERE i.corrida.id = :idCorrida AND c.numeroDoKart IS NOT NULL " +
+            "ORDER BY i.dataInscricao")
+    List<DetalharNomeESobrenomeUsuarioProjecao> listaDeUsuariosComNumeroDeKart(Long idCorrida);
+
+    @Query("SELECT COUNT(c) FROM Check c WHERE c.inscricao.corrida.id = :idCorrida")
+    int contarUsuariosComCheckIn(Long idCorrida);
+
+    @Query("SELECT COUNT(c) FROM Check c JOIN c.inscricao i WHERE i.corrida.id = :idCorrida AND c.numeroDoKart IS NOT NULL")
+    int contarUsuariosComSorteioFeito(Long idCorrida);
 }
