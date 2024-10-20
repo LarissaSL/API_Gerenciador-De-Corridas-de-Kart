@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface InscricaoRepository extends JpaRepository<Inscricao, Long> {
-    @Query("SELECT COUNT(i) FROM Inscricao i WHERE i.usuario.id = :usuarioId AND i.corrida.id = :corridaId AND i.id <> :inscricaoId")
-    long contarInscricoesPorUsuarioECorrida(Long usuarioId, Long corridaId, Long inscricaoId);
+    @Query("SELECT COUNT(i) FROM Inscricao i WHERE i.usuario.id = :usuarioId AND i.corrida.id = :corridaId")
+    long contarInscricoesPorUsuarioECorrida(Long usuarioId, Long corridaId);
 
     @Query("""
             SELECT COUNT(i) FROM Inscricao i

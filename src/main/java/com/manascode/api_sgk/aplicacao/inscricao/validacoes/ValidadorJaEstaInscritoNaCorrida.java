@@ -20,19 +20,22 @@ public class ValidadorJaEstaInscritoNaCorrida implements IValidadorInscricao{
 
     @Override
     public void validar(AtualizarInscricaoDTO dados) {
-        if (dados.corridaId() != null && dados.usuarioId() != null) {
-            verificar(dados.usuarioId(), dados.corridaId(), dados.id());
+        if (dados.corridaId() == null && dados.usuarioId() == null) {
+            return;
         }
 
         Inscricao inscricao = repositorio.getReferenceById(dados.id());
-        verificar(dados.usuarioId() != null ? dados.usuarioId() : inscricao.getUsuario().getId(),
-                dados.corridaId() != null ? dados.corridaId() : inscricao.getCorrida().getId(),
-                dados.id());
 
+        Long usuarioId = dados.usuarioId() != null ? dados.usuarioId() : inscricao.getUsuario().getId();
+        Long corridaId = dados.corridaId() != null ? dados.corridaId() : inscricao.getCorrida().getId();
+
+        if (!usuarioId.equals(inscricao.getUsuario().getId()) || !corridaId.equals(inscricao.getCorrida().getId())) {
+            verificar(usuarioId, corridaId, dados.id());
+        }
     }
 
     public void verificar(Long idUsuario, Long idCorrida, Long idInscricao) {
-        Long qtdDeInscricoesDoUsuarioNaCorrida = repositorio.contarInscricoesPorUsuarioECorrida(idUsuario, idCorrida, idInscricao);
+        Long qtdDeInscricoesDoUsuarioNaCorrida = repositorio.contarInscricoesPorUsuarioECorrida(idUsuario, idCorrida);
 
         if (qtdDeInscricoesDoUsuarioNaCorrida >= 1) {
             throw new InscricaoException("Esse usuário já está inscrito nessa corrida.");
