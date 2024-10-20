@@ -147,6 +147,7 @@ spring.jpa.hibernate.ddl-auto=update
 - [Passo 1 - Agrupando todos os Pilotos do Sorteio](#-1-agrupando-todos-os-pilotos-do-sorteio)
 - [Passo 2 - Realizando o Sorteio](#-2-realizando-o-sorteio)
 - [Excluir números sorteados de uma corrida](#-3-excluindo-n%C3%BAmeros-de-kart-sorteados-de-uma-corrida)
+- [Verificando se uma Corrida já tem Sorteio feito](#4-verificando-se-uma-corrida-j%C3%A1-tem-sorteio-feito)
 
 ### Extra 
 - [Tecnologias](#-tecnologias)
@@ -2245,9 +2246,53 @@ DELETE http://localhost:8080/sorteador/{idCorrida}
 
 ---
 
+<br><br>
+
+## 4. Verificando se uma Corrida já tem sorteio feito
+
+- Envie uma requisição para o seguinte endereço:
+
+```
+GET http://localhost:8080/sorteador/verificar?id_corrida={idCorrida}
+```
+
+<br>
+
+
+**⚠️ Nota 1**: Para fazer a Consulta é OBRIGATÓRIO passar o ID da Corrida na URL.
+
+**⚠️ Nota 2**: Será considerado uma corrida com sorteio feito, apenas se TODOS os usuários com Check-in da corrida tenham recebido seus números de Kart.
+
+
+<br>
+
+✅ Se a requisição for bem-sucedida, você receberá o Status Code `204`.
+
+
+![image](https://github.com/user-attachments/assets/084346db-309a-4a8a-8711-b96399e8f00b)
+
+
+<br>
+
+📃❌ **Em caso contrário, o Status Code será `400`, com uma mensagem de erro formatada de acordo com o padrão RFC.**
+
+<br>
+
+**📃❌ Algumas mensagens de Erros:**
+
+- **Caso tente verificar o sorteio de uma corrida que não existe ou não esta ativa:**
+
+![image](https://github.com/user-attachments/assets/d3333579-3584-44a9-9645-71ef7ebb46a9)
+
+
+<br>
+
+
+**🔝 [Voltar ao Índice](#-%C3%ADndice)**
+
+---
+
 <br><br><br>
-
-
 
 
 ## 🛠 Tecnologias
