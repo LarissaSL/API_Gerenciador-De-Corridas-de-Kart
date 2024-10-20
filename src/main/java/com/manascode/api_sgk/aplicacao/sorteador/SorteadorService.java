@@ -8,8 +8,10 @@ import com.manascode.api_sgk.aplicacao.usuario.DetalharNomeESobrenomeUsuarioProj
 import com.manascode.api_sgk.dominio.check.Check;
 import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.dominio.inscricao.Inscricao;
+import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.CorridaException;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.SorteioException;
 import com.manascode.api_sgk.infraestrutura.persistencia.CheckRepository;
+import com.manascode.api_sgk.infraestrutura.persistencia.CorridaRepository;
 import com.manascode.api_sgk.infraestrutura.persistencia.InscricaoRepository;
 import com.manascode.api_sgk.interfaceAdaptadores.mapper.SorteadorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class SorteadorService {
 
     @Autowired
     private InscricaoRepository inscricaoRepository;
+
+    @Autowired
+    private CorridaRepository corridaRepository;
 
     @Autowired
     private SorteadorMapper mapper;
@@ -161,6 +166,12 @@ public class SorteadorService {
     }
 
     public ResponseEntity<ListarUsuariosComNumeroDeKartDTO> listarUsuariosComNumeroDeKartPorIdCorrida(Long idCorrida) {
+        Corrida corridaSalva = corridaRepository.findByIdAndAtivo(idCorrida, true);
+
+        if (corridaSalva == null) {
+            throw new SorteioException("Corrida não encontrada ou não está ativa.");
+        }
+
         List<DetalharNomeESobrenomeUsuarioProjecao> usuariosComNumeroDeKart = inscricaoRepository.listaDeUsuariosComNumeroDeKart(idCorrida);
         int totalUsuariosComCheckIn = inscricaoRepository.contarUsuariosComCheckIn(idCorrida);
         int totalUsuariosComNumeroDeKart = inscricaoRepository.contarUsuariosComSorteioFeito(idCorrida);
