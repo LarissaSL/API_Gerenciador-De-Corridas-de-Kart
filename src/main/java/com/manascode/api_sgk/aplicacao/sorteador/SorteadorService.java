@@ -1,14 +1,12 @@
 package com.manascode.api_sgk.aplicacao.sorteador;
 
 import com.manascode.api_sgk.aplicacao.inscricao.ListarUsuariosComNumeroDeKartDTO;
-import com.manascode.api_sgk.aplicacao.sorteador.validacoes.DetalharInformacaoGeralDoSorteioDTO;
 import com.manascode.api_sgk.aplicacao.sorteador.validacoes.IValidadorNumerosDoSorteio;
 import com.manascode.api_sgk.aplicacao.sorteador.validacoes.IValidadorSorteio;
 import com.manascode.api_sgk.aplicacao.usuario.DetalharNomeESobrenomeUsuarioProjecao;
 import com.manascode.api_sgk.dominio.check.Check;
 import com.manascode.api_sgk.dominio.corrida.Corrida;
 import com.manascode.api_sgk.dominio.inscricao.Inscricao;
-import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.CorridaException;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.SorteioException;
 import com.manascode.api_sgk.infraestrutura.persistencia.CheckRepository;
 import com.manascode.api_sgk.infraestrutura.persistencia.CorridaRepository;

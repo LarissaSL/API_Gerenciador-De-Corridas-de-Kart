@@ -1,7 +1,6 @@
-package com.manascode.api_sgk.aplicacao.sorteador.validacoes;
+package com.manascode.api_sgk.aplicacao.sorteador;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.manascode.api_sgk.aplicacao.sorteador.DetalharInformacaoPilotoDoSorteioDTO;
 
 import java.util.List;
 

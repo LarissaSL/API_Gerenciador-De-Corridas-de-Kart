@@ -15,6 +15,7 @@ public record ConfiguracoesDoSorteioDTO(@NotNull(message = "Corrida é um campo 
                                         @JsonProperty("maior_numero_de_kart")
                                         Integer maiorNumeroDeKart,
 
+                                        @NotNull(message = "A Lista de números fora do Sorteio é um campo obrigatório.")
                                         @JsonProperty("numeros_fora_do_sorteio")
                                         List<Integer> numerosForaDoSorteio) {
 }

@@ -4,8 +4,7 @@ import com.manascode.api_sgk.aplicacao.inscricao.ListarUsuariosComNumeroDeKartDT
 import com.manascode.api_sgk.aplicacao.sorteador.ConfiguracoesDoSorteioDTO;
 import com.manascode.api_sgk.aplicacao.sorteador.ListarUsuariosParaSorteioDTO;
 import com.manascode.api_sgk.aplicacao.sorteador.SorteadorService;
-import com.manascode.api_sgk.aplicacao.sorteador.validacoes.DetalharInformacaoGeralDoSorteioDTO;
-import com.manascode.api_sgk.aplicacao.usuario.DetalharNomeESobrenomeUsuarioProjecao;
+import com.manascode.api_sgk.aplicacao.sorteador.DetalharInformacaoGeralDoSorteioDTO;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

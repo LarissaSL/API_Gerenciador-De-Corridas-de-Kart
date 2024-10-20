@@ -3,7 +3,7 @@ package com.manascode.api_sgk.interfaceAdaptadores.mapper;
 import com.manascode.api_sgk.aplicacao.inscricao.ListarUsuariosComNumeroDeKartDTO;
 import com.manascode.api_sgk.aplicacao.sorteador.DetalharInformacaoPilotoDoSorteioDTO;
 import com.manascode.api_sgk.aplicacao.sorteador.ListarUsuariosParaSorteioDTO;
-import com.manascode.api_sgk.aplicacao.sorteador.validacoes.DetalharInformacaoGeralDoSorteioDTO;
+import com.manascode.api_sgk.aplicacao.sorteador.DetalharInformacaoGeralDoSorteioDTO;
 import com.manascode.api_sgk.aplicacao.usuario.DetalharNomeESobrenomeUsuarioProjecao;
 import com.manascode.api_sgk.dominio.inscricao.Inscricao;
 import org.mapstruct.Mapper;
