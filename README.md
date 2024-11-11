@@ -239,7 +239,7 @@ Por motivos de Segurança foi utilizado variáveis de ambiente para acesso as co
     - Na aba "Avançado", clique em "Variáveis de Ambiente".
 
 
-2. Criar Variáveis de Ambiente:
+1. Criar Variáveis de Ambiente:
     - Na seção "Variáveis do Sistema", clique em "Novo".
     - No campo "Nome da variável", insira `DB_HOST`.
     - No campo "Valor da variável", insira o endereço do host do seu banco de dados (exemplo: localhost ou o IP do servidor).
@@ -247,7 +247,7 @@ Por motivos de Segurança foi utilizado variáveis de ambiente para acesso as co
     - Repita o processo para `DB_NAME`(nome do Schema/Banco), `DB_USERNAME`(exemplo: root) e `DB_PASSWORD` (exemplo: ""), inserindo os valores correspondentes.
 
 
-3. Salvar e Aplicar:
+1. Salvar e Aplicar:
     - Após adicionar todas as variáveis, clique em "OK" para fechar todas as janelas.
     - Reinicie qualquer terminal ou IDE que esteja usando para garantir que as variáveis de ambiente sejam carregadas.
 

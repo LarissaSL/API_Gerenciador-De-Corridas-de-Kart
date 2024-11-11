@@ -1,5 +1,6 @@
 package com.manascode.api_sgk.infraestrutura.excecao;
 
+import com.manascode.api_sgk.dominio.logintemporario.LoginTemporario;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.*;
 import com.manascode.api_sgk.interfaceAdaptadores.mapper.excecoes.ExcecoesMapper;
 import jakarta.persistence.EntityNotFoundException;
@@ -225,6 +226,22 @@ public class ExcecaoGlobalHandler {
     public ResponseEntity<ResponseErrorPadraoRFC> tratarErrosDeCheckInECheckOut (HttpServletRequest request, SorteioException excecao) {
         String uri = request.getRequestURI();
         String titulo = "Erro de Sorteio";
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(
+                titulo,
+                excecao.getMessage(),
+                status,
+                uri
+        );
+
+        return ResponseEntity.status(status).body(problema);
+    }
+
+    @ExceptionHandler(LoginTemporarioException.class)
+    public ResponseEntity<ResponseErrorPadraoRFC> tratarErrosDeLoginTemporario (HttpServletRequest request, LoginTemporarioException excecao) {
+        String uri = request.getRequestURI();
+        String titulo = "Erro de Login Temporario";
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
         ResponseErrorPadraoRFC problema = excecoesMapper.converteExcecaoParaDtoRFC(
