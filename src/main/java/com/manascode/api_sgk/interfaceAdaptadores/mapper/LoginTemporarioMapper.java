@@ -10,7 +10,7 @@ import org.mapstruct.MappingConstants;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface LoginTemporarioMapper {
 
-    @Mapping(target = "cpf", ignore = true)
-    @Mapping(source = "email", target = "email")
-    LoginTemporario toEntity(SolicitarLoginTemporarioDTO dto);
+    @Mapping(source = "cpf", target = "usuario.cpf")
+    @Mapping(source = "email", target = "usuario.email")
+    LoginTemporario converteSolicitarLoginTemporarioDtoEmLoginTemporario(SolicitarLoginTemporarioDTO dto);
 }

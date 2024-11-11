@@ -7,7 +7,10 @@ import com.manascode.api_sgk.dominio.usuario.Usuario;
 import com.manascode.api_sgk.infraestrutura.excecao.aplicacao.LoginTemporarioException;
 import com.manascode.api_sgk.infraestrutura.persistencia.LoginTemporarioRepository;
 import com.manascode.api_sgk.infraestrutura.persistencia.UsuarioRepository;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailAuthenticationException;
 import org.springframework.stereotype.Service;
 import java.security.SecureRandom;
 
@@ -24,6 +27,9 @@ public class LoginTemporarioService {
     private UsuarioRepository usuarioRepository;
 
     @Autowired
+    private EnviarEmailService enviarEmailService;
+
+    @Autowired
     private List<IValidadorLoginTemporario> validadores;
 
     private final SecureRandom random = new SecureRandom();
@@ -38,7 +44,7 @@ public class LoginTemporarioService {
         return codigo;
     }
 
-    public void criarLoginTemporario(SolicitarLoginTemporarioDTO loginDTO) {
+    public ResponseEntity criarLoginTemporario(SolicitarLoginTemporarioDTO loginDTO) {
         validadores.forEach(v -> v.validar(loginDTO));
 
         // Verifica se o usuário existe
@@ -47,11 +53,30 @@ public class LoginTemporarioService {
             throw new LoginTemporarioException("Usuário não encontrado.");
         }
 
-        // Cria o login temporário
+        // Gera código temporário
+        String codigoTemporario = gerarCodigoUnico();
+
+        // Cria o login temporário no banco
         LoginTemporario loginTemporario = new LoginTemporario();
         loginTemporario.setUsuario(usuario);
-        loginTemporario.setCodigoTemporario(gerarCodigoUnico()); // Gera código temporário
+        loginTemporario.setCodigoTemporario(codigoTemporario);
         loginTemporarioRepository.save(loginTemporario);
+
+        // Envia o e-mail com o código temporário
+        try {
+            String destinatario = usuario.getEmail();
+            String assunto = "Seu Código Temporário";
+            String mensagem = "Seu código temporário é: " + codigoTemporario;
+            enviarEmailService.enviarCodigoEmail(destinatario, assunto, mensagem);
+
+            return ResponseEntity.ok().build();
+
+        } catch (MailAuthenticationException e) {
+            throw new LoginTemporarioException("Erro nas credenciais de autentificação do Gmail, cheque elas por favor.");
+
+        } catch (Exception e) {
+            throw new LoginTemporarioException("Erro no envio de E-mail: " + e.getMessage());
+        }
     }
 
     public void marcarComoUtilizado(Long id) {

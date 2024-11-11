@@ -17,8 +17,8 @@ public class LoginTemporarioController {
 
     @PostMapping
     public ResponseEntity<Void> criarLoginTemporario(@RequestBody @Valid SolicitarLoginTemporarioDTO loginDTO) {
-        loginTemporarioService.criarLoginTemporario(loginDTO);
-        return ResponseEntity.ok().build();
+        return loginTemporarioService.criarLoginTemporario(loginDTO);
+
     }
 
     @PatchMapping("/{id}/utilizar")
