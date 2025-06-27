@@ -10,7 +10,6 @@ O projeto Web do Gerenciador já tinha sido feito em PHP, porém notamos que nã
 
 ## 🚀👩‍💻 Time de Desenvolvimento
 
--  [Emily Izabelle](https://github.com/em1ky) como Engenheira de Banco de Dados
 -  [Giuliana Gralha](https://github.com/Giuliana09) como Engenheira Front-end
 -  [Larissa Silva](https://github.com/LarissaSL) como Engenheira Back-end
 -  [Leticia Graziele](https://github.com/LeticiaGraziel) como UX/UI e Auxiliar de Banco de Dados
